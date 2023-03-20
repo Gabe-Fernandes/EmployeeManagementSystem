@@ -1,18 +1,17 @@
 ﻿using EMS.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EMS.Controllers
-{
-  public class HomeController : Controller
-  {
-    public HomeController()
-    {
-      
-    }
+namespace EMS.Controllers;
 
-    public IActionResult Index()
-    {
-      return View();
-    }
+public class HomeController : Controller
+{
+  public HomeController()
+  {
+    
+  }
+
+  public IActionResult Index()
+  {
+    return View();
   }
 }
