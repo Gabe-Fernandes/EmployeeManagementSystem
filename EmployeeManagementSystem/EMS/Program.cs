@@ -1,4 +1,6 @@
 using EMS.Data;
+using EMS.Data.RepoInterfaces;
+using EMS.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContextConnection")));
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IAppUserRepo, AppUserRepo>();
+builder.Services.AddTransient<ITimecardRepo, TimecardRepo>();
+builder.Services.AddTransient<IWorkdayRepo, WorkdayRepo>();
 
 var app = builder.Build();
 
