@@ -1,0 +1,39 @@
+﻿@import "library.scss";
+
+#editPersonalInfo {
+  .title-wrap {
+    @include Flex-Col(center, center, 100vw, 10vh);
+  }
+  
+  .top-section {
+    @include Flex-Row(center, center, 80vw, 50vh);
+    margin: 5vh auto;
+    .info-card {
+      @include Flex-Col(center, flex-start, 20vw, 40vh);
+      background-color: $cHeader;
+      border-radius: 1.2em;
+      margin: 0px 2vw;
+      label {
+        margin: 2vh 0vw;
+      }
+      input {
+        width: 16vw;
+        margin: 1.5vh 0vw;
+      }
+    }
+  }
+  
+  .bot-section {
+    @include Flex-Row(center, center, 80vw, 10vh);
+    margin: 0 auto;
+    a {
+      margin: 0vh 5vw;
+    }
+  }
+  
+  #validationLabel {
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

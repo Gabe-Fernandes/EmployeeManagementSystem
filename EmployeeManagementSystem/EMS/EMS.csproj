@@ -7,10 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\RepoInterfaces\" />
-    <Folder Include="Data\Repositories\" />
+    <Folder Include="Views\Identity\" />
     <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +27,10 @@
 	<Target Name="ScssToCss" BeforeTargets="Build">
 		<Exec Command="mkdir $(ProjectDir)wwwroot\css" Condition="!Exists('$(ProjectDir)wwwroot\css')" />
 		<Exec Command="sass $(ProjectDir)Styles\site.scss $(ProjectDir)wwwroot\css\site.css" />
+		<Exec Command="sass $(ProjectDir)Styles\enterTimecard.scss $(ProjectDir)wwwroot\css\enterTimecard.css" />
+		<Exec Command="sass $(ProjectDir)Styles\editPersonalInfo.scss $(ProjectDir)wwwroot\css\editPersonalInfo.css" />
+		<Exec Command="sass $(ProjectDir)Styles\personalInfo.scss $(ProjectDir)wwwroot\css\personalInfo.css" />
+		<Exec Command="sass $(ProjectDir)Styles\manageUsers.scss $(ProjectDir)wwwroot\css\manageUsers.css" />
 	</Target>
 	
 </Project>

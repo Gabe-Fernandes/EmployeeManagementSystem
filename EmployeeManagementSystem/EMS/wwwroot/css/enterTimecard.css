@@ -1,0 +1,83 @@
+#enterTimecard .title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 10vh;
+}
+#enterTimecard .info-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 10vh;
+  margin: 2vh auto;
+  border-radius: 1.2em;
+  background-color: #4C5760;
+  font-size: 1.2em;
+}
+#enterTimecard .info-panel label {
+  margin: 0px 8vw;
+}
+#enterTimecard .bot-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80vw;
+  height: 60vh;
+  margin: 0 auto;
+}
+#enterTimecard .bot-section .timecard-div-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+  height: 50vh;
+  background-color: #93A8AC;
+  border-radius: 1.2em;
+  margin-right: 5vw;
+  font-size: 1.2em;
+}
+#enterTimecard .bot-section .timecard-div-table .workday-row, #enterTimecard .bot-section .timecard-div-table .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 18%;
+}
+#enterTimecard .bot-section .timecard-div-table .workday-row div, #enterTimecard .bot-section .timecard-div-table .header div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 100%;
+}
+#enterTimecard .bot-section .timecard-div-table .header {
+  background-color: #4C5760;
+  border-radius: 1.2em 1.2em 0em 0em;
+}
+#enterTimecard .bot-section .timecard-div-table .offRow {
+  background-color: #859EA2;
+}
+#enterTimecard .bot-section .control-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20vw;
+  height: 60vh;
+}
+#enterTimecard .bot-section .control-panel #saveBtn {
+  margin: 5vh 0px 2vh 0px;
+}
+#enterTimecard .bot-section .control-panel #submitBtn {
+  background-color: #DD9631;
+}
+#enterTimecard .bot-section .control-panel a {
+  width: 10vw;
+  text-align: center;
+}
+
+/*# sourceMappingURL=enterTimecard.css.map */

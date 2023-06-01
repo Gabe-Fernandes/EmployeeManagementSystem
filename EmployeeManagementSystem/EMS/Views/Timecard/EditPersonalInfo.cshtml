@@ -1,0 +1,39 @@
+﻿@{
+  ViewData["Title"] = "Personal Information";
+}
+
+<script async src="~/js/EditPersonalInfo.js"></script>
+
+<main id="editPersonalInfo">
+  <div class="title-wrap">
+    <h1>Personal Information</h1>
+  </div>
+
+  <section class="top-section">
+    <div class="info-card">
+      <label>General:</label>
+      <input id="firstName" placeholder="first name">
+      <input id="lastName" placeholder="last name">
+      <input id="dob" placeholder="DOB">
+    </div>
+    <div class="info-card">
+      <label>Address:</label>
+      <input id="streetAddress" placeholder="street address">
+      <input id="city" placeholder="city">
+      <input id="state" placeholder="state">
+      <input id="zipCode" placeholder="zip code">
+    </div>
+    <div class="info-card">
+      <label>Contact:</label>
+      <input id="phoneNumber" placeholder="phone number">
+      <input id="email" placeholder="email">
+    </div>
+  </section>
+
+  <section class="bot-section">
+    <a asp-controller="Timecard" asp-action="PersonalInfo" id="saveBtn" class="btn">Save</a>
+    <a asp-controller="Timecard" asp-action="PersonalInfo" class="btn">Close</a>
+  </section>
+
+  <label id="validationLabel" class="err hide">All fields are required.</label>
+</main>

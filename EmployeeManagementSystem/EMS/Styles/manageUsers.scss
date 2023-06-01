@@ -1,0 +1,65 @@
+﻿@import "library.scss";
+
+#manageUsers {
+  .title-wrap {
+    @include Flex-Col(center, center, 100vw, 10vh);
+  }
+  
+  .search-container {
+    @include Flex-Row(center, center, 80vw, 10vh);
+    border-radius: 1.2em;
+    background-color: $cHeader;
+    margin: 4vh auto;
+    .left-div {
+      @include Flex-Row(center, center, 70%, 100%);
+      .inner-left-div {
+        @include Flex-Row(center, center, 50%, 100%);
+        input {
+          width: 35%;
+          margin: 0 1vw;
+        }
+      }
+      .inner-right-div {
+        @include Flex-Row(center, center, 50%, 100%);
+        font-size: 1.2em;
+      }
+    }
+    .right-div {
+      @include Flex-Row(center, center, 30%, 100%);
+    }
+    #searchBtn {
+      background-color: $cHighlightStrong;
+    }
+  }
+  
+  .table-wrap {
+    @include TableWrap(80vw, 60vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong, false);
+    margin: 0 auto;
+  }
+  .checkMark {
+    @include Confirmation(1.4em);
+  }
+  .xMark {
+    @include Invalid(1.4em);
+  }
+}
+
+#removeUserModal {
+  .modal-background {
+    @include Modal(30vw, 30vh, $cHeader);
+    position: relative;
+    label {
+      margin-top: 6vh;
+      font-size: 1.2em;
+    }
+    .modal-options {
+      @include Flex-Row(center, center, 100%, 50%);
+      a, button {
+        margin: 0px 3vw;
+      }
+    }
+    .close-btn{
+      @include CloseBtn(2em);
+    }
+  }
+}
