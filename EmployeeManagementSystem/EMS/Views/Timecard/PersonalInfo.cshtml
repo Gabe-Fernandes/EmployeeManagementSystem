@@ -1,0 +1,36 @@
+﻿@{
+  ViewData["Title"] = "Personal Information";
+}
+
+<main id="editPersonalInfo">
+  <div class="title-wrap">
+    <h1>Personal Information</h1>
+    <a asp-controller="Timecard" asp-action="EditPersonalInfo" class="btn">Edit</a>
+  </div>
+
+  <section class="top-section">
+    <div class="info-card">
+      <label>General:</label>
+      <label id="firstName" placeholder="first name"></label>
+      <label id="lastName" placeholder="last name"></label>
+      <label id="dob" placeholder="DOB"></label>
+    </div>
+    <div class="info-card">
+      <label>Address:</label>
+      <label id="streetAddress" placeholder="street address"></label>
+      <label id="city" placeholder="city"></label>
+      <label id="state" placeholder="state"></label>
+      <label id="zipCode" placeholder="zip code"></label>
+    </div>
+    <div class="info-card">
+      <label>Contact:</label>
+      <label id="phoneNumber" placeholder="phone number"></label>
+      <label id="email" placeholder="email"></label>
+    </div>
+  </section>
+
+  <section class="bot-section">
+    <a href="" id="saveBtn" class="btn">Save</a>
+    <a href="" id="closeBtn" class="btn">Close</a>
+  </section>
+</main>

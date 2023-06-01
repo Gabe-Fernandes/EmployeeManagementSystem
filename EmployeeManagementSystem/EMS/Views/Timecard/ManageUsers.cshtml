@@ -1,0 +1,70 @@
+﻿@{
+  ViewData["Title"] = "Manage Users";
+}
+
+<script async src="~/js/ManageUsers.js"></script>
+
+<main id="manageUsers">
+  <div class="title-wrap">
+    <h1>Manage Users</h1>
+  </div>
+
+  <div class="search-container">
+    <div class="left-div">
+      <div class="inner-left-div">
+        <input id="searchFirstName" placeholder="first name">
+        <input id="searchLastName" placeholder="last name">
+      </div>
+      <div class="inner-right-div">
+        <label id="searchLbl">Showing all users</label>
+      </div>
+    </div>
+    <div class="right-div">
+      <a id="searchBtn" class="btn" tabindex="0">Search</a>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th tabindex="0">First Name</th>
+          <th tabindex="0">Last Name</th>
+          <th tabindex="0">Details</th>
+          <th tabindex="0">Remove User</th>
+          <th tabindex="0">Review Timecards</th>
+          <th tabindex="0">Up To Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td tabindex="0">Brianna</td>
+          <td tabindex="0">Brooks</td>
+          <td><a href="">Details</a></td>
+          <td><button tabindex="0" id="remove1" class="text-btn">Remove</button></td>
+          <td><a href="">Review</a></td>
+          <td><div class="checkMark"><div></div><div></div></div></td>
+        </tr>
+        <tr>
+          <td tabindex="0">Charles</td>
+          <td tabindex="0">Carter</td>
+          <td><a href="">Details</a></td>
+          <td><button tabindex="0" id="remove2" class="text-btn">Remove</button></td>
+          <td><a href="">Review</a></td>
+          <td><div class="xMark"><div></div><div></div></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<section id="removeUserModal" class="screen-tint hide">
+  <div class="modal-background">
+    <label tabindex="0">Remove User: Albert Adams?</label>
+    <div class="modal-options">
+      <a href="" class="btn">Remove</a>
+      <button tabindex="0" id="removeUserCancelBtn" class="btn">Cancel</button>
+    </div>
+    <div class="close-btn"><img tabindex="0" src="" id="removeUserCloseBtn"></div>
+  </div>
+</section>

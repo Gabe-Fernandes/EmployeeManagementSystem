@@ -1,0 +1,194 @@
+#manageUsers .title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 10vh;
+}
+#manageUsers .search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 10vh;
+  border-radius: 1.2em;
+  background-color: #4C5760;
+  margin: 4vh auto;
+}
+#manageUsers .search-container .left-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 100%;
+}
+#manageUsers .search-container .left-div .inner-left-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+#manageUsers .search-container .left-div .inner-left-div input {
+  width: 35%;
+  margin: 0 1vw;
+}
+#manageUsers .search-container .left-div .inner-right-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  font-size: 1.2em;
+}
+#manageUsers .search-container .right-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+}
+#manageUsers .search-container #searchBtn {
+  background-color: #DD9631;
+}
+#manageUsers .table-wrap {
+  width: 80vw;
+  height: 60vh;
+  display: block;
+  border-radius: 0.5em;
+  background-color: #93A8AC;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+#manageUsers .table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#manageUsers .table-wrap table th {
+  padding: 1em;
+  background-color: #4C5760;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+#manageUsers .table-wrap table tr:nth-child(odd) {
+  background-color: #859EA2;
+}
+#manageUsers .table-wrap table tr {
+  transition: background-color 0.3s;
+}
+#manageUsers .table-wrap table tr:hover {
+  background-color: #DD9631;
+}
+#manageUsers .table-wrap table td {
+  padding: 1em;
+  max-width: 5vw;
+  text-align: center;
+}
+#manageUsers .checkMark {
+  height: 1.4em;
+  width: 1.4em;
+  min-height: 1.4em;
+  min-width: 1.4em;
+  border-radius: 50%;
+  background-color: #17993c;
+  position: relative;
+  margin: 0 auto;
+}
+#manageUsers .checkMark div {
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  width: 0.1162em;
+  height: 0.4662em;
+  top: 72%;
+  left: 19%;
+  transform: translate(-20%, -65%) rotate(-45deg);
+}
+#manageUsers .checkMark div + div {
+  width: 0.1162em;
+  height: 1.05em;
+  top: 15%;
+  left: 55%;
+  transform: translate(-55%, 0%) rotate(45deg);
+}
+#manageUsers .xMark {
+  height: 1.4em;
+  width: 1.4em;
+  min-height: 1.4em;
+  min-width: 1.4em;
+  border-radius: 50%;
+  background-color: #781d1d;
+  position: relative;
+  box-shadow: inset 0 0 0.1em 0.1em #781d1d;
+  margin: 0 auto;
+}
+#manageUsers .xMark div {
+  width: 0.1162em;
+  height: 1.00002em;
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+#manageUsers .xMark div + div {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#removeUserModal .modal-background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+  height: 30vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  background-color: #4C5760;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em 0.1em #4C5760;
+  position: relative;
+}
+#removeUserModal .modal-background label {
+  margin-top: 6vh;
+  font-size: 1.2em;
+}
+#removeUserModal .modal-background .modal-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+}
+#removeUserModal .modal-background .modal-options a, #removeUserModal .modal-background .modal-options button {
+  margin: 0px 3vw;
+}
+#removeUserModal .modal-background .close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1em;
+  height: 1em;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0em 0.5em;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1em;
+}
+#removeUserModal .modal-background .close-btn img {
+  height: 2em;
+  width: 2em;
+  min-height: 2em;
+  min-width: 2em;
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=manageUsers.css.map */

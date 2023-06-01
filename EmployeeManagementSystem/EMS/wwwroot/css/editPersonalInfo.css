@@ -1,0 +1,52 @@
+#editPersonalInfo .title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 10vh;
+}
+#editPersonalInfo .top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 50vh;
+  margin: 5vh auto;
+}
+#editPersonalInfo .top-section .info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 20vw;
+  height: 40vh;
+  background-color: #4C5760;
+  border-radius: 1.2em;
+  margin: 0px 2vw;
+}
+#editPersonalInfo .top-section .info-card label {
+  margin: 2vh 0vw;
+}
+#editPersonalInfo .top-section .info-card input {
+  width: 16vw;
+  margin: 1.5vh 0vw;
+}
+#editPersonalInfo .bot-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 10vh;
+  margin: 0 auto;
+}
+#editPersonalInfo .bot-section a {
+  margin: 0vh 5vw;
+}
+#editPersonalInfo #validationLabel {
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*# sourceMappingURL=editPersonalInfo.css.map */
