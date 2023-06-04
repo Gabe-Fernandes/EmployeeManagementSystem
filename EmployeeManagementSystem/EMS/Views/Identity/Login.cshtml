@@ -1,0 +1,65 @@
+﻿@{
+	ViewData["Title"] = "Employee Management System Login";
+}
+
+<script async src="~/js/Site.js"></script>
+<script async src="~/js/Identity/Login.js"></script>
+
+<main id="loginMain">
+	<div class="title-wrap">
+		<h1>Login</h1>
+	</div>
+
+	<form id="loginForm" method="post">
+		<input type="text" id="emailInput" placeholder="email">
+		<span id="errEmail" class="err errEmail hide">invalid email</span>
+		<input type="text" id="passwordInput" placeholder="password">
+		<span id="errPassword" class="err errPassword hide">required</span>
+		<button class="btn" type="submit" tabindex="0">Login</button>
+		<button class="btn" type="button" tabindex="0" id="demoBtn">Demo User</button>
+		<section><a asp-controller="Identity" asp-action="Register" class="login-bot-btn">Create Account</a></section>
+		<div class="link-wrap">
+			<div><button class="text-btn login-bot-btn" id="forgotPassBtn" type="button" tabindex="0">forgot<br>password?</button></div>
+			<div><button class="text-btn login-bot-btn" id="resendEmailConfBtn" type="button" tabindex="0">resend email<br>confirmation?</button></div>
+		</div>
+	</form>
+</main>
+
+<section id="demoModal" class="screen-tint hide">
+	<div class="login-modal">
+		<h3>Demo Role</h3>
+		<form method="post">
+			<input hidden value="emp@demo.com" />
+			<input hidden  value="Ab34567*" />
+			<button class="btn" type="submit">Employee</button>
+		</form>
+		<form method="post">
+			<input hidden value="admin@demo.com" />
+			<input hidden value="Ab34567*" />
+			<button class="btn" type="submit">Admin</button>
+		</form>
+		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="demoCloseBtn" /></div>
+	</div>
+</section>
+
+<section id="forgotPassModal" class="screen-tint hide">
+	<div class="login-modal">
+		<h3>Password Recovery</h3>
+		<form method="post">
+			<input placeholder="email"/>
+			<button class="btn" type="submit">Recover</button>
+		</form>
+		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="forgotPassCloseBtn" /></div>
+	</div>
+</section>
+
+<section id="resendEmailConfModal" class="screen-tint hide">
+	<div class="login-modal">
+		<h3>Resend Email Confirmation</h3>
+		<form method="post">
+			<input placeholder="email"/>
+			<button class="btn" type="submit">Resend Confirmation</button>
+		</form>
+		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="resendEmailConfCloseBtn" /></div>
+	</div>
+</section>

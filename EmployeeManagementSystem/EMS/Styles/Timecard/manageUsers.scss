@@ -1,10 +1,6 @@
-﻿@import "library.scss";
+﻿@import "../library.scss";
 
 #manageUsers {
-  .title-wrap {
-    @include Flex-Col(center, center, 100vw, 10vh);
-  }
-  
   .search-container {
     @include Flex-Row(center, center, 80vw, 10vh);
     border-radius: 1.2em;

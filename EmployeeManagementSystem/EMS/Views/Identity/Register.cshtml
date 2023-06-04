@@ -1,0 +1,81 @@
+﻿@{
+	ViewData["Title"] = "Register Account";
+}
+
+<!--<script async src="~/js/Validation/IdentityValidation.js"></script>-->
+
+<main id="registerMain">
+	<div class="title-wrap">
+		<h1>Register Account</h1>
+	</div>
+	@if (false)
+	{
+		<section class="confirmation-wrap">
+			<span>Check your email to confirm your account.</span>
+			<div class="confirmation"><div></div><div></div></div>
+		</section>
+	}
+	else
+	{
+		<form method="post" id="registerForm">
+			<div class="register-card-wrap">
+				<section>
+					<h2>Personal Info</h2>
+					<input id="emailInput" type="text" placeholder="email">
+					<span id="errEmail" class="err errEmail hide">invalid email</span>
+					<input id="firstNameInput" type="text" placeholder="first name">
+					<span id="errFirstName" class="err errFirstName hide">required</span>
+					<input id="lastNameInput" type="text" placeholder="last name">
+					<span id="errLastName" class="err errLastName hide">required</span>
+					<input id="cellPhoneInput" type="text" placeholder="cell phone">
+					<span id="errLastName" class="err errLastName hide">required</span>
+					DOB: <input id="dobInput" type="date">
+				</section>
+				<section>
+					<h2>Address</h2>
+					<input id="streetAddressInput" type="text" placeholder="street address">
+					<input id="cityInput" type="text" placeholder="city">
+					<input id="stateInput" type="text" placeholder="street address">
+					<input id="postalCodeInput" type="text" placeholder="zip code">
+					<div class="radio-wrap">
+						<div>
+							<label>Role:</label>
+						</div>
+						<div class="role-input-wrap">
+							<span><input type="radio" name="selectRole" value="admin" checked="checked"> Admin</span>
+							<span><input type="radio" name="selectRole" value="employee"> Employee</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h2 class="pass-title">Password</h2>
+					<input id="passwordInput" type="text" placeholder="password">
+					<input id="confirmPasswordInput" type="text" placeholder="repeat password">
+					<span id="errConfirmPassword" class="err errConfirmPassword hide">passwords must match</span>
+					<div class="requirement-wrap">
+						<div class="requirements">
+							<div id="charMinConfirmation" class="invalid"><div></div><div></div></div>
+							<label>at least 8 characters</label>
+						</div>
+						<div class="requirements">
+							<div id="charLowerConfirmation" class="invalid"><div></div><div></div></div>
+							<label>at least 1 lowercase letter</label>
+						</div>
+						<div class="requirements">
+							<div id="charUpperConfirmation" class="invalid"><div></div><div></div></div>
+							<label>at least 1 uppercase letter</label>
+						</div>
+						<div class="requirements">
+							<div id="charNumberConfirmation" class="invalid"><div></div><div></div></div>
+							<label>at least 1 number</label>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="create-acc-btn-wrap">
+				<button type="submit" class="btn">Create Account</button>
+			</div>
+			<a asp-controller="Identity" asp-action="Login" class="btn backBtn">Back</a>
+		</form>
+	}
+</main>

@@ -1,11 +1,3 @@
-#manageUsers .title-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 10vh;
-}
 #manageUsers .search-container {
   display: flex;
   justify-content: center;

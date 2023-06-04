@@ -59,9 +59,20 @@ nav {
       }
     }
   }
+}
+
+// solution-specific
+nav {
   .profile-link {
-    margin: 0 5vw 0 auto;
+    margin: 0vh 3vw 0vh auto;
   }
+  .logout-btn {
+    margin-right: 3vw;
+  }
+}
+
+.title-wrap {
+  @include Flex-Col(center, center, 100vw, 10vh);
 }
 
 .btn {

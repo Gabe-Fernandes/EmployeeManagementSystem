@@ -2,7 +2,7 @@
   ViewData["Title"] = "Personal Information";
 }
 
-<main id="editPersonalInfo">
+<main id="personalInfo">
   <div class="title-wrap">
     <h1>Personal Information</h1>
     <a asp-controller="Timecard" asp-action="EditPersonalInfo" class="btn">Edit</a>
@@ -11,26 +11,21 @@
   <section class="top-section">
     <div class="info-card">
       <label>General:</label>
-      <label id="firstName" placeholder="first name"></label>
-      <label id="lastName" placeholder="last name"></label>
-      <label id="dob" placeholder="DOB"></label>
+      <label id="firstName" placeholder="first name">Evan</label>
+      <label id="lastName" placeholder="last name">Edwards</label>
+      <label id="dob" placeholder="DOB">01/01/1990</label>
     </div>
     <div class="info-card">
       <label>Address:</label>
-      <label id="streetAddress" placeholder="street address"></label>
-      <label id="city" placeholder="city"></label>
-      <label id="state" placeholder="state"></label>
-      <label id="zipCode" placeholder="zip code"></label>
+      <label id="streetAddress" placeholder="street address">123 Example Street</label>
+      <label id="city" placeholder="city">Example City</label>
+      <label id="state" placeholder="state">NJ</label>
+      <label id="zipCode" placeholder="zip code">01234</label>
     </div>
     <div class="info-card">
       <label>Contact:</label>
-      <label id="phoneNumber" placeholder="phone number"></label>
-      <label id="email" placeholder="email"></label>
+      <label id="phoneNumber" placeholder="phone number">0123456789</label>
+      <label id="email" placeholder="email">example@email.com</label>
     </div>
-  </section>
-
-  <section class="bot-section">
-    <a href="" id="saveBtn" class="btn">Save</a>
-    <a href="" id="closeBtn" class="btn">Close</a>
   </section>
 </main>

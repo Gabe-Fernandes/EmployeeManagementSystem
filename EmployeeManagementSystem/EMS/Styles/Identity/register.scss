@@ -1,0 +1,113 @@
+﻿@import "../library.scss";
+
+#registerMain {
+  .title-wrap {
+    margin: 4vh 0vw;
+  }
+  form {
+    @include Flex-Col(center, flex-start, 100%, 100%);
+    .register-card-wrap {
+      @include Flex-Row(center, center, 100%, 100%);
+      section {
+        @include Flex-Col(center, flex-start, 100%, 60vh);
+        margin: 3vh 5vw;
+        background-color: $cHeader;
+        box-shadow: 0 0 0.4em 0.2em $cHeader;
+        border-radius: 0.6em;
+        transition: width 0.25s;
+        h2 {
+          margin: 2vh 0vw;
+        }
+        input[type=text] {
+          @include WidthHeight(80%, 5vh);
+          margin: 2vh 0vw;
+          border-radius: 0.6em; 
+          text-indent: 5%;
+          font-size: 1em;
+        }
+        input[type=date] {
+          text-indent: 5%;
+          border-radius: 0.3em;
+        }
+        .errEmail {
+          top: 30.6vh;
+          left: 44vw;
+        }
+        .errFirstName {
+          top: 41vh;
+          left: 44vw;
+        }
+        .errLastName {
+          top: 50.7vh;
+          left: 44vw;
+        }
+        .errConfirmPassword {
+          top: 39vh;
+          left: 80vw;
+        }
+        button {
+          font-size: 0.9em;
+        }
+        .radio-wrap {
+          @include Flex-Row(center, center, 100%, 5vh);
+          margin-top: 2vh;
+          label {
+            font-size: 1.2em;
+          }
+          span {
+            margin: 0.5vh 0vw;
+          }
+          div {
+            @include Flex-Col(center, center, 50%, 100%);
+          }
+          .role-input-wrap {
+            align-items: flex-start;
+          }
+        }
+        .pass-title {
+          margin-bottom: 1vh;
+        }
+        .requirement-wrap {
+          @include Flex-Col(flex-start, center, 80%, 28vh);
+          .requirements {
+            @include Flex-Row(flex-start, center, 100%, 7vh);
+            .valid {
+              @include Confirmation(1.8em);
+              margin: 0vh 1vw 0vh 0vw;
+            }
+            .invalid {
+              @include Invalid(1.8em);
+              margin: 0vh 1vw 0vh 0vw;
+            }
+          }
+        }
+      }
+    }
+    .create-acc-btn-wrap {
+      @include Flex-Row(center, center, 100%, 100%);
+    }
+  }
+
+  .backBtn {
+    position: absolute;
+    bottom: 7vh;
+    left: 4vw;
+  }
+
+  .confirmation-wrap {
+      @include Flex-Col(center, center, 24vw, 40vh);
+      background-color: $cTableRow;
+      box-shadow: 0 0 0.2em 0.2em $cTableRow;
+      border-radius: 0.6em;
+      margin: 0px auto;
+    span {
+      font-size: 1.2em;
+      width: 80%;
+      text-align: center;
+    }
+    .confirmation {
+      @include Confirmation(6em);
+      margin-top: 4vh;
+    }
+  }
+}

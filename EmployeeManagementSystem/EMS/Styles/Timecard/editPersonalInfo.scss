@@ -1,10 +1,6 @@
-﻿@import "library.scss";
+﻿@import "../library.scss";
 
 #editPersonalInfo {
-  .title-wrap {
-    @include Flex-Col(center, center, 100vw, 10vh);
-  }
-  
   .top-section {
     @include Flex-Row(center, center, 80vw, 50vh);
     margin: 5vh auto;

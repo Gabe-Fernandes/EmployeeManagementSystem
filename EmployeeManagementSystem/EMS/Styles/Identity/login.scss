@@ -1,0 +1,81 @@
+﻿@import "../library.scss";
+
+#loginMain {
+  .title-wrap {
+    margin: 7vh 0vw;
+  }
+  h1 {
+    @include Flex-Row(center, center);
+    margin: 7vh;
+  }
+  form {
+    @include Flex-Col(center, center, 30vw, 60vh);
+    margin: 0 auto;
+    background-color: $cHeader;
+    box-shadow: 0 0 0.4em 0.2em $cHeader;
+    border-radius: 0.6em;
+    transition: width 0.25s;
+    input {
+     @include WidthHeight(80%, 5vh);
+     margin: 2vh 0vw;
+     border-radius: 0.6em; 
+     text-indent: 5%;
+     font-size: 1em;
+    }
+    .errEmail {
+      top: 23.4vh;
+      right: 28vw;
+    }
+    .errPassword {
+      top: 33.4vh;
+      right: 30vw;
+    }
+    button {
+      @include WidthHeight(80%, 7vh);
+      margin: 1vh 0vw;
+      border-radius: 0.25em;
+      padding: 0px;
+    }
+    .login-bot-btn {
+      font-size: 0.9em;
+      text-align: center;
+      text-decoration: underline;
+    }
+    section {
+      @include Flex-Row(center, center, 80%, 6vh);
+      margin-top: 2vh;
+    }
+    .link-wrap {
+      @include Flex-Row(center, center, 80%, 12vh);
+      div {
+        @include Flex-Row(flex-start, center, 50%, 100%);
+      }
+      div + div { @include Flex-Row(flex-end, center, 100%, 100%); }
+    }
+  }
+}
+
+.login-modal{
+  @include Modal(30vw, 40vh, $cHeader);
+  justify-content: center;
+  transition: width 0.25s;
+  h3{
+    font-size: 1.8em;
+  }
+  form{
+    width: 60%;
+    margin: 1% 0%;
+    input {
+      margin: 2vh 0vw;
+    }
+    button{
+      width: 100%;
+      border-radius: 0.3em;
+    }
+  }
+  .close-btn{
+    @include CloseBtn(2.4em);
+    margin: 0;
+    top: 10%;
+  }
+}

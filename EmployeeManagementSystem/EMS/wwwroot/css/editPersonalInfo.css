@@ -1,11 +1,3 @@
-#editPersonalInfo .title-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 10vh;
-}
 #editPersonalInfo .top-section {
   display: flex;
   justify-content: center;

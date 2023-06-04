@@ -69,8 +69,21 @@ nav .nav-btn a:hover, nav .nav-btn a:focus {
 nav .nav-btn a:active {
   transform: scale(0.94);
 }
+
 nav .profile-link {
-  margin: 0 5vw 0 auto;
+  margin: 0vh 3vw 0vh auto;
+}
+nav .logout-btn {
+  margin-right: 3vw;
+}
+
+.title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 10vh;
 }
 
 .btn {

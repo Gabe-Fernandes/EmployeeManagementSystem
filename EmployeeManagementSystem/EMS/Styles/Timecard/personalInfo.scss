@@ -1,10 +1,6 @@
-﻿@import "library.scss";
+﻿@import "../library.scss";
 
 #personalInfo {
-  .title-wrap {
-    @include Flex-Col(center, center, 100vw, 10vh);
-  }
-  
   .top-section {
     @include Flex-Row(center, center, 80vw, 50vh);
     margin: 5vh auto;
@@ -17,15 +13,8 @@
         margin: 1.5vh 0vw;
         width: 16vw;
         margin: 1.5vh 0vw;
+        text-align: center;
       }
-    }
-  }
-  
-  .bot-section {
-    @include Flex-Row(center, center, 80vw, 10vh);
-    margin: 0 auto;
-    a {
-      margin: 0vh 5vw;
     }
   }
 }
