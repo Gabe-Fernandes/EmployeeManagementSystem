@@ -50,7 +50,7 @@
       div {
         @include Flex-Row(flex-start, center, 50%, 100%);
       }
-      div + div { @include Flex-Row(flex-end, center, 100%, 100%); }
+      div + div { @include Flex-Row(flex-end, center, 50%, 100%); }
     }
   }
 }
@@ -61,6 +61,8 @@
   transition: width 0.25s;
   h3{
     font-size: 1.8em;
+    width: 80%;
+    text-align: center;
   }
   form{
     width: 60%;

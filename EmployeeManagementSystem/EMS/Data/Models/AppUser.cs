@@ -18,5 +18,7 @@ public class AppUser : IdentityUser
   
   public string PostalCode { get; set; }
 
-  public DateTime Dob { get; set; }
+  public string Role { get; set; }
+
+	public DateTime Dob { get; set; }
 }

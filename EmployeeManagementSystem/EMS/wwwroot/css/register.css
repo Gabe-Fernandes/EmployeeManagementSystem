@@ -172,49 +172,7 @@
   left: 4vw;
 }
 #registerMain .confirmation-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 24vw;
-  height: 40vh;
-  background-color: #93A8AC;
-  box-shadow: 0 0 0.2em 0.2em #93A8AC;
-  border-radius: 0.6em;
-  margin: 0px auto;
-}
-#registerMain .confirmation-wrap span {
-  font-size: 1.2em;
-  width: 80%;
-  text-align: center;
-}
-#registerMain .confirmation-wrap .confirmation {
-  height: 6em;
-  width: 6em;
-  min-height: 6em;
-  min-width: 6em;
-  border-radius: 50%;
-  background-color: #17993c;
-  position: relative;
-  margin: 0 auto;
-  margin-top: 4vh;
-}
-#registerMain .confirmation-wrap .confirmation div {
-  background-color: #F9F9F9;
-  border-radius: 0.4em;
-  position: absolute;
-  width: 0.498em;
-  height: 1.998em;
-  top: 72%;
-  left: 19%;
-  transform: translate(-20%, -65%) rotate(-45deg);
-}
-#registerMain .confirmation-wrap .confirmation div + div {
-  width: 0.498em;
-  height: 4.5em;
-  top: 15%;
-  left: 55%;
-  transform: translate(-55%, 0%) rotate(45deg);
+  margin-top: 12vh;
 }
 
 /*# sourceMappingURL=register.css.map */

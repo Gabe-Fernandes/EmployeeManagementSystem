@@ -1,8 +1,11 @@
-﻿@{
+﻿@using EMS.Views.Identity;
+@model IdentityVM;
+
+@{
 	ViewData["Title"] = "Employee Management System Login";
+	var result = TempData["Login"] ?? "default";
 }
 
-<script async src="~/js/Site.js"></script>
 <script async src="~/js/Identity/Login.js"></script>
 
 <main id="loginMain">
@@ -10,10 +13,10 @@
 		<h1>Login</h1>
 	</div>
 
-	<form id="loginForm" method="post">
-		<input type="text" id="emailInput" placeholder="email">
+	<form method="post" asp-controller="Identity" asp-action="Login" id="loginForm">
+		<input asp-for="Email" type="text" id="emailInput" placeholder="email">
 		<span id="errEmail" class="err errEmail hide">invalid email</span>
-		<input type="text" id="passwordInput" placeholder="password">
+		<input asp-for="Password" type="text" id="passwordInput" placeholder="password">
 		<span id="errPassword" class="err errPassword hide">required</span>
 		<button class="btn" type="submit" tabindex="0">Login</button>
 		<button class="btn" type="button" tabindex="0" id="demoBtn">Demo User</button>
@@ -28,38 +31,60 @@
 <section id="demoModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Demo Role</h3>
-		<form method="post">
-			<input hidden value="emp@demo.com" />
-			<input hidden  value="Ab34567*" />
+		<form method="post" asp-controller="Identity" asp-action="Login">
+			<input asp-for="Email" hidden value="emp@demo.com" />
+			<input asp-for="Password" hidden  value="Ab34567*" />
 			<button class="btn" type="submit">Employee</button>
 		</form>
-		<form method="post">
-			<input hidden value="admin@demo.com" />
-			<input hidden value="Ab34567*" />
+		<form method="post" asp-controller="Identity" asp-action="Login">
+			<input asp-for="Email" hidden value="admin@demo.com" />
+			<input asp-for="Password" hidden value="Ab34567*" />
 			<button class="btn" type="submit">Admin</button>
 		</form>
-		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="demoCloseBtn" /></div>
+		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="demoCloseBtn"/></div>
 	</div>
 </section>
 
 <section id="forgotPassModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Password Recovery</h3>
-		<form method="post">
-			<input placeholder="email"/>
-			<button class="btn" type="submit">Recover</button>
-		</form>
-		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="forgotPassCloseBtn" /></div>
+		@if ((string)result == "recovery_email_sent")
+		{
+			<script>ToggleModal($("#loginMain"), $("#forgotPassModal"), openModal);</script>
+			<div class="confirmation-wrap">
+				<span>Check your email to recover your account.</span>
+				<div class="confirmation"><div></div><div></div></div>
+			</div>
+		}
+		else
+		{
+			<form method="post" asp-controller="Identity" asp-action="ForgotPassword">
+				<input asp-for="Email" placeholder="email" />
+				<button class="btn" type="submit">Recover</button>
+			</form>
+		}
+		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="forgotPassCloseBtn"/></div>
 	</div>
 </section>
 
 <section id="resendEmailConfModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Resend Email Confirmation</h3>
-		<form method="post">
-			<input placeholder="email"/>
-			<button class="btn" type="submit">Resend Confirmation</button>
-		</form>
-		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="resendEmailConfCloseBtn" /></div>
+		@if ((string)result == "conf_email_sent")
+		{
+			<script>ToggleModal($("#loginMain"), $("#resendEmailConfModal"), openModal);</script>
+			<div class="confirmation-wrap">
+				<span>Check your email to confirm your account.</span>
+				<div class="confirmation"><div></div><div></div></div>
+			</div>
+		}
+		else
+		{
+			<form method="post" asp-controller="Identity" asp-action="ResendEmailConf">
+				<input asp-for="Email" placeholder="email" />
+				<button class="btn" type="submit">Resend Confirmation</button>
+			</form>
+		}
+		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="resendEmailConfCloseBtn"/></div>
 	</div>
 </section>

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -16,8 +18,8 @@
     <nav>
       <div class="nav-btn"><a asp-controller="Timecard" asp-action="EnterTimecard">Enter Timecard</a></div>
       <div class="nav-btn"><a asp-controller="Timecard" asp-action="ManageUsers">Manage Users</a></div>
-      <div class="profile-link"><a asp-controller="Timecard" asp-action="PersonalInfo">Evan Edwards</a></div>
-      <div class="logout-btn"><a asp-controller="Identity" asp-action="Login">logout</a></div>
+      <div class="profile-link"><a asp-controller="Timecard" asp-action="PersonalInfo">@User.Identity.Name</a></div>
+      <div class="logout-btn"><a asp-controller="Identity" asp-action="Login">Logout</a></div>
     </nav>
     <div class="nav-space"></div>
 

@@ -72,7 +72,12 @@ nav {
 }
 
 .title-wrap {
-  @include Flex-Col(center, center, 100vw, 10vh);
+  @include Flex-Row(center, center, 100vw, 10vh);
+  // solution-specific
+  a {
+    position: absolute;
+    right: 30vw;
+  }
 }
 
 .btn {
@@ -158,4 +163,21 @@ select {
 .nav-space {
   width: 100vw;
   height: 10vh;
+}
+
+.confirmation-wrap {
+    @include Flex-Col(center, center, 24vw, 30vh);
+    background-color: $cHeader;
+    box-shadow: 0 0 0.2em 0.2em $cHeader;
+    border-radius: 0.6em;
+    margin: 0vh auto;
+  span {
+    font-size: 1.2em;
+    width: 80%;
+    text-align: center;
+  }
+  .confirmation {
+    @include Confirmation(6em);
+    margin-top: 4vh;
+  }
 }

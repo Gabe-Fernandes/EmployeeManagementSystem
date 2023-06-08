@@ -1,55 +1,65 @@
-﻿@{
+﻿@using EMS.Views.Identity;
+@model IdentityVM;
+
+@{
 	ViewData["Title"] = "Register Account";
+	var result = TempData["Register"] ?? "Register Account";
 }
 
 <!--<script async src="~/js/Validation/IdentityValidation.js"></script>-->
 
 <main id="registerMain">
 	<div class="title-wrap">
-		<h1>Register Account</h1>
+		<h1>@result</h1>
 	</div>
-	@if (false)
+	@if ((string)result == "Account Created")
 	{
-		<section class="confirmation-wrap">
+		<div class="confirmation-wrap">
 			<span>Check your email to confirm your account.</span>
 			<div class="confirmation"><div></div><div></div></div>
-		</section>
+		</div>
 	}
 	else
 	{
-		<form method="post" id="registerForm">
+		<form method="post" asp-controller="Identity" asp-action="Register" id="registerForm">
 			<div class="register-card-wrap">
 				<section>
 					<h2>Personal Info</h2>
-					<input id="emailInput" type="text" placeholder="email">
+					<input asp-for="Email" id="emailInput" type="text" placeholder="email">
 					<span id="errEmail" class="err errEmail hide">invalid email</span>
-					<input id="firstNameInput" type="text" placeholder="first name">
+					<input asp-for="FirstName" id="firstNameInput" type="text" placeholder="first name">
 					<span id="errFirstName" class="err errFirstName hide">required</span>
-					<input id="lastNameInput" type="text" placeholder="last name">
+					<input asp-for="LastName" id="lastNameInput" type="text" placeholder="last name">
 					<span id="errLastName" class="err errLastName hide">required</span>
-					<input id="cellPhoneInput" type="text" placeholder="cell phone">
+					<input asp-for="CellPhone" id="cellPhoneInput" type="text" placeholder="cell phone">
 					<span id="errLastName" class="err errLastName hide">required</span>
-					DOB: <input id="dobInput" type="date">
+					DOB: <input asp-for="DOB" id="dobInput" type="date">
 				</section>
 				<section>
 					<h2>Address</h2>
-					<input id="streetAddressInput" type="text" placeholder="street address">
-					<input id="cityInput" type="text" placeholder="city">
-					<input id="stateInput" type="text" placeholder="street address">
-					<input id="postalCodeInput" type="text" placeholder="zip code">
+					<input asp-for="StreetAddress" id="streetAddressInput" type="text" placeholder="street address">
+					<input asp-for="City" id="cityInput" type="text" placeholder="city">
+					<input asp-for="State" id="stateInput" type="text" placeholder="state">
+					<input asp-for="PostalCode" id="postalCodeInput" type="text" placeholder="zip code">
 					<div class="radio-wrap">
 						<div>
 							<label>Role:</label>
 						</div>
 						<div class="role-input-wrap">
-							<span><input type="radio" name="selectRole" value="admin" checked="checked"> Admin</span>
-							<span><input type="radio" name="selectRole" value="employee"> Employee</span>
+						@foreach (var role in IdentityVM.Roles)
+						{
+							<label>
+								<input asp-for="Role" type="radio" value="@role" id="@role"
+									checked="checked"> &nbsp;@role
+							</label>
+						}
 						</div>
+
 					</div>
 				</section>
 				<section>
 					<h2 class="pass-title">Password</h2>
-					<input id="passwordInput" type="text" placeholder="password">
+					<input asp-for="Password" id="passwordInput" type="text" placeholder="password">
 					<input id="confirmPasswordInput" type="text" placeholder="repeat password">
 					<span id="errConfirmPassword" class="err errConfirmPassword hide">passwords must match</span>
 					<div class="requirement-wrap">

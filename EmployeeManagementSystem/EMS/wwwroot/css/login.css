@@ -76,7 +76,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
+  width: 50%;
   height: 100%;
 }
 
@@ -100,6 +100,8 @@
 }
 .login-modal h3 {
   font-size: 1.8em;
+  width: 80%;
+  text-align: center;
 }
 .login-modal form {
   width: 60%;

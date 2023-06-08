@@ -95,19 +95,6 @@
   }
 
   .confirmation-wrap {
-      @include Flex-Col(center, center, 24vw, 40vh);
-      background-color: $cTableRow;
-      box-shadow: 0 0 0.2em 0.2em $cTableRow;
-      border-radius: 0.6em;
-      margin: 0px auto;
-    span {
-      font-size: 1.2em;
-      width: 80%;
-      text-align: center;
-    }
-    .confirmation {
-      @include Confirmation(6em);
-      margin-top: 4vh;
-    }
+    margin-top: 12vh;
   }
 }
