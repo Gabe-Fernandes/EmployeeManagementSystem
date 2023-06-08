@@ -1,0 +1,91 @@
+﻿@using EMS.Views.Identity;
+@model IdentityVM;
+
+@{
+	ViewData["Title"] = "Register Account";
+	var result = TempData["Register"] ?? "Register Account";
+}
+
+<!--<script async src="~/js/Validation/IdentityValidation.js"></script>-->
+
+<main id="registerMain">
+	<div class="title-wrap">
+		<h1>@result</h1>
+	</div>
+	@if ((string)result == "Account Created")
+	{
+		<div class="confirmation-wrap">
+			<span>Check your email to confirm your account.</span>
+			<div class="confirmation"><div></div><div></div></div>
+		</div>
+	}
+	else
+	{
+		<form method="post" asp-controller="Identity" asp-action="Register" id="registerForm">
+			<div class="register-card-wrap">
+				<section>
+					<h2>Personal Info</h2>
+					<input asp-for="Email" id="emailInput" type="text" placeholder="email">
+					<span id="errEmail" class="err errEmail hide">invalid email</span>
+					<input asp-for="FirstName" id="firstNameInput" type="text" placeholder="first name">
+					<span id="errFirstName" class="err errFirstName hide">required</span>
+					<input asp-for="LastName" id="lastNameInput" type="text" placeholder="last name">
+					<span id="errLastName" class="err errLastName hide">required</span>
+					<input asp-for="CellPhone" id="cellPhoneInput" type="text" placeholder="cell phone">
+					<span id="errLastName" class="err errLastName hide">required</span>
+					DOB: <input asp-for="DOB" id="dobInput" type="date">
+				</section>
+				<section>
+					<h2>Address</h2>
+					<input asp-for="StreetAddress" id="streetAddressInput" type="text" placeholder="street address">
+					<input asp-for="City" id="cityInput" type="text" placeholder="city">
+					<input asp-for="State" id="stateInput" type="text" placeholder="state">
+					<input asp-for="PostalCode" id="postalCodeInput" type="text" placeholder="zip code">
+					<div class="radio-wrap">
+						<div>
+							<label>Role:</label>
+						</div>
+						<div class="role-input-wrap">
+						@foreach (var role in IdentityVM.Roles)
+						{
+							<label>
+								<input asp-for="Role" type="radio" value="@role" id="@role"
+									checked="checked"> &nbsp;@role
+							</label>
+						}
+						</div>
+
+					</div>
+				</section>
+				<section>
+					<h2 class="pass-title">Password</h2>
+					<input asp-for="Password" id="passwordInput" type="text" placeholder="password">
+					<input id="confirmPasswordInput" type="text" placeholder="repeat password">
+					<span id="errConfirmPassword" class="err errConfirmPassword hide">passwords must match</span>
+					<div class="requirement-wrap">
+						<div class="requirements">
+							<div id="charMinConfirmation" class="invalid"><div></div><div></div></div>
+							<label>at least 8 characters</label>
+						</div>
+						<div class="requirements">
+							<div id="charLowerConfirmation" class="invalid"><div></div><div></div></div>
+							<label>at least 1 lowercase letter</label>
+						</div>
+						<div class="requirements">
+							<div id="charUpperConfirmation" class="invalid"><div></div><div></div></div>
+							<label>at least 1 uppercase letter</label>
+						</div>
+						<div class="requirements">
+							<div id="charNumberConfirmation" class="invalid"><div></div><div></div></div>
+							<label>at least 1 number</label>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="create-acc-btn-wrap">
+				<button type="submit" class="btn">Create Account</button>
+			</div>
+			<a asp-controller="Identity" asp-action="Login" class="btn backBtn">Back</a>
+		</form>
+	}
+</main>

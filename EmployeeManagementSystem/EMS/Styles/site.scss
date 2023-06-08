@@ -59,8 +59,24 @@ nav {
       }
     }
   }
+}
+
+// solution-specific
+nav {
   .profile-link {
-    margin: 0 5vw 0 auto;
+    margin: 0vh 3vw 0vh auto;
+  }
+  .logout-btn {
+    margin-right: 3vw;
+  }
+}
+
+.title-wrap {
+  @include Flex-Row(center, center, 100vw, 10vh);
+  // solution-specific
+  a {
+    position: absolute;
+    right: 30vw;
   }
 }
 
@@ -147,4 +163,21 @@ select {
 .nav-space {
   width: 100vw;
   height: 10vh;
+}
+
+.confirmation-wrap {
+    @include Flex-Col(center, center, 24vw, 30vh);
+    background-color: $cHeader;
+    box-shadow: 0 0 0.2em 0.2em $cHeader;
+    border-radius: 0.6em;
+    margin: 0vh auto;
+  span {
+    font-size: 1.2em;
+    width: 80%;
+    text-align: center;
+  }
+  .confirmation {
+    @include Confirmation(6em);
+    margin-top: 4vh;
+  }
 }

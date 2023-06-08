@@ -1,0 +1,141 @@
+#loginMain .title-wrap {
+  margin: 7vh 0vw;
+}
+#loginMain h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 7vh;
+}
+#loginMain form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+  height: 60vh;
+  margin: 0 auto;
+  background-color: #4C5760;
+  box-shadow: 0 0 0.4em 0.2em #4C5760;
+  border-radius: 0.6em;
+  transition: width 0.25s;
+}
+#loginMain form input {
+  width: 80%;
+  height: 5vh;
+  margin: 2vh 0vw;
+  border-radius: 0.6em;
+  text-indent: 5%;
+  font-size: 1em;
+}
+#loginMain form .errEmail {
+  top: 23.4vh;
+  right: 28vw;
+}
+#loginMain form .errPassword {
+  top: 33.4vh;
+  right: 30vw;
+}
+#loginMain form button {
+  width: 80%;
+  height: 7vh;
+  margin: 1vh 0vw;
+  border-radius: 0.25em;
+  padding: 0px;
+}
+#loginMain form .login-bot-btn {
+  font-size: 0.9em;
+  text-align: center;
+  text-decoration: underline;
+}
+#loginMain form section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 6vh;
+  margin-top: 2vh;
+}
+#loginMain form .link-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 12vh;
+}
+#loginMain form .link-wrap div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+#loginMain form .link-wrap div + div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.login-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+  height: 40vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  background-color: #4C5760;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em 0.1em #4C5760;
+  justify-content: center;
+  transition: width 0.25s;
+}
+.login-modal h3 {
+  font-size: 1.8em;
+  width: 80%;
+  text-align: center;
+}
+.login-modal form {
+  width: 60%;
+  margin: 1% 0%;
+}
+.login-modal form input {
+  margin: 2vh 0vw;
+}
+.login-modal form button {
+  width: 100%;
+  border-radius: 0.3em;
+}
+.login-modal .close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.2em;
+  height: 1.2em;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0em 0.5em;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1em;
+  margin: 0;
+  top: 10%;
+}
+.login-modal .close-btn img {
+  height: 2.4em;
+  width: 2.4em;
+  min-height: 2.4em;
+  min-width: 2.4em;
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=login.css.map */

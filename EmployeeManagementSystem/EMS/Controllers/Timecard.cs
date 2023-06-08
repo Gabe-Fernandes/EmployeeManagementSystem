@@ -1,8 +1,10 @@
 ﻿using EMS.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.Controllers;
 
+[Authorize]
 public class Timecard : Controller
 {
   public Timecard()

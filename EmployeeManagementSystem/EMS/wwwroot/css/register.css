@@ -1,0 +1,178 @@
+#registerMain .title-wrap {
+  margin: 4vh 0vw;
+}
+#registerMain form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+#registerMain form .register-card-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#registerMain form .register-card-wrap section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 60vh;
+  margin: 3vh 5vw;
+  background-color: #4C5760;
+  box-shadow: 0 0 0.4em 0.2em #4C5760;
+  border-radius: 0.6em;
+  transition: width 0.25s;
+}
+#registerMain form .register-card-wrap section h2 {
+  margin: 2vh 0vw;
+}
+#registerMain form .register-card-wrap section input[type=text] {
+  width: 80%;
+  height: 5vh;
+  margin: 2vh 0vw;
+  border-radius: 0.6em;
+  text-indent: 5%;
+  font-size: 1em;
+}
+#registerMain form .register-card-wrap section input[type=date] {
+  text-indent: 5%;
+  border-radius: 0.3em;
+}
+#registerMain form .register-card-wrap section .errEmail {
+  top: 30.6vh;
+  left: 44vw;
+}
+#registerMain form .register-card-wrap section .errFirstName {
+  top: 41vh;
+  left: 44vw;
+}
+#registerMain form .register-card-wrap section .errLastName {
+  top: 50.7vh;
+  left: 44vw;
+}
+#registerMain form .register-card-wrap section .errConfirmPassword {
+  top: 39vh;
+  left: 80vw;
+}
+#registerMain form .register-card-wrap section button {
+  font-size: 0.9em;
+}
+#registerMain form .register-card-wrap section .radio-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  margin-top: 2vh;
+}
+#registerMain form .register-card-wrap section .radio-wrap label {
+  font-size: 1.2em;
+}
+#registerMain form .register-card-wrap section .radio-wrap span {
+  margin: 0.5vh 0vw;
+}
+#registerMain form .register-card-wrap section .radio-wrap div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+#registerMain form .register-card-wrap section .radio-wrap .role-input-wrap {
+  align-items: flex-start;
+}
+#registerMain form .register-card-wrap section .pass-title {
+  margin-bottom: 1vh;
+}
+#registerMain form .register-card-wrap section .requirement-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+  height: 28vh;
+}
+#registerMain form .register-card-wrap section .requirement-wrap .requirements {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 7vh;
+}
+#registerMain form .register-card-wrap section .requirement-wrap .requirements .valid {
+  height: 1.8em;
+  width: 1.8em;
+  min-height: 1.8em;
+  min-width: 1.8em;
+  border-radius: 50%;
+  background-color: #17993c;
+  position: relative;
+  margin: 0 auto;
+  margin: 0vh 1vw 0vh 0vw;
+}
+#registerMain form .register-card-wrap section .requirement-wrap .requirements .valid div {
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  width: 0.1494em;
+  height: 0.5994em;
+  top: 72%;
+  left: 19%;
+  transform: translate(-20%, -65%) rotate(-45deg);
+}
+#registerMain form .register-card-wrap section .requirement-wrap .requirements .valid div + div {
+  width: 0.1494em;
+  height: 1.35em;
+  top: 15%;
+  left: 55%;
+  transform: translate(-55%, 0%) rotate(45deg);
+}
+#registerMain form .register-card-wrap section .requirement-wrap .requirements .invalid {
+  height: 1.8em;
+  width: 1.8em;
+  min-height: 1.8em;
+  min-width: 1.8em;
+  border-radius: 50%;
+  background-color: #781d1d;
+  position: relative;
+  box-shadow: inset 0 0 0.1em 0.1em #781d1d;
+  margin: 0 auto;
+  margin: 0vh 1vw 0vh 0vw;
+}
+#registerMain form .register-card-wrap section .requirement-wrap .requirements .invalid div {
+  width: 0.1494em;
+  height: 1.28574em;
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+#registerMain form .register-card-wrap section .requirement-wrap .requirements .invalid div + div {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+#registerMain form .create-acc-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#registerMain .backBtn {
+  position: absolute;
+  bottom: 7vh;
+  left: 4vw;
+}
+#registerMain .confirmation-wrap {
+  margin-top: 12vh;
+}
+
+/*# sourceMappingURL=register.css.map */

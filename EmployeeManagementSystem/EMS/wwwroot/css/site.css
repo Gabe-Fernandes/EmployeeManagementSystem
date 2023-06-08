@@ -69,8 +69,24 @@ nav .nav-btn a:hover, nav .nav-btn a:focus {
 nav .nav-btn a:active {
   transform: scale(0.94);
 }
+
 nav .profile-link {
-  margin: 0 5vw 0 auto;
+  margin: 0vh 3vw 0vh auto;
+}
+nav .logout-btn {
+  margin-right: 3vw;
+}
+
+.title-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+}
+.title-wrap a {
+  position: absolute;
+  right: 30vw;
 }
 
 .btn {
@@ -158,6 +174,52 @@ select {
 .nav-space {
   width: 100vw;
   height: 10vh;
+}
+
+.confirmation-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 24vw;
+  height: 30vh;
+  background-color: #4C5760;
+  box-shadow: 0 0 0.2em 0.2em #4C5760;
+  border-radius: 0.6em;
+  margin: 0vh auto;
+}
+.confirmation-wrap span {
+  font-size: 1.2em;
+  width: 80%;
+  text-align: center;
+}
+.confirmation-wrap .confirmation {
+  height: 6em;
+  width: 6em;
+  min-height: 6em;
+  min-width: 6em;
+  border-radius: 50%;
+  background-color: #17993c;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 4vh;
+}
+.confirmation-wrap .confirmation div {
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  width: 0.498em;
+  height: 1.998em;
+  top: 72%;
+  left: 19%;
+  transform: translate(-20%, -65%) rotate(-45deg);
+}
+.confirmation-wrap .confirmation div + div {
+  width: 0.498em;
+  height: 4.5em;
+  top: 15%;
+  left: 55%;
+  transform: translate(-55%, 0%) rotate(45deg);
 }
 
 /*# sourceMappingURL=site.css.map */

@@ -1,10 +1,6 @@
-﻿@import "library.scss";
+﻿@import "../library.scss";
 
 #enterTimecard {
-  .title-wrap {
-    @include Flex-Col(center, center, 100vw, 10vh);
-  }
-  
   .info-panel {
     @include Flex-Row(center, center, 80vw, 10vh);
     margin: 2vh auto;
