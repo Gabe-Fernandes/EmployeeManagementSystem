@@ -69,6 +69,11 @@ nav .nav-btn a:hover, nav .nav-btn a:focus {
 nav .nav-btn a:active {
   transform: scale(0.94);
 }
+nav .nav-highlight {
+  border-bottom: 0.4em solid #DD9631;
+  border-radius: 0.4em;
+  margin-bottom: -0.4em;
+}
 
 nav .profile-link {
   margin: 0vh 3vw 0vh auto;
@@ -150,11 +155,14 @@ select {
 
 .err {
   position: absolute;
-  font-size: 1em;
-  padding: 0.4em 1em;
+  top: 0;
+  right: 0;
+  font-size: 0.7em;
+  padding: 0.2em 0.5em;
   border-radius: 0.4em;
-  background-color: #781d1d;
+  background-color: #93A8AC;
   transition: opacity 0.3s;
+  pointer-events: none;
 }
 
 ::-webkit-scrollbar {

@@ -1,45 +1,46 @@
-﻿$(document).ready(function () {
-  const firstName = $("#firstName");
-  const lastName = $("#lastName");
-  const dob = $("#dob");
-  const streetAddress = $("#streetAddress");
-  const city = $("#city");
-  const state = $("#state");
-  const zipCode = $("#zipCode");
-  const phoneNumber = $("#phoneNumber");
-  const email = $("#email");
+﻿$(function () {
+  const allInputNames = ["Email", "FirstName", "LastName", "PhoneNumber", "DOB", "StreetAddress",
+    "City", "State", "PostalCode"];
+  let allInputIDs = [];
+  let allInputFields = [];
+  let allErrIDs = [];
 
-  const inputFields = [firstName, lastName, dob, streetAddress, city, state, zipCode, phoneNumber, email];
+  for (let i = 0; i < allInputNames.length; i++) {
+    allInputIDs.push(`editPersonalInfo${allInputNames[i]}`);
+    allInputFields.push($(`#${allInputIDs[i]}`));
+    allErrIDs.push(`${allInputIDs[i]}Err`);
+  }
 
-  const addClass = "addClass";
-  const removeClass = "removeClass";
+  // Validation Events
 
-  function ValidateRequiredInput() {
-    let inputValidity = true;
-    for (let i = 0; i < inputFields.length; i++) {
-      if (inputFields[i].val() === "") {
-        inputValidity = false;
-        $("#validationLabel").removeClass("hide");
-        ToggleError(inputFields[i], addClass);
-      }
+  $("#editPersonalInfoForm").on("submit", (evt) => {
+    let errorExists = RunCommonValidationTests(allInputFields, allErrIDs, 40);
+
+    if (ValidEmail($("#editPersonalInfoEmail").val()) === false) {
+      ShowError("editPersonalInfoEmail", "editPersonalInfoEmailErr", "invalid email");
+      errorExists = true;
     }
-    return inputValidity;
-  }
+    if (DateIsFutureDate("editPersonalInfoDOB", "editPersonalInfoDOBErr") === false) {
+      errorExists = true;
+    }
+    if (ValidatePostalCode("editPersonalInfoPostalCode", "editPersonalInfoPostalCodeErr") === false) {
+      errorExists = true;
+    }
+    if (ValidatePhoneNumber("editPersonalInfoPhoneNumber", "editPersonalInfoPhoneNumberErr") === false) {
+      errorExists = true;
+    }
 
-  function ToggleError(element, toggle) {
-    element[toggle]("err-input");
-  }
+    if (errorExists) { evt.preventDefault() }
+  });
 
-  for (let i = 0; i < inputFields.length; i++) {
-    inputFields[i].on("input", () => {
-      ToggleError(inputFields[i], removeClass);
-      $("#validationLabel").addClass("hide");
+  // Clear Error Handling Events
+
+  for (let i = 0; i < allInputIDs.length; i++) {
+    $(`#${allInputIDs[i]}`).on("input", () => {
+      HideError(allInputIDs[i], allErrIDs[i]);
     });
   }
 
-  $("#saveBtn").on("click", (evt) => {
-    if (ValidateRequiredInput() === false) {
-      evt.preventDefault();
-    }
-  });
+  // Misc. Events
+  PhoneNumberFormatting($("#editPersonalInfoPhoneNumber"));
 });

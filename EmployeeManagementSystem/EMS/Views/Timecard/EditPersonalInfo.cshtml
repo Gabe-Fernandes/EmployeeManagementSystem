@@ -1,4 +1,6 @@
-﻿@{
+﻿@model AppUser;
+
+@{
   ViewData["Title"] = "Edit Personal Information";
 }
 
@@ -9,31 +11,56 @@
     <h1>Personal Information</h1>
   </div>
 
-  <section class="top-section">
+  <form asp-controller="Timecard" asp-action="" id="editPersonalInfoForm" class="top-section">
     <div class="info-card">
       <label>General:</label>
-      <input id="firstName" placeholder="first name">
-      <input id="lastName" placeholder="last name">
-      <input id="dob" placeholder="DOB">
+      <div class="input-err-wrap">
+        <input asp-for="FirstName" type="text" id="editPersonalInfoFirstName" placeholder="first name">
+        <span id="editPersonalInfoFirstNameErr" class="err hide"></span>
+      </div>
+      <div class="input-err-wrap">
+        <input asp-for="LastName" type="text" id="editPersonalInfoLastName" placeholder="last name">
+        <span id="editPersonalInfoLastNameErr" class="err hide"></span>
+      </div>
+      <div class="input-err-wrap-date">
+        <input asp-for="Dob" type="date" id="editPersonalInfoDOB" placeholder="DOB">
+        <span id="editPersonalInfoDOBErr" class="err hide"></span>
+      </div>
     </div>
     <div class="info-card">
       <label>Address:</label>
-      <input id="streetAddress" placeholder="street address">
-      <input id="city" placeholder="city">
-      <input id="state" placeholder="state">
-      <input id="zipCode" placeholder="zip code">
+      <div class="input-err-wrap">
+        <input asp-for="StreetAddress" type="text" id="editPersonalInfoStreetAddress" placeholder="street address">
+        <span id="editPersonalInfoStreetAddressErr" class="err hide"></span>
+      </div>
+      <div class="input-err-wrap">
+        <input asp-for="City" type="text" id="editPersonalInfoCity" placeholder="city">
+        <span id="editPersonalInfoCityErr" class="err hide"></span>
+      </div>
+      <div class="input-err-wrap">
+        <input asp-for="State" type="text" id="editPersonalInfoState" placeholder="state">
+        <span id="editPersonalInfoStateErr" class="err hide"></span>
+      </div>
+      <div class="input-err-wrap">
+        <input asp-for="PostalCode" type="text" id="editPersonalInfoPostalCode" placeholder="zip code">
+        <span id="editPersonalInfoPostalCodeErr" class="err hide"></span>
+      </div>
     </div>
     <div class="info-card">
       <label>Contact:</label>
-      <input id="phoneNumber" placeholder="phone number">
-      <input id="email" placeholder="email">
+      <div class="input-err-wrap">
+        <input asp-for="PhoneNumber" type="text" id="editPersonalInfoPhoneNumber" placeholder="phone number">
+        <span id="editPersonalInfoPhoneNumberErr" class="err hide"></span>
+      </div>
+      <div class="input-err-wrap">
+        <input asp-for="Email" type="text" id="editPersonalInfoEmail" placeholder="email">
+        <span id="editPersonalInfoEmailErr" class="err hide"></span>
+      </div>
     </div>
-  </section>
+  </form>
 
   <section class="bot-section">
-    <a asp-controller="Timecard" asp-action="PersonalInfo" id="saveBtn" class="btn">Save</a>
+    <button type="submit" form="editPersonalInfoForm" class="btn">Save</button>
     <a asp-controller="Timecard" asp-action="PersonalInfo" class="btn">Close</a>
   </section>
-
-  <label id="validationLabel" class="err hide">All fields are required.</label>
 </main>

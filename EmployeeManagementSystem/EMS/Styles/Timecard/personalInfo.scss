@@ -5,7 +5,7 @@
     @include Flex-Row(center, center, 80vw, 50vh);
     margin: 5vh auto;
     .info-card {
-      @include Flex-Col(center, flex-start, 20vw, 40vh);
+      @include Flex-Col(center, flex-start, 20vw, 45vh);
       background-color: $cHeader;
       border-radius: 1.2em;
       margin: 0px 2vw;

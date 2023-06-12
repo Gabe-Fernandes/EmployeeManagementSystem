@@ -32,33 +32,36 @@
 #registerMain form .register-card-wrap section h2 {
   margin: 2vh 0vw;
 }
-#registerMain form .register-card-wrap section input[type=text] {
+#registerMain form .register-card-wrap section .input-err-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   height: 5vh;
+  position: relative;
   margin: 2vh 0vw;
+}
+#registerMain form .register-card-wrap section .input-err-wrap input[type=text] {
+  width: 100%;
+  height: 100%;
   border-radius: 0.6em;
   text-indent: 5%;
   font-size: 1em;
 }
-#registerMain form .register-card-wrap section input[type=date] {
-  text-indent: 5%;
+#registerMain form .register-card-wrap section .input-err-wrap-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 7vh;
+  position: relative;
+}
+#registerMain form .register-card-wrap section .input-err-wrap-date input[type=date] {
+  width: 80%;
+  height: 80%;
   border-radius: 0.3em;
-}
-#registerMain form .register-card-wrap section .errEmail {
-  top: 30.6vh;
-  left: 44vw;
-}
-#registerMain form .register-card-wrap section .errFirstName {
-  top: 41vh;
-  left: 44vw;
-}
-#registerMain form .register-card-wrap section .errLastName {
-  top: 50.7vh;
-  left: 44vw;
-}
-#registerMain form .register-card-wrap section .errConfirmPassword {
-  top: 39vh;
-  left: 80vw;
+  text-indent: 5%;
 }
 #registerMain form .register-card-wrap section button {
   font-size: 0.9em;

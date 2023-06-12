@@ -22,8 +22,21 @@
   width: 50%;
   height: 100%;
 }
-#manageUsers .search-container .left-div .inner-left-div input {
-  width: 35%;
+#manageUsers .search-container .left-div .inner-left-div .input-err-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 5vh;
+  position: relative;
+  margin: 2vh 0vw;
+}
+#manageUsers .search-container .left-div .inner-left-div .input-err-wrap input[type=text] {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6em;
+  text-indent: 5%;
+  font-size: 1em;
   margin: 0 1vw;
 }
 #manageUsers .search-container .left-div .inner-right-div {
@@ -33,6 +46,9 @@
   width: 50%;
   height: 100%;
   font-size: 1.2em;
+}
+#manageUsers .search-container .left-div .inner-right-div label {
+  margin-left: 5vw;
 }
 #manageUsers .search-container .right-div {
   display: flex;
