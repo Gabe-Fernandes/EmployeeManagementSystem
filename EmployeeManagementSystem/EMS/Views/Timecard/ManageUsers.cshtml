@@ -1,8 +1,20 @@
-﻿@{
+﻿@using EMS.Views.Timecard;
+@model ManageUsersVM;
+
+@{
   ViewData["Title"] = "Manage Users";
+
+  string searchMessage = "";
+  if (ViewData["SearchMessage"] == null)
+  {
+    searchMessage = "Showing all search results";
+  }
+  else
+  {
+    searchMessage = ViewData["SearchMessage"].ToString();
+  }
 }
 
-<script async src="~/js/Site.js"></script>
 <script async src="~/js/Timecard/ManageUsers.js"></script>
 
 <main id="manageUsers">
@@ -10,20 +22,26 @@
     <h1>Manage Users</h1>
   </div>
 
-  <div class="search-container">
+  <form asp-controller="Timecard" asp-action="ManageUsers" id="manageUsersSearchForm" class="search-container">
     <div class="left-div">
       <div class="inner-left-div">
-        <input id="searchFirstName" placeholder="first name">
-        <input id="searchLastName" placeholder="last name">
+        <div class="input-err-wrap">
+          <input asp-for="FirstName" type="text" id="manageUsersSearchFirstName" placeholder="first name">
+          <span id="manageUsersSearchFirstNameErr" class="err hide"></span>
+        </div>
+        <div class="input-err-wrap">
+          <input asp-for="LastName" type="text" id="manageUsersSearchLastName" placeholder="last name">
+          <span id="manageUsersSearchLastNameErr" class="err hide"></span>
+        </div>
       </div>
       <div class="inner-right-div">
-        <label id="searchLbl">Showing all users</label>
+        <label id="searchLbl">@searchMessage</label>
       </div>
     </div>
     <div class="right-div">
-      <a id="searchBtn" class="btn" tabindex="0">Search</a>
+      <button type="submit" class="btn" tabindex="0">Search</button>
     </div>
-  </div>
+  </form>
 
   <div class="table-wrap">
     <table>
@@ -66,6 +84,6 @@
       <a href="" class="btn">Remove</a>
       <button tabindex="0" id="removeUserCancelBtn" class="btn">Cancel</button>
     </div>
-    <div class="close-btn"><img tabindex="0" src="" id="removeUserCloseBtn"></div>
+    <div class="close-btn"><img tabindex="0" src="/icons/X_512x512.png" id="removeUserCloseBtn"></div>
   </div>
 </section>

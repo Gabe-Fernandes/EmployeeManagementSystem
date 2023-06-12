@@ -1,7 +1,7 @@
-﻿$(document).ready(function () {
+﻿$(function () {
+  HighlightCurrentNavBtn($("#enterTimecardNavBtn"));
+
   const submitBtn = $("#submitBtn");
-
-
 
   // Adjust your supported times here using 24 hour time
   // This for loop populates the time option dropdowns

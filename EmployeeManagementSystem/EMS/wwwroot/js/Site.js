@@ -11,3 +11,8 @@ function ToggleModal(main, modal, direction) {
     modal.addClass("hide");
   }
 }
+
+function HighlightCurrentNavBtn(btnToHighlight) {
+  $(".nav-btn").removeClass("nav-highlight");
+  btnToHighlight.addClass("nav-highlight");
+}

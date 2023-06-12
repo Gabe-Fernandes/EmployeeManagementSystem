@@ -5,16 +5,32 @@
     @include Flex-Row(center, center, 80vw, 50vh);
     margin: 5vh auto;
     .info-card {
-      @include Flex-Col(center, flex-start, 20vw, 40vh);
+      @include Flex-Col(center, flex-start, 20vw, 45vh);
       background-color: $cHeader;
       border-radius: 1.2em;
       margin: 0px 2vw;
       label {
         margin: 2vh 0vw;
       }
-      input {
-        width: 16vw;
-        margin: 1.5vh 0vw;
+      .input-err-wrap {
+        @include Flex-Row(center, center, 80%, 5vh);
+        position: relative;
+        margin: 2vh 0vw;
+        input[type=text] {
+          @include WidthHeight(100%, 100%);
+          border-radius: 0.6em;
+          text-indent: 5%;
+          font-size: 1em;
+        }
+      }
+      .input-err-wrap-date {
+        @include Flex-Col(center, center, 70%, 7vh);
+        position: relative;
+        input[type=date] {
+          @include WidthHeight(80%, 80%);
+          border-radius: 0.3em; 
+          text-indent: 5%;
+        }
       }
     }
   }
@@ -25,11 +41,5 @@
     a {
       margin: 0vh 5vw;
     }
-  }
-  
-  #validationLabel {
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 }

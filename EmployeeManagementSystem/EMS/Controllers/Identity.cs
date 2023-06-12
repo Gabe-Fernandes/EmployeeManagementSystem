@@ -65,7 +65,7 @@ public class Identity : Controller
 	[ValidateAntiForgeryToken]
 	public async Task<IActionResult> Register(IdentityVM input)
 	{
-		if (ModelState.IsValid)
+		if (ModelState.IsValid && input.DOB < DateTime.Now)
 		{
 			var user = Activator.CreateInstance<AppUser>();
 

@@ -18,32 +18,25 @@
         h2 {
           margin: 2vh 0vw;
         }
-        input[type=text] {
-          @include WidthHeight(80%, 5vh);
+        .input-err-wrap {
+          @include Flex-Row(center, center, 80%, 5vh);
+          position: relative;
           margin: 2vh 0vw;
-          border-radius: 0.6em; 
-          text-indent: 5%;
-          font-size: 1em;
+          input[type=text] {
+            @include WidthHeight(100%, 100%);
+            border-radius: 0.6em;
+            text-indent: 5%;
+            font-size: 1em;
+          }
         }
-        input[type=date] {
-          text-indent: 5%;
-          border-radius: 0.3em;
-        }
-        .errEmail {
-          top: 30.6vh;
-          left: 44vw;
-        }
-        .errFirstName {
-          top: 41vh;
-          left: 44vw;
-        }
-        .errLastName {
-          top: 50.7vh;
-          left: 44vw;
-        }
-        .errConfirmPassword {
-          top: 39vh;
-          left: 80vw;
+        .input-err-wrap-date {
+          @include Flex-Col(center, center, 70%, 7vh);
+          position: relative;
+          input[type=date] {
+            @include WidthHeight(80%, 80%);
+            border-radius: 0.3em; 
+            text-indent: 5%;
+          }
         }
         button {
           font-size: 0.9em;

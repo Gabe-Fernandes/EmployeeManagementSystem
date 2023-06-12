@@ -6,7 +6,7 @@
 	var result = TempData["Register"] ?? "Register Account";
 }
 
-<!--<script async src="~/js/Validation/IdentityValidation.js"></script>-->
+<script async src="~/js/Identity/Register.js"></script>
 
 <main id="registerMain">
 	<div class="title-wrap">
@@ -25,22 +25,46 @@
 			<div class="register-card-wrap">
 				<section>
 					<h2>Personal Info</h2>
-					<input asp-for="Email" id="emailInput" type="text" placeholder="email">
-					<span id="errEmail" class="err errEmail hide">invalid email</span>
-					<input asp-for="FirstName" id="firstNameInput" type="text" placeholder="first name">
-					<span id="errFirstName" class="err errFirstName hide">required</span>
-					<input asp-for="LastName" id="lastNameInput" type="text" placeholder="last name">
-					<span id="errLastName" class="err errLastName hide">required</span>
-					<input asp-for="CellPhone" id="cellPhoneInput" type="text" placeholder="cell phone">
-					<span id="errLastName" class="err errLastName hide">required</span>
-					DOB: <input asp-for="DOB" id="dobInput" type="date">
+					<div class="input-err-wrap">
+						<input asp-for="Email" id="registerEmail" type="text" placeholder="email">
+						<span id="registerEmailErr" class="err hide"></span>
+					</div>
+					<div class="input-err-wrap">
+						<input asp-for="FirstName" id="registerFirstName" type="text" placeholder="first name">
+						<span id="registerFirstNameErr" class="err hide"></span>
+					</div>
+					<div class="input-err-wrap">
+						<input asp-for="LastName" id="registerLastName" type="text" placeholder="last name">
+						<span id="registerLastNameErr" class="err hide"></span>
+					</div>
+					<div class="input-err-wrap">
+						<input asp-for="CellPhone" id="registerPhoneNumber" type="text" placeholder="cell phone">
+						<span id="registerPhoneNumberErr" class="err hide"></span>
+					</div>
+					<div class="input-err-wrap-date">
+						DOB: <input asp-for="DOB" id="registerDOB" type="date">
+						<span id="registerDOBErr" class="err hide"></span>
+					</div>
 				</section>
 				<section>
 					<h2>Address</h2>
-					<input asp-for="StreetAddress" id="streetAddressInput" type="text" placeholder="street address">
-					<input asp-for="City" id="cityInput" type="text" placeholder="city">
-					<input asp-for="State" id="stateInput" type="text" placeholder="state">
-					<input asp-for="PostalCode" id="postalCodeInput" type="text" placeholder="zip code">
+					<div class="input-err-wrap">
+						<input asp-for="StreetAddress" id="registerStreetAddress" type="text" placeholder="street address">
+						<span id="registerStreetAddressErr" class="err hide"></span>
+					</div>
+					<div class="input-err-wrap">
+						<input asp-for="City" id="registerCity" type="text" placeholder="city">
+						<span id="registerCityErr" class="err hide"></span>
+					</div>
+					<div class="input-err-wrap">
+						<input asp-for="State" id="registerState" type="text" placeholder="state">
+						<span id="registerStateErr" class="err hide"></span>
+					</div>
+					<div class="input-err-wrap">
+						<input asp-for="PostalCode" id="registerPostalCode" type="text" placeholder="zip code">
+						<span id="registerPostalCodeErr" class="err hide"></span>
+					</div>
+
 					<div class="radio-wrap">
 						<div>
 							<label>Role:</label>
@@ -59,9 +83,16 @@
 				</section>
 				<section>
 					<h2 class="pass-title">Password</h2>
-					<input asp-for="Password" id="passwordInput" type="text" placeholder="password">
-					<input id="confirmPasswordInput" type="text" placeholder="repeat password">
-					<span id="errConfirmPassword" class="err errConfirmPassword hide">passwords must match</span>
+
+					<div class="input-err-wrap">
+						<input asp-for="Password" id="registerPassword" type="text" placeholder="password">
+						<span id="registerPasswordErr" class="err hide"></span>
+					</div>
+					<div class="input-err-wrap">
+						<input id="registerConfirmPassword" type="text" placeholder="repeat password">
+						<span id="registerConfirmPasswordErr" class="err hide"></span>
+					</div>
+
 					<div class="requirement-wrap">
 						<div class="requirements">
 							<div id="charMinConfirmation" class="invalid"><div></div><div></div></div>
@@ -80,6 +111,7 @@
 							<label>at least 1 number</label>
 						</div>
 					</div>
+
 				</section>
 			</div>
 			<div class="create-acc-btn-wrap">

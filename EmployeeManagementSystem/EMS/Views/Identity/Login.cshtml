@@ -14,10 +14,14 @@
 	</div>
 
 	<form method="post" asp-controller="Identity" asp-action="Login" id="loginForm">
-		<input asp-for="Email" type="text" id="emailInput" placeholder="email">
-		<span id="errEmail" class="err errEmail hide">invalid email</span>
-		<input asp-for="Password" type="text" id="passwordInput" placeholder="password">
-		<span id="errPassword" class="err errPassword hide">required</span>
+		<div class="input-err-wrap">
+			<input asp-for="Email" type="text" id="emailLoginInput" placeholder="email">
+			<span id="errEmailLoginInput" class="err hide"></span>
+		</div>
+		<div class="input-err-wrap">
+			<input asp-for="Password" type="text" id="passwordLoginInput" placeholder="password">
+			<span id="errPasswordLoginInput" class="err hide"></span>
+		</div>
 		<button class="btn" type="submit" tabindex="0">Login</button>
 		<button class="btn" type="button" tabindex="0" id="demoBtn">Demo User</button>
 		<section><a asp-controller="Identity" asp-action="Register" class="login-bot-btn">Create Account</a></section>
@@ -41,10 +45,11 @@
 			<input asp-for="Password" hidden value="Ab34567*" />
 			<button class="btn" type="submit">Admin</button>
 		</form>
-		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="demoCloseBtn"/></div>
+		<div class="close-btn"><img src="/icons/X_512x512.png" tabindex="0" id="demoCloseBtn"/></div>
 	</div>
 </section>
 
+<!--For some reason, server-side validation is jumping over client-side validation here-->
 <section id="forgotPassModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Password Recovery</h3>
@@ -58,12 +63,15 @@
 		}
 		else
 		{
-			<form method="post" asp-controller="Identity" asp-action="ForgotPassword">
-				<input asp-for="Email" placeholder="email" />
+			<form method="post" asp-controller="Identity" asp-action="ForgotPassword" id="recoverPassForm">
+				<div class="input-err-wrap">
+					<input asp-for="Email" id="forgotPassEmail" placeholder="email" />
+					<span id="errforgotPassEmail" class="err errEmail hide"></span>
+				</div>
 				<button class="btn" type="submit">Recover</button>
 			</form>
 		}
-		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="forgotPassCloseBtn"/></div>
+		<div class="close-btn"><img src="/icons/X_512x512.png" tabindex="0" id="forgotPassCloseBtn"/></div>
 	</div>
 </section>
 
@@ -80,11 +88,14 @@
 		}
 		else
 		{
-			<form method="post" asp-controller="Identity" asp-action="ResendEmailConf">
-				<input asp-for="Email" placeholder="email" />
+			<form method="post" asp-controller="Identity" asp-action="ResendEmailConf" id="resendEmailConfForm">
+				<div class="input-err-wrap">
+					<input asp-for="Email" id="resendEmailConfEmail" placeholder="email" />
+					<span id="errResendEmailConfEmail" class="err errEmail hide"></span>
+				</div>
 				<button class="btn" type="submit">Resend Confirmation</button>
 			</form>
 		}
-		<div class="close-btn"><img src="/icons/cancel.png" tabindex="0" id="resendEmailConfCloseBtn"/></div>
+		<div class="close-btn"><img src="/icons/X_512x512.png" tabindex="0" id="resendEmailConfCloseBtn"/></div>
 	</div>
 </section>

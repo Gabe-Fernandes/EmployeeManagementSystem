@@ -6,19 +6,33 @@ namespace EMS.Data.Models;
 public class AppUser : IdentityUser
 {
   [Required]
+  [StringLength(40)]
   public string FirstName { get; set; }
+
   [Required]
+  [StringLength(40)]
   public string LastName { get; set; }
-  
+
+  [Required]
+  [StringLength(40)]
   public string StreetAddress { get; set; }
-  
+
+  [Required]
+  [StringLength(40)]
   public string City { get; set; }
 
+  [Required]
+  [StringLength(40)]
   public string State { get; set; }
-  
+
+  [Required]
+  [StringLength(40)]
+  [DataType(DataType.PostalCode)]
   public string PostalCode { get; set; }
 
   public string Role { get; set; }
 
-	public DateTime Dob { get; set; }
+  [Required]
+  [StringLength(40)]
+  public DateTime Dob { get; set; }
 }

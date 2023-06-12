@@ -22,21 +22,21 @@
   border-radius: 0.6em;
   transition: width 0.25s;
 }
-#loginMain form input {
+#loginMain form .input-err-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   height: 5vh;
+  position: relative;
   margin: 2vh 0vw;
+}
+#loginMain form .input-err-wrap input {
+  width: 100%;
+  height: 100%;
   border-radius: 0.6em;
   text-indent: 5%;
   font-size: 1em;
-}
-#loginMain form .errEmail {
-  top: 23.4vh;
-  right: 28vw;
-}
-#loginMain form .errPassword {
-  top: 33.4vh;
-  right: 30vw;
 }
 #loginMain form button {
   width: 80%;
@@ -107,8 +107,21 @@
   width: 60%;
   margin: 1% 0%;
 }
-.login-modal form input {
+.login-modal form .input-err-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  position: relative;
   margin: 2vh 0vw;
+}
+.login-modal form .input-err-wrap input {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6em;
+  text-indent: 5%;
+  font-size: 1em;
 }
 .login-modal form button {
   width: 100%;
