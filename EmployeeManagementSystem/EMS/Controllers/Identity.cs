@@ -53,7 +53,8 @@ public class Identity : Controller
 			if (result.Succeeded)
 			{
 				await GenerateSecurityContextAsync(input.Email, HttpContext);
-				return RedirectToAction("EnterTimecard", "Timecard");
+        var user = await _userManager.FindByEmailAsync(input.Email);
+        return RedirectToAction("EnterTimecard", "Timecard", user);
 			}
 		}
 		return View();

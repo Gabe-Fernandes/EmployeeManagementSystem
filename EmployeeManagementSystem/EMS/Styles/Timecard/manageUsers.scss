@@ -42,12 +42,15 @@
   .table-wrap {
     @include TableWrap(80vw, 60vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong, false);
     margin: 0 auto;
-  }
-  .checkMark {
-    @include Confirmation(1.4em);
-  }
-  .xMark {
-    @include Invalid(1.4em);
+    .checkMark {
+      @include Confirmation(1.4em);
+    }
+    .xMark {
+      @include Invalid(1.4em);
+    }
+    button {
+      font-size: 1em;
+    }
   }
 }
 
@@ -61,7 +64,7 @@
     }
     .modal-options {
       @include Flex-Row(center, center, 100%, 50%);
-      a, button {
+      button {
         margin: 0px 3vw;
       }
     }

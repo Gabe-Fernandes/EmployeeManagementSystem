@@ -1,4 +1,5 @@
 ﻿using EMS.Data.Models;
+using EMS.Data.RepoInterfaces;
 using EMS.Views.Timecard;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +10,16 @@ namespace EMS.Controllers;
 [Authorize]
 public class Timecard : Controller
 {
-  public Timecard()
+  private readonly IAppUserRepo _appUserRepo;
+
+  public Timecard(IAppUserRepo appUserRepo)
   {
-    
+    _appUserRepo = appUserRepo;
   }
 
-  public IActionResult EnterTimecard()
+  const string AdminOnlyPolicy = "AdminOnly";
+
+  public IActionResult EnterTimecard(AppUser appuser)
   {
     return View();
   }
@@ -35,19 +40,32 @@ public class Timecard : Controller
     return View();
   }
 
-  public IActionResult PersonalInfo()
+  public IActionResult PersonalInfo(AppUser appUser)
   {
     return View();
   }
 
-  public IActionResult ManageUsers()
+  //[Authorize(Policy = AdminOnlyPolicy)]
+  public async Task<IActionResult> ManageUsers()
   {
+    ViewData["Users"] = await _appUserRepo.GetAllAsync();
     return View();
   }
-
+  
+  //[Authorize(Policy = AdminOnlyPolicy)]
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public IActionResult ManageUsers(ManageUsersVM manageUsersVM)
+  public async Task<IActionResult> ManageUsersDelete(ManageUsersVM manageUsersVM)
+  {
+    AppUser appUserToDelete = await _appUserRepo.GetByIdAsync(manageUsersVM.AppUserToDeleteId);
+    _appUserRepo.Delete(appUserToDelete);
+    return RedirectToAction("ManageUsers", "Timecard");
+  }
+
+  //[Authorize(Policy = AdminOnlyPolicy)]
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public IActionResult ManageUsersSearch(ManageUsersVM manageUsersVM)
   {
     if (ModelState.IsValid)
     {
@@ -62,6 +80,6 @@ public class Timecard : Controller
 
       }
     }
-    return View();
+    return RedirectToAction("ManageUsers", "Timecard");
   }
 }

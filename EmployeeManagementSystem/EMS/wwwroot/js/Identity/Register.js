@@ -24,7 +24,7 @@
     if (CheckPasswordMatch($("#registerPassword").val(), "registerConfirmPassword", "registerConfirmPasswordErr") === false) {
       errorExists = true;
     }
-    if (DateIsFutureDate("registerDOB", "registerDOBErr") === false) {
+    if (DateIsPastDate("registerDOB", "registerDOBErr") === false) {
       errorExists = true;
     }
     if (ValidatePostalCode("registerPostalCode", "registerPostalCodeErr") === false) {

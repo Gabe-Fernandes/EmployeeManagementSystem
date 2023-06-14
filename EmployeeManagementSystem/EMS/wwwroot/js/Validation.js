@@ -224,14 +224,14 @@ function ValidatePhoneNumber(inputID, errID) {
 
 
 
-function DateIsFutureDate(inputID, errID) {
+function DateIsPastDate(inputID, errID) {
   const inputDate = new Date($(`#${inputID}`).val());
   const today = new Date(Date.now());
   if (inputDate > today) {
     ShowError(inputID, errID, "DOB can't be a future date");
-    return true;
+    return false;
   }
-  return false;
+  return true;
 }
 
 

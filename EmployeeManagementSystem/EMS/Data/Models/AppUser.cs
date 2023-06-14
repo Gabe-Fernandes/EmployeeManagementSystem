@@ -33,6 +33,6 @@ public class AppUser : IdentityUser
   public string Role { get; set; }
 
   [Required]
-  [StringLength(40)]
+  [DataType(DataType.Date)]
   public DateTime Dob { get; set; }
 }
