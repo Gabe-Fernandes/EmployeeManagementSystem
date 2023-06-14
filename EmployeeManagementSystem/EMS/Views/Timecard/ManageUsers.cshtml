@@ -24,16 +24,12 @@
     <h1>Manage Users</h1>
   </div>
 
-  <form method="post" asp-controller="Timecard" asp-action="ManageUsersSearch" id="manageUsersSearchForm" class="search-container">
+  <form method="post" asp-controller="Timecard" asp-action="ManageUsers" id="manageUsersSearchForm" class="search-container">
     <div class="left-div">
       <div class="inner-left-div">
         <div class="input-err-wrap">
-          <input asp-for="FirstName" type="text" id="manageUsersSearchFirstName" placeholder="first name">
-          <span id="manageUsersSearchFirstNameErr" class="err hide"></span>
-        </div>
-        <div class="input-err-wrap">
-          <input asp-for="LastName" type="text" id="manageUsersSearchLastName" placeholder="last name">
-          <span id="manageUsersSearchLastNameErr" class="err hide"></span>
+          <input asp-for="SearchName" type="text" id="manageUsersSearchName" placeholder="name: first last">
+          <span id="manageUsersSearchNameErr" class="err hide"></span>
         </div>
       </div>
       <div class="inner-right-div">

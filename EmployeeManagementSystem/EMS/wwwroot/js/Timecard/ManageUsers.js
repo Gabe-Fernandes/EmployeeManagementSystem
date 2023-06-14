@@ -1,7 +1,7 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#manageUsersNavBtn"));
 
-  const allInputNames = ["SearchFirstName", "SearchLastName"];
+  const allInputNames = ["SearchName"];
   let allInputIDs = [];
   let allInputFields = [];
   let allErrIDs = [];

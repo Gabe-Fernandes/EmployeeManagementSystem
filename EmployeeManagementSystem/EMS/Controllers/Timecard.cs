@@ -46,9 +46,22 @@ public class Timecard : Controller
   }
 
   //[Authorize(Policy = AdminOnlyPolicy)]
-  public async Task<IActionResult> ManageUsers()
+  public async Task<IActionResult> ManageUsers(ManageUsersVM manageUsersVM)
   {
-    ViewData["Users"] = await _appUserRepo.GetAllAsync();
+    if (ModelState.IsValid)
+    {
+      if (manageUsersVM.SearchName.IsNullOrEmpty())
+      {
+        ViewData["SearchMessage"] = "Showing all search results";
+
+      }
+      else
+      {
+        ViewData["SearchMessage"] = $"Showing search results for: \"{manageUsersVM.SearchName}\"";
+
+      }
+    }
+    ViewData["Users"] = await _appUserRepo.GetAllWithSearchFilterAsync(manageUsersVM.SearchName);
     return View();
   }
   
@@ -59,27 +72,6 @@ public class Timecard : Controller
   {
     AppUser appUserToDelete = await _appUserRepo.GetByIdAsync(manageUsersVM.AppUserToDeleteId);
     _appUserRepo.Delete(appUserToDelete);
-    return RedirectToAction("ManageUsers", "Timecard");
-  }
-
-  //[Authorize(Policy = AdminOnlyPolicy)]
-  [HttpPost]
-  [ValidateAntiForgeryToken]
-  public IActionResult ManageUsersSearch(ManageUsersVM manageUsersVM)
-  {
-    if (ModelState.IsValid)
-    {
-      if (manageUsersVM.FirstName.IsNullOrEmpty() && manageUsersVM.LastName.IsNullOrEmpty())
-      {
-        ViewData["SearchMessage"] = "Showing all search results";
-
-      }
-      else
-      {
-        ViewData["SearchMessage"] = $"Showing search results for: \"{manageUsersVM.FirstName} {manageUsersVM.LastName}\"";
-
-      }
-    }
     return RedirectToAction("ManageUsers", "Timecard");
   }
 }

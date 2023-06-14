@@ -13,9 +13,15 @@ public class AppUserRepo : IAppUserRepo
 		_db = db;
 	}
 
-	public async Task<IEnumerable<AppUser>> GetAllAsync()
+	public async Task<IEnumerable<AppUser>> GetAllWithSearchFilterAsync(string filter)
 	{
-		return await _db.Users.ToListAsync();
+		filter ??= string.Empty;
+		filter = filter.ToUpper();
+
+		var filteredUsers = await _db.Users.Where(u =>
+			(u.FirstName + " " + u.LastName).ToUpper().Contains(filter)).ToListAsync();
+
+		return filteredUsers;
 	}
 
 	public async Task<AppUser> GetByIdAsync(string id)
