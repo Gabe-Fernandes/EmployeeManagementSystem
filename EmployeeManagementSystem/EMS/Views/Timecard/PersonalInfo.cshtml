@@ -1,5 +1,9 @@
-﻿@{
+﻿@model AppUser;
+
+@{
   ViewData["Title"] = "Personal Information";
+
+  var appUser = ViewData["UserParam"] as AppUser ?? ViewData["UserSelf"] as AppUser;
 }
 
 <main id="personalInfo">
@@ -11,21 +15,21 @@
   <section class="top-section">
     <div class="info-card">
       <label>General:</label>
-      <label id="firstName" placeholder="first name">Evan</label>
-      <label id="lastName" placeholder="last name">Edwards</label>
-      <label id="dob" placeholder="DOB">01/01/1990</label>
+      <label id="firstName" placeholder="first name">@appUser.FirstName</label>
+      <label id="lastName" placeholder="last name">@appUser.LastName</label>
+      <label id="dob" placeholder="DOB">@appUser.Dob.ToString("MMM/dd/yyyy")</label>
     </div>
     <div class="info-card">
       <label>Address:</label>
-      <label id="streetAddress" placeholder="street address">123 Example Street</label>
-      <label id="city" placeholder="city">Example City</label>
-      <label id="state" placeholder="state">NJ</label>
-      <label id="zipCode" placeholder="zip code">01234</label>
+      <label id="streetAddress" placeholder="street address">@appUser.StreetAddress</label>
+      <label id="city" placeholder="city">@appUser.City</label>
+      <label id="state" placeholder="state">@appUser.State</label>
+      <label id="zipCode" placeholder="zip code">@appUser.PostalCode</label>
     </div>
     <div class="info-card">
       <label>Contact:</label>
-      <label id="phoneNumber" placeholder="phone number">0123456789</label>
-      <label id="email" placeholder="email">example@email.com</label>
+      <label id="phoneNumber" placeholder="phone number">@appUser.PhoneNumber</label>
+      <label id="email" placeholder="email">@appUser.Email</label>
     </div>
   </section>
 </main>

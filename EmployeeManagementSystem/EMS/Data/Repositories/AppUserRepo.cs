@@ -29,7 +29,12 @@ public class AppUserRepo : IAppUserRepo
 		return await _db.Users.FindAsync(id);
 	}
 
-	public bool Add(AppUser appUser)
+  public AppUser GetById(string id)
+  {
+		return _db.Users.Find(id);
+  }
+
+  public bool Add(AppUser appUser)
 	{
 		_db.Add(appUser);
 		return Save();
