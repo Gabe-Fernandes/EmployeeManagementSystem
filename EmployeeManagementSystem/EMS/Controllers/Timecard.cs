@@ -34,18 +34,35 @@ public class Timecard : Controller
 
 
 
-  public IActionResult EditPersonalInfo()
+  public async Task<IActionResult> EditPersonalInfo(string appUserId)
   {
-    return View();
+    var appUser = await _appUserRepo.GetByIdAsync(appUserId) ?? _user;
+    return View(appUser);
   }
 
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public IActionResult EditPersonalInfo(AppUser appUser)
+  public async Task<IActionResult> EditPersonalInfo(AppUser appUserChanges)
   {
     if (ModelState.IsValid)
     {
-      return RedirectToAction("PersonalInfo", "Timecard");
+      var appUserToEdit = await _appUserRepo.GetByIdAsync(appUserChanges.Id);
+
+      appUserToEdit.FirstName = appUserChanges.FirstName;
+      appUserToEdit.LastName = appUserChanges.LastName;
+      appUserToEdit.Email = appUserChanges.Email;
+      appUserToEdit.UserName = appUserChanges.Email;
+      appUserToEdit.NormalizedEmail = appUserChanges.Email.ToUpper();
+      appUserToEdit.NormalizedUserName = appUserChanges.Email.ToUpper();
+      appUserToEdit.PhoneNumber = appUserChanges.PhoneNumber;
+      appUserToEdit.StreetAddress = appUserChanges.StreetAddress;
+      appUserToEdit.City = appUserChanges.City;
+      appUserToEdit.State = appUserChanges.State;
+      appUserToEdit.PostalCode = appUserChanges.PostalCode;
+      appUserToEdit.Dob = appUserChanges.Dob;
+
+      _appUserRepo.Update(appUserToEdit);
+      return RedirectToAction("PersonalInfo", "Timecard", new { appUserId = appUserToEdit.Id });
     }
     return View();
   }
@@ -54,10 +71,8 @@ public class Timecard : Controller
 
   public async Task<IActionResult> PersonalInfo(string appUserId)
   {
-    AppUser appUser = await _appUserRepo.GetByIdAsync(appUserId);
-    ViewData["UserParam"] = appUser;
-    ViewData["UserSelf"] = _user;
-    return View();
+    var appUser = await _appUserRepo.GetByIdAsync(appUserId) ?? _user;
+    return View(appUser);
   }
 
 

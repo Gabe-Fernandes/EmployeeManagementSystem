@@ -20,7 +20,7 @@
       ShowError("editPersonalInfoEmail", "editPersonalInfoEmailErr", "invalid email");
       errorExists = true;
     }
-    if (DateIsFutureDate("editPersonalInfoDOB", "editPersonalInfoDOBErr") === false) {
+    if (DateIsPastDate("editPersonalInfoDOB", "editPersonalInfoDOBErr") === false) {
       errorExists = true;
     }
     if (ValidatePostalCode("editPersonalInfoPostalCode", "editPersonalInfoPostalCodeErr") === false) {
@@ -43,4 +43,11 @@
 
   // Misc. Events
   PhoneNumberFormatting($("#editPersonalInfoPhoneNumber"));
+
+  // Initial phone formatting when the normalized number is loaded from the database
+  let phoneNumber = $("#editPersonalInfoPhoneNumber").val();
+  if (phoneNumber.includes("-") === false) {
+    phoneNumber = phoneNumber.slice(0, 3) + "-" + phoneNumber.slice(3, 6) + "-" + phoneNumber.slice(6, 10);
+    $("#editPersonalInfoPhoneNumber").val(phoneNumber);
+  }
 });

@@ -2,34 +2,32 @@
 
 @{
   ViewData["Title"] = "Personal Information";
-
-  var appUser = ViewData["UserParam"] as AppUser ?? ViewData["UserSelf"] as AppUser;
 }
 
 <main id="personalInfo">
   <div class="title-wrap">
     <h1>Personal Information</h1>
-    <a asp-controller="Timecard" asp-action="EditPersonalInfo" class="btn">Edit</a>
+    <a asp-controller="Timecard" asp-action="EditPersonalInfo" asp-route-appUserId="@Model.Id" class="btn">Edit</a>
   </div>
 
   <section class="top-section">
     <div class="info-card">
       <label>General:</label>
-      <label id="firstName" placeholder="first name">@appUser.FirstName</label>
-      <label id="lastName" placeholder="last name">@appUser.LastName</label>
-      <label id="dob" placeholder="DOB">@appUser.Dob.ToString("MMM/dd/yyyy")</label>
+      <label id="firstName" placeholder="first name">@Model.FirstName</label>
+      <label id="lastName" placeholder="last name">@Model.LastName</label>
+      <label id="dob" placeholder="DOB">@Model.Dob.ToString("MMM/dd/yyyy")</label>
     </div>
     <div class="info-card">
       <label>Address:</label>
-      <label id="streetAddress" placeholder="street address">@appUser.StreetAddress</label>
-      <label id="city" placeholder="city">@appUser.City</label>
-      <label id="state" placeholder="state">@appUser.State</label>
-      <label id="zipCode" placeholder="zip code">@appUser.PostalCode</label>
+      <label id="streetAddress" placeholder="street address">@Model.StreetAddress</label>
+      <label id="city" placeholder="city">@Model.City</label>
+      <label id="state" placeholder="state">@Model.State</label>
+      <label id="zipCode" placeholder="zip code">@Model.PostalCode</label>
     </div>
     <div class="info-card">
       <label>Contact:</label>
-      <label id="phoneNumber" placeholder="phone number">@appUser.PhoneNumber</label>
-      <label id="email" placeholder="email">@appUser.Email</label>
+      <label id="phoneNumber" placeholder="phone number">@Model.PhoneNumber</label>
+      <label id="email" placeholder="email">@Model.Email</label>
     </div>
   </section>
 </main>
