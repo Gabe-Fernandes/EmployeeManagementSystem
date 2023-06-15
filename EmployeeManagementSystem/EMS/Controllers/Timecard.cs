@@ -33,17 +33,25 @@ public class Timecard : Controller
 
 
 
-  public async Task<IActionResult> EnterTimecard(string appUserId, int timecardId = 7)
+  
+  public async Task<IActionResult> MyTimecards(string appUserId)
   {
-    //GenerateData();
     var appUser = await _appUserRepo.GetByIdAsync(appUserId) ?? _user;
-    ViewData["Timecard"] = await _timecardRepo.GetByIdAsync(timecardId);
+    ViewData["Timecards"] = await _timecardRepo.GetAllOfUserAsync(appUser.Id);
+		return View(appUser);
+  }
+
+  public async Task<IActionResult> EnterTimecard(int timecardId)
+  {
+    var timecard = await _timecardRepo.GetByIdAsync(timecardId);
+    string appUserId = timecard.AppUserId;
+    var appUser = await _appUserRepo.GetByIdAsync(appUserId);
+    ViewData["Timecard"] = timecard;
     ViewData["Workdays"] = await _workdayRepo.GetAllFromTimecardAsync(timecardId);
     return View(appUser);
   }
 
-  // 6/15/23 EnterTimecard receives timecard, workday, and appUser data;
-  public void GenerateData()
+  /*public void GenerateData()
   {
     for (int i = 0; i < 13; i++)
     {
@@ -63,14 +71,14 @@ public class Timecard : Controller
         {
           Date = DateTime.Now,
           DailyHours = 0,
-          TimeIn = "7:00",
-          TimeOut = "3:00",
+          TimeIn = "9:00",
+          TimeOut = "5:00",
           TimecardId = newTimecard.Id
         };
         _workdayRepo.Add(newWorkday);
       }
     }
-  }
+  } */
 
 
   public async Task<IActionResult> EditPersonalInfo(string appUserId)

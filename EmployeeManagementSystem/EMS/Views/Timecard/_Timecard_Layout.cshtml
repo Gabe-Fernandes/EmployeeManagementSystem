@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="~/css/editPersonalInfo.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/personalInfo.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/manageUsers.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/myTimecards.css" asp-append-version="true" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/Site.js"></script>
     <script src="~/js/Validation.js"></script>
 </head>
 <body>
     <nav>
-      <div class="nav-btn" id="enterTimecardNavBtn"><a asp-controller="Timecard" asp-action="EnterTimecard">Enter Timecard</a></div>
+      <div class="nav-btn" id="enterTimecardNavBtn"><a asp-controller="Timecard" asp-action="MyTimecards">My Timecards</a></div>
       @if (User.IsInRole(IdentityVM.Admin) || true)
       {
         <div class="nav-btn" id="manageUsersNavBtn"><a asp-controller="Timecard" asp-action="ManageUsers">Manage Users</a></div>

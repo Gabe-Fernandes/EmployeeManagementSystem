@@ -13,9 +13,10 @@ public class TimecardRepo : ITimecardRepo
 		_db = db;
 	}
 
-	public async Task<List<Timecard>> GetAllAsync()
+	public async Task<List<Timecard>> GetAllOfUserAsync(string appUserId)
 	{
-		return await _db.Timecards.ToListAsync();
+		var timecardsOfUser = await _db.Timecards.Where(t => t.AppUserId == appUserId).ToListAsync();
+		return timecardsOfUser;
 	}
 
 	public async Task<Timecard> GetByIdAsync(int id)

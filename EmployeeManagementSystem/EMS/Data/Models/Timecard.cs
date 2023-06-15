@@ -15,4 +15,6 @@ public class Timecard
 	public DateTime EndDate { get; set; }
 
 	public int WeeklyHours { get; set; }
+
+  public string AppUserId { get; set; }
 }

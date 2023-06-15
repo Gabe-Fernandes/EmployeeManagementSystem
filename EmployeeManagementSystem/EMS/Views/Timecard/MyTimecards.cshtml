@@ -1,5 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model AppUser;
+
 @{
-}
+	ViewData["Title"] = "Enter Timecard";
+
+	List<Timecard> timecards = ViewData["Timecards"] as List<Timecard>;
+}  
+
+<main id="myTimecards">
+	<div class="title-wrap">
+		<h1>Timecards for: @Model.FirstName @Model.LastName</h1>
+	</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th tabindex="0">Status</th>
+          <th tabindex="0">Date Range</th>
+          <th tabindex="0">Hours</th>
+          <th tabindex="0">Review</th>
+        </tr>
+      </thead>
+      <tbody>
+        @{
+          for (int i = 0; i < timecards.Count(); i++)
+          {
+            string statusClass = "";
+            switch (timecards[i].Status)
+            {
+              case "Approved": statusClass = "checkMark"; break;
+              case "Submitted": statusClass = "dashMark"; break;
+              case "Rejected": statusClass = "xMark"; break;
+            }
+            <tr>
+              <td tabindex="0">@timecards[i].Status
+                <div class="@statusClass"><div></div><div></div></div>
+              </td>
+              <td tabindex="0">@timecards[i].StartDate.ToString("MMM dd, yyyy") - @timecards[i].EndDate.ToString("MMM dd, yyyy")</td>
+              <td>@timecards[i].WeeklyHours</td>
+              <td><a asp-controller="Timecard" asp-action="EnterTimecard" asp-route-timecardId="@timecards[i].Id">Review</a></td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+</main>

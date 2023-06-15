@@ -54,7 +54,7 @@ public class Identity : Controller
 			{
 				await GenerateSecurityContextAsync(input.Email, HttpContext);
         var user = await _userManager.FindByEmailAsync(input.Email);
-        return RedirectToAction("EnterTimecard", "Timecard", user);
+        return RedirectToAction("MyTimecards", "Timecard", user);
 			}
 		}
 		return View();
@@ -90,7 +90,7 @@ public class Identity : Controller
 				var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 				code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 				var callbackUrl = Url.Page(
-						"/EnterTimecard",
+						"/MyTimecards",
 						pageHandler: null,
 						values: new { userId, code },
 						protocol: Request.Scheme);
@@ -130,7 +130,7 @@ public class Identity : Controller
 			{
 				await _signInManager.PasswordSignInAsync(user.Email, input.Password, isPersistent: false, lockoutOnFailure: false);
 				await GenerateSecurityContextAsync(input.Email, HttpContext);
-				return RedirectToAction("EnterTimecard", "Timecard");
+				return RedirectToAction("MyTimecards", "Timecard");
 			}
 		}
 		return View();

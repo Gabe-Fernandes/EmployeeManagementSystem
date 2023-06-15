@@ -54,6 +54,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Timecard}/{action=EnterTimecard}/{id?}");
+    pattern: "{controller=Timecard}/{action=MyTimecards}/{id?}");
 
 app.Run();
