@@ -7,7 +7,7 @@ public class Timecard
   [Key]
   public int Id { get; set; }
 
-  // Submitted, Rejected, Approved
+  // Submitted, Rejected, Approved, Incomplete
   public string Status { get; set; }
 
 	public DateTime StartDate { get; set; }

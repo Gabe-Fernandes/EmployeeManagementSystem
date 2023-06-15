@@ -1,17 +1,28 @@
-﻿@{
-    ViewData["Title"] = "Enter Timecard";
+﻿@using EMS.Views.Timecard;
+@model AppUser;
+
+@{
+  ViewData["Title"] = "Enter Timecard";
+  Timecard timecard = ViewData["Timecard"] as Timecard;
+  List<Workday> workdays = ViewData["Workdays"] as List<Workday>;
+
+  string submitBtnTxt = (timecard.Status == "Incomplete" || timecard.Status == "Rejected") ? "Submit" : "Recall";
+
+  // Adjust your supported times here using 24 hour time
+  int earliestTime = 7;
+  int latestTime = 19;
 }
 
 <script async src="~/js/Timecard/EnterTimecard.js"></script>
 
 <main id="enterTimecard">
   <div class="title-wrap">
-    <h1>Timecard For Brianna Brooks</h1>
+    <h1>Timecard For @Model.FirstName @Model.LastName</h1>
   </div>
 
   <div class="info-panel">
-    <label>Status: Incomplete</label>
-    <label id="weeklyTotalHours">Hours for the week:</label>
+    <label>Status: @timecard.Status</label>
+    <label id="weeklyTotalHours">Hours for the week: @timecard.WeeklyHours</label>
   </div>
 
   <section class="bot-section">
@@ -22,56 +33,55 @@
         <div>Time Out</div>
         <div>Daily Hours</div>
       </div>
-      <div class="workday-row">
-        <div>Mon, Jan 1</div>
-        <div><select id="timeInDropdown0"></select></div>
-        <div><select id="timeOutDropdown0"></select></div>
-        <div id="hours0">0</div>
-      </div>
-      <div class="workday-row offRow">
-        <div>Tues, Jan 2</div>
-        <div><select id="timeInDropdown1"></select></div>
-        <div><select id="timeOutDropdown1"></select></div>
-        <div id="hours1">0</div>
-      </div>
-      <div class="workday-row">
-        <div>Wed, Jan 3</div>
-        <div><select id="timeInDropdown2"></select></div>
-        <div><select id="timeOutDropdown2"></select></div>
-        <div id="hours2">0</div>
-      </div>
-      <div class="workday-row offRow">
-        <div>Thurs, Jan 4</div>
-        <div><select id="timeInDropdown3"></select></div>
-        <div><select id="timeOutDropdown3"></select></div>
-        <div id="hours3">0</div>
-      </div>
-      <div class="workday-row">
-        <div>Fri, Jan 5</div>
-        <div><select id="timeInDropdown4"></select></div>
-        <div><select id="timeOutDropdown4"></select></div>
-        <div id="hours4">0</div>
-      </div>
+      @{
+        for (int i = 0; i < 5; i++)
+        {
+          string divClass = (i % 2 == 0) ? "workday-row" : "workday-row offRow";
+          <div class="@divClass">
+            <div>@workdays[i].Date.ToString("ddd, MMM dd")</div> <!-- Mon, Jan 1 -->
+            <div>
+              <select id="timeInDropdown_@i">
+                @for (double j = earliestTime; j <= latestTime; j += 0.25)
+                {
+                  <option value="@j">@EnterTimecardVM.ConvertValueToTimeFormat(j)</option>
+                }
+              </select>
+            </div>
+            <div>
+              <select id="timeOutDropdown_@i">
+                @for (double j = earliestTime; j <= latestTime; j += 0.25)
+                {
+                  <option value="@j">@EnterTimecardVM.ConvertValueToTimeFormat(j)</option>
+                }
+              </select>
+            </div>
+            <div id="hours_@i">@workdays[0].DailyHours</div>
+          </div>
+        }
+      }
     </div>
 
-    <div class="control-panel">
-      <select>
-        <option value="1">Jan 1, 2024 - Jan 5, 2024</option>
-        <option value="2">Jan 8, 2024 - Jan 12, 2024</option>
-        <option value="3">Jan 15, 2024 - Jan 19, 2024</option>
-        <option value="4">Jan 22, 2024 - Jan 26, 2024</option>
-        <option value="5">Jan 29, 2024 - Feb 2, 2024</option>
-        <option value="6">Feb 5, 2024 - Feb 9, 2024</option>
-        <option value="7">Feb 12, 2024 - Feb 16, 2024</option>
-        <option value="8">Feb 19, 2024 - Feb 23, 2024</option>
-        <option value="9">Feb 26, 2024 - Mar 1, 2024</option>
-        <option value="10">Mar 4, 2024 - Mar 8, 2024</option>
-        <option value="11">Mar 11, 2024 - Mar 15, 2024</option>
-        <option value="12">Mar 18, 2024 - Mar 22, 2024</option>
-        <option value="13">Mar 25, 2024 - Mar 29, 2024</option>
-      </select>
-      <a asp-controller="Timecard" asp-action="EnterTimecard" id="saveBtn" class="btn">Save</a>
-      <a asp-controller="Timecard" asp-action="EnterTimecard" id="submitBtn" class="btn">Submit</a>
-    </div>
+    <form asp-controller="Timecard" asp-action="EnterTimecard" class="control-panel">
+      <div>
+        <select>
+          <option value="1">Jan 1, 2024 - Jan 5, 2024</option>
+          <option value="2">Jan 8, 2024 - Jan 12, 2024</option>
+          <option value="3">Jan 15, 2024 - Jan 19, 2024</option>
+          <option value="4">Jan 22, 2024 - Jan 26, 2024</option>
+          <option value="5">Jan 29, 2024 - Feb 2, 2024</option>
+          <option value="6">Feb 5, 2024 - Feb 9, 2024</option>
+          <option value="7">Feb 12, 2024 - Feb 16, 2024</option>
+          <option value="8">Feb 19, 2024 - Feb 23, 2024</option>
+          <option value="9">Feb 26, 2024 - Mar 1, 2024</option>
+          <option value="10">Mar 4, 2024 - Mar 8, 2024</option>
+          <option value="11">Mar 11, 2024 - Mar 15, 2024</option>
+          <option value="12">Mar 18, 2024 - Mar 22, 2024</option>
+          <option value="13">Mar 25, 2024 - Mar 29, 2024</option>
+        </select>
+        <button type="submit" class="btn">Change Week</button>
+      </div>
+      <a asp-controller="Timecard" asp-action="EnterTimecard" class="btn" id="saveBtn">Save</a>
+      <a asp-controller="Timecard" asp-action="EnterTimecard" class="btn" id="submitBtn">@submitBtnTxt</a>
+    </form>
   </section>
 </main>

@@ -14,24 +14,63 @@ public class Timecard : Controller
   private readonly IHttpContextAccessor _contextAccessor;
   private readonly AppUser _user;
   private readonly IAppUserRepo _appUserRepo;
+  private readonly ITimecardRepo _timecardRepo;
+  private readonly IWorkdayRepo _workdayRepo;
 
   public Timecard(IAppUserRepo appUserRepo,
-    IHttpContextAccessor contextAccessor)
+    IHttpContextAccessor contextAccessor,
+    ITimecardRepo timecardRepo,
+    IWorkdayRepo workdayRepo)
   {
     _appUserRepo = appUserRepo;
     _contextAccessor = contextAccessor;
     _user = GetUser();
+    _timecardRepo = timecardRepo;
+    _workdayRepo = workdayRepo;
   }
 
   const string AdminOnlyPolicy = "AdminOnly";
 
 
 
-  public IActionResult EnterTimecard(AppUser appuser)
+  public async Task<IActionResult> EnterTimecard(string appUserId, int timecardId = 7)
   {
-    return View();
+    //GenerateData();
+    var appUser = await _appUserRepo.GetByIdAsync(appUserId) ?? _user;
+    ViewData["Timecard"] = await _timecardRepo.GetByIdAsync(timecardId);
+    ViewData["Workdays"] = await _workdayRepo.GetAllFromTimecardAsync(timecardId);
+    return View(appUser);
   }
 
+  // 6/15/23 EnterTimecard receives timecard, workday, and appUser data;
+  public void GenerateData()
+  {
+    for (int i = 0; i < 13; i++)
+    {
+      Data.Models.Timecard newTimecard = new Data.Models.Timecard
+      {
+        Status = "Incomplete",
+        StartDate = DateTime.Now,
+        EndDate = DateTime.Now,
+        WeeklyHours = 0
+      };
+
+      _timecardRepo.Add(newTimecard);
+
+      for (int j = 0; j < 5; j++)
+      {
+        Workday newWorkday = new Workday
+        {
+          Date = DateTime.Now,
+          DailyHours = 0,
+          TimeIn = "7:00",
+          TimeOut = "3:00",
+          TimecardId = newTimecard.Id
+        };
+        _workdayRepo.Add(newWorkday);
+      }
+    }
+  }
 
 
   public async Task<IActionResult> EditPersonalInfo(string appUserId)
