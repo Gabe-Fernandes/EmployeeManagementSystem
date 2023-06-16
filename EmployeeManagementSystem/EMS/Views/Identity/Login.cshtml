@@ -3,7 +3,7 @@
 
 @{
 	ViewData["Title"] = "Employee Management System Login";
-	var result = TempData["Login"] ?? "default";
+	var result = TempData[Str.Login] ?? "default";
 }
 
 <script async src="~/js/Identity/Login.js"></script>
@@ -53,7 +53,7 @@
 <section id="forgotPassModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Password Recovery</h3>
-		@if ((string)result == "recovery_email_sent")
+		@if ((string)result == Str.recovery_email_sent)
 		{
 			<script>ToggleModal($("#loginMain"), $("#forgotPassModal"), openModal);</script>
 			<div class="confirmation-wrap">
@@ -78,7 +78,7 @@
 <section id="resendEmailConfModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Resend Email Confirmation</h3>
-		@if ((string)result == "conf_email_sent")
+		@if ((string)result == Str.conf_email_sent)
 		{
 			<script>ToggleModal($("#loginMain"), $("#resendEmailConfModal"), openModal);</script>
 			<div class="confirmation-wrap">

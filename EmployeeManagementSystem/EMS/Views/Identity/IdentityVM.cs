@@ -4,12 +4,6 @@ namespace EMS.Views.Identity;
 
 public class IdentityVM
 {
-	public static string Cookie = "cookie";
-	public static string Admin = "admin";
-	public static string Employee = "employee";
-
-	public static string[] Roles = new[] { "Admin", "Employee" };
-
 	[Required(ErrorMessage = "email required")]
 	[EmailAddress(ErrorMessage = "invalid email address")]
 	[StringLength(40)]

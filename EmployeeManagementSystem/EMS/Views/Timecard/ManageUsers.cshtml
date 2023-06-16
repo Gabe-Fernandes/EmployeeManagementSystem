@@ -5,16 +5,16 @@
   ViewData["Title"] = "Manage Users";
 
   string searchMessage = "";
-  if (ViewData["SearchMessage"] == null)
+  if (ViewData[Str.SearchMessage] == null)
   {
     searchMessage = "Showing all search results";
   }
   else
   {
-    searchMessage = ViewData["SearchMessage"].ToString();
+    searchMessage = ViewData[Str.SearchMessage].ToString();
   }
 
-  List<AppUser> appUsers = ViewData["Users"] as List<AppUser>;
+  List<AppUser> appUsers = ViewData[Str.Users] as List<AppUser>;
 }
 
 <script async src="~/js/Timecard/ManageUsers.js"></script>

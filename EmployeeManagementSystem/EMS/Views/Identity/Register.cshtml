@@ -3,7 +3,7 @@
 
 @{
 	ViewData["Title"] = "Register Account";
-	var result = TempData["Register"] ?? "Register Account";
+	var result = TempData[Str.Register] ?? "Register Account";
 }
 
 <script async src="~/js/Identity/Register.js"></script>
@@ -70,7 +70,7 @@
 							<label>Role:</label>
 						</div>
 						<div class="role-input-wrap">
-						@foreach (var role in IdentityVM.Roles)
+						@foreach (var role in Str.Roles)
 						{
 							<label>
 								<input asp-for="Role" type="radio" value="@role" id="@role"

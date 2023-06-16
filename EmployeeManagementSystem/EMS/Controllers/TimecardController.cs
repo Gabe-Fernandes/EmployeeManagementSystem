@@ -1,5 +1,6 @@
 ﻿using EMS.Data.Models;
 using EMS.Data.RepoInterfaces;
+using EMS.Services;
 using EMS.Views.Timecard;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,12 +30,10 @@ public class TimecardController : Controller
     _workdayRepo = workdayRepo;
   }
 
-  const string AdminOnlyPolicy = "AdminOnly";
-
   public async Task<IActionResult> MyTimecards(string appUserId)
   {
     var appUser = await _appUserRepo.GetByIdAsync(appUserId) ?? _user;
-    ViewData["Timecards"] = await _timecardRepo.GetAllOfUserAsync(appUser.Id);
+    ViewData[Str.Timecards] = await _timecardRepo.GetAllOfUserAsync(appUser.Id);
 		return View(appUser);
   }
 
@@ -52,9 +51,9 @@ public class TimecardController : Controller
       WeeklyHours = timecard.WeeklyHours
     };
 
-    ViewData["AppUser"] = appUser;
-    ViewData["Workdays"] = await _workdayRepo.GetAllFromTimecardAsync(timecardId);
-    ViewData["ViewingOwnTimecard"] = (appUserId == usersOwnId);
+    ViewData[Str.AppUser] = appUser;
+    ViewData[Str.Workdays] = await _workdayRepo.GetAllFromTimecardAsync(timecardId);
+    ViewData[Str.ViewingOwnTimecard] = (appUserId == usersOwnId);
     return View(viewModel);
   }
 
@@ -63,7 +62,7 @@ public class TimecardController : Controller
   public async Task<IActionResult> SubmitTimecard(EnterTimecardVM clientData)
   {
     Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
-    timecardFromDb.Status = (clientData.CardSubmitted) ? "Submitted" : "Incomplete";
+    timecardFromDb.Status = (clientData.CardSubmitted) ? Str.Submitted : Str.Incomplete;
     timecardFromDb.WeeklyHours = clientData.WeeklyHours;
     _timecardRepo.Update(timecardFromDb);
 
@@ -73,7 +72,7 @@ public class TimecardController : Controller
       _workdayRepo.Update(workdays[i]);
     }
 
-    return RedirectToAction("MyTimecards", "Timecard", new { appUserId = clientData.AppUserId });
+    return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = clientData.AppUserId });
   }
 
   [HttpPost]
@@ -81,10 +80,10 @@ public class TimecardController : Controller
   public async Task<IActionResult> ReviewTimecard(EnterTimecardVM clientData)
   {
     Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
-    timecardFromDb.Status = (clientData.IsApproved) ? "Approved" : "Rejected";
+    timecardFromDb.Status = (clientData.IsApproved) ? Str.Approved : Str.Rejected;
     _timecardRepo.Update(timecardFromDb);
 
-    return RedirectToAction("MyTimecards", "Timecard", new { appUserId = clientData.AppUserId });
+    return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = clientData.AppUserId });
   }
 
   public async Task<IActionResult> EditPersonalInfo(string appUserId)
@@ -115,7 +114,7 @@ public class TimecardController : Controller
       appUserToEdit.Dob = appUserChanges.Dob;
 
       _appUserRepo.Update(appUserToEdit);
-      return RedirectToAction("PersonalInfo", "Timecard", new { appUserId = appUserToEdit.Id });
+      return RedirectToAction(Str.PersonalInfo, Str.Timecard, new { appUserId = appUserToEdit.Id });
     }
     return View();
   }
@@ -133,16 +132,16 @@ public class TimecardController : Controller
     {
       if (manageUsersVM.SearchName.IsNullOrEmpty())
       {
-        ViewData["SearchMessage"] = "Showing all search results";
+        ViewData[Str.SearchMessage] = "Showing all search results";
 
       }
       else
       {
-        ViewData["SearchMessage"] = $"Showing search results for: \"{manageUsersVM.SearchName}\"";
+        ViewData[Str.SearchMessage] = $"Showing search results for: \"{manageUsersVM.SearchName}\"";
 
       }
     }
-    ViewData["Users"] = await _appUserRepo.GetAllWithSearchFilterAsync(manageUsersVM.SearchName);
+    ViewData[Str.Users] = await _appUserRepo.GetAllWithSearchFilterAsync(manageUsersVM.SearchName);
     return View();
   }
   
@@ -153,7 +152,7 @@ public class TimecardController : Controller
   {
     AppUser appUserToDelete = await _appUserRepo.GetByIdAsync(manageUsersVM.AppUserToDeleteId);
     _appUserRepo.Delete(appUserToDelete);
-    return RedirectToAction("ManageUsers", "Timecard");
+    return RedirectToAction(Str.ManageUsers, Str.Timecard);
   }
 
   private AppUser GetUser()

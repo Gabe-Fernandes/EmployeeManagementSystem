@@ -3,7 +3,7 @@
 @{
 	ViewData["Title"] = "Enter Timecard";
 
-	List<Timecard> timecards = ViewData["Timecards"] as List<Timecard>;
+	List<Timecard> timecards = ViewData[Str.Timecards] as List<Timecard>;
 }
 
 <script async src="~/js/Timecard/MyTimecards.js"></script>
@@ -30,9 +30,9 @@
             string statusClass = "";
             switch (timecards[i].Status)
             {
-              case "Approved": statusClass = "checkMark"; break;
-              case "Submitted": statusClass = "dashMark"; break;
-              case "Rejected": statusClass = "xMark"; break;
+              case Str.Approved: statusClass = "checkMark"; break;
+              case Str.Submitted: statusClass = "dashMark"; break;
+              case Str.Rejected: statusClass = "xMark"; break;
             }
             <tr>
               <td tabindex="0">@timecards[i].Status

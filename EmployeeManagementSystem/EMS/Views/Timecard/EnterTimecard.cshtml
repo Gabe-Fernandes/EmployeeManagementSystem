@@ -3,11 +3,11 @@
 
 @{
   ViewData["Title"] = "Enter Timecard";
-  AppUser appUser = ViewData["AppUser"] as AppUser;
-  List<Workday> workdays = ViewData["Workdays"] as List<Workday>;
-  bool viewingOwnTimecard = (bool) ViewData["ViewingOwnTimecard"];
+  AppUser appUser = ViewData[Str.AppUser] as AppUser;
+  List<Workday> workdays = ViewData[Str.Workdays] as List<Workday>;
+  bool viewingOwnTimecard = (bool) ViewData[Str.ViewingOwnTimecard];
 
-  string submitBtnTxt = (Model.Status == "Incomplete" || Model.Status == "Rejected") ? "Submit" : "Recall";
+  string submitBtnTxt = (Model.Status == Str.Incomplete || Model.Status == Str.Rejected) ? "Submit" : "Recall";
 
   // Adjust your supported times here using 24 hour time
   int earliestTime = 7;

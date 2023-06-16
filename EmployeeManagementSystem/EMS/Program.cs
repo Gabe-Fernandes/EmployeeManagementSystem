@@ -2,8 +2,8 @@ using EMS.Data;
 using EMS.Data.Models;
 using EMS.Data.RepoInterfaces;
 using EMS.Data.Repositories;
+using EMS.Services;
 using EMS.Services.Email;
-using EMS.Views.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,16 +16,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
 		.AddEntityFrameworkStores<AppDbContext>();
 
-builder.Services.AddAuthentication(IdentityVM.Cookie).AddCookie(IdentityVM.Cookie, options =>
+builder.Services.AddAuthentication(Str.Cookie).AddCookie(Str.Cookie, options =>
 {
-	options.Cookie.Name = IdentityVM.Cookie;
+	options.Cookie.Name = Str.Cookie;
 	options.LoginPath = "/Identity/Login";
 	options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
 });
 
 builder.Services.AddAuthorization(options =>
 {
-	options.AddPolicy("AdminOnly", policy => policy.RequireRole(IdentityVM.Admin));
+	options.AddPolicy("AdminOnly", policy => policy.RequireRole(Str.Admin));
 });
 
 builder.Services.AddControllersWithViews();
