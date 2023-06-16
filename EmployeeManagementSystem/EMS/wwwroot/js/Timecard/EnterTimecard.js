@@ -31,6 +31,7 @@
         weeklyTotal += parseFloat(dailyTotalHours[i].html());
       }
     }
+    $("#hoursToSendToServer").val(weeklyTotal);
     let outputMessage = "Hours for the week: " + weeklyTotal;
 
     //error handling
@@ -49,6 +50,19 @@
   function HourErrorHandling(index, toggle) {
     timeInDropdown[index][toggle]("err-input");
     timeOutDropdown[index][toggle]("err-input");
-    //$("#weeklyTotalHours")[toggle]("err");
   }
+
+  // Populate input values with booleans
+  $("#submitBtn").on("click", () => {
+    $("#cardSubmittedToSendToServer").val(true);
+  });
+  $("#saveBtn").on("click", () => {
+    $("#cardSubmittedToSendToServer").val(false);
+  });
+  $("#approveBtn").on("click", () => {
+    $("#isApprovedToSendToServer").val(true);
+  });
+  $("#rejectBtn").on("click", () => {
+    $("#isApprovedToSendToServer").val(false);
+  });
 });

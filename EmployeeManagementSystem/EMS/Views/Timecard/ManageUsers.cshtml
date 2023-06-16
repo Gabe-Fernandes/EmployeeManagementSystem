@@ -62,7 +62,7 @@
               <td tabindex="0">@appUsers[i].LastName</td>
               <td><a asp-controller="Timecard" asp-action="PersonalInfo" asp-route-appUserId="@appUsers[i].Id">Details</a></td>
               <td><button tabindex="0" class="text-btn removeAppUserBtn" id="@i">Remove</button></td>
-              <td><a asp-controller="Timecard" asp-action="EnterTimecard" asp-route-appUser="@appUsers[i]">Review</a></td>
+              <td><a asp-controller="Timecard" asp-action="MyTimecards" asp-route-appUser="@appUsers[i].Id">Review</a></td>
               @{
                 if (appUsers[i].FirstName == "this condition is an upToDate placeholder")
                 {

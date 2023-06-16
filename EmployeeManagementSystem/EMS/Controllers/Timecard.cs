@@ -31,9 +31,6 @@ public class Timecard : Controller
 
   const string AdminOnlyPolicy = "AdminOnly";
 
-
-
-  
   public async Task<IActionResult> MyTimecards(string appUserId)
   {
     var appUser = await _appUserRepo.GetByIdAsync(appUserId) ?? _user;
@@ -43,43 +40,52 @@ public class Timecard : Controller
 
   public async Task<IActionResult> EnterTimecard(int timecardId)
   {
+    string usersOwnId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
     var timecard = await _timecardRepo.GetByIdAsync(timecardId);
     string appUserId = timecard.AppUserId;
     var appUser = await _appUserRepo.GetByIdAsync(appUserId);
-    ViewData["Timecard"] = timecard;
+    EnterTimecardVM viewModel = new EnterTimecardVM
+    {
+      Status = timecard.Status,
+      TimecardId = timecard.Id,
+      AppUserId = timecard.AppUserId,
+      WeeklyHours = timecard.WeeklyHours
+    };
+
+    ViewData["AppUser"] = appUser;
     ViewData["Workdays"] = await _workdayRepo.GetAllFromTimecardAsync(timecardId);
-    return View(appUser);
+    ViewData["ViewingOwnTimecard"] = (appUserId == usersOwnId);
+    return View(viewModel);
   }
 
-  /*public void GenerateData()
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> SubmitTimecard(EnterTimecardVM clientData)
   {
-    for (int i = 0; i < 13; i++)
+    Data.Models.Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
+    timecardFromDb.Status = (clientData.CardSubmitted) ? "Submitted" : "Incomplete";
+    timecardFromDb.WeeklyHours = clientData.WeeklyHours;
+    _timecardRepo.Update(timecardFromDb);
+
+    List<Workday> workdays = await _workdayRepo.GetAllFromTimecardAsync(clientData.TimecardId);
+    for (int i = 0; i < workdays.Count; i++)
     {
-      Data.Models.Timecard newTimecard = new Data.Models.Timecard
-      {
-        Status = "Incomplete",
-        StartDate = DateTime.Now,
-        EndDate = DateTime.Now,
-        WeeklyHours = 0
-      };
-
-      _timecardRepo.Add(newTimecard);
-
-      for (int j = 0; j < 5; j++)
-      {
-        Workday newWorkday = new Workday
-        {
-          Date = DateTime.Now,
-          DailyHours = 0,
-          TimeIn = "9:00",
-          TimeOut = "5:00",
-          TimecardId = newTimecard.Id
-        };
-        _workdayRepo.Add(newWorkday);
-      }
+      _workdayRepo.Update(workdays[i]);
     }
-  } */
 
+    return RedirectToAction("MyTimecards", "Timecard", new { appUserId = clientData.AppUserId });
+  }
+
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> ReviewTimecard(EnterTimecardVM clientData)
+  {
+    Data.Models.Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
+    timecardFromDb.Status = (clientData.IsApproved) ? "Approved" : "Rejected";
+    _timecardRepo.Update(timecardFromDb);
+
+    return RedirectToAction("MyTimecards", "Timecard", new { appUserId = clientData.AppUserId });
+  }
 
   public async Task<IActionResult> EditPersonalInfo(string appUserId)
   {
@@ -164,3 +170,33 @@ public class Timecard : Controller
     return _appUserRepo.GetById(myId);
   }
 }
+
+
+/*public void GenerateData()
+{
+  for (int i = 0; i < 13; i++)
+  {
+    Data.Models.Timecard newTimecard = new Data.Models.Timecard
+    {
+      Status = "Incomplete",
+      StartDate = DateTime.Now,
+      EndDate = DateTime.Now,
+      WeeklyHours = 0
+    };
+
+    _timecardRepo.Add(newTimecard);
+
+    for (int j = 0; j < 5; j++)
+    {
+      Workday newWorkday = new Workday
+      {
+        Date = DateTime.Now,
+        DailyHours = 0,
+        TimeIn = "9:00",
+        TimeOut = "5:00",
+        TimecardId = newTimecard.Id
+      };
+      _workdayRepo.Add(newWorkday);
+    }
+  }
+} */

@@ -2,13 +2,25 @@
 
 public class EnterTimecardVM
 {
+  public bool CardSubmitted { get; set; }
+    
+  public bool IsApproved { get; set; }
+
+  public int TimecardId { get; set; }
+
+  public string AppUserId { get; set; }
+
+  public int WeeklyHours { get; set; }
+
+  public string Status { get; set; }
+
   public static string ConvertValueToTimeFormat(double timeValue)
   {
-    string meridiemState = (timeValue >= 12) ? "PM" : "AM";
-    if (timeValue >= 13) { timeValue -= 12; } // switch to 12 hour time
-    string timeValueString = timeValue.ToString(); // allows us to reference chars
-    string convertedTime = $"{ConvertedHours(timeValueString)}:{ConvertedMinutes(timeValueString, 2)} {meridiemState}";
-    return convertedTime;
+     string meridiemState = (timeValue >= 12) ? "PM" : "AM";
+     if (timeValue >= 13) { timeValue -= 12; } // switch to 12 hour time
+     string timeValueString = timeValue.ToString(); // allows us to reference chars
+     string convertedTime = $"{ConvertedHours(timeValueString)}:{ConvertedMinutes(timeValueString, 2)} {meridiemState}";
+     return convertedTime;
   }
 
   private static string ConvertedHours(string timeValue)
@@ -31,20 +43,20 @@ public class EnterTimecardVM
 
     if (timeValue[index - 1] == '.')
     {
-      switch (timeValue[index])
-      {
-        case '2':
-          return "15"; // x.25
-        case '5':
-          return "30"; // x.5
-        case '7':
-          return "45"; // x.75
-      }
+    switch (timeValue[index])
+    {
+      case '2':
+        return "15"; // x.25
+      case '5':
+        return "30"; // x.5
+      case '7':
+        return "45"; // x.75
+    }
     }
     else
     {
-      return ConvertedMinutes(timeValue, 3);
+    return ConvertedMinutes(timeValue, 3);
     }
     return "";
-  }
+    }
 }

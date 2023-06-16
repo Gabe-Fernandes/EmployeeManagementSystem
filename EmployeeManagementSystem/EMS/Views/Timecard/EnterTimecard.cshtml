@@ -1,12 +1,13 @@
 ﻿@using EMS.Views.Timecard;
-@model AppUser;
+@model EnterTimecardVM;
 
 @{
   ViewData["Title"] = "Enter Timecard";
-  Timecard timecard = ViewData["Timecard"] as Timecard;
+  AppUser appUser = ViewData["AppUser"] as AppUser;
   List<Workday> workdays = ViewData["Workdays"] as List<Workday>;
+  bool viewingOwnTimecard = (bool) ViewData["ViewingOwnTimecard"];
 
-  string submitBtnTxt = (timecard.Status == "Incomplete" || timecard.Status == "Rejected") ? "Submit" : "Recall";
+  string submitBtnTxt = (Model.Status == "Incomplete" || Model.Status == "Rejected") ? "Submit" : "Recall";
 
   // Adjust your supported times here using 24 hour time
   int earliestTime = 7;
@@ -17,12 +18,12 @@
 
 <main id="enterTimecard">
   <div class="title-wrap">
-    <h1>Timecard For @Model.FirstName @Model.LastName</h1>
+    <h1>Timecard For @appUser.FirstName @appUser.LastName</h1>
   </div>
 
   <div class="info-panel">
-    <label>Status: @timecard.Status</label>
-    <label id="weeklyTotalHours">Hours for the week: @timecard.WeeklyHours</label>
+    <label>Status: @Model.Status</label>
+    <label id="weeklyTotalHours">Hours for the week: @Model.WeeklyHours</label>
   </div>
 
   <section class="bot-section">
@@ -60,10 +61,26 @@
         }
       }
     </div>
-
-    <div class="control-panel">
-      <a asp-controller="Timecard" asp-action="EnterTimecard" class="btn" id="saveBtn">Save</a>
-      <a asp-controller="Timecard" asp-action="EnterTimecard" class="btn" id="submitBtn">@submitBtnTxt</a>
-    </div>
+      @if (viewingOwnTimecard)
+      {
+        <form asp-asp-controller="Timecard" asp-action="SubmitTimecard" class="control-panel">
+          <button type="submit" class="btn" id="saveBtn">Save</button>
+          <button type="submit" class="btn" id="submitBtn">@submitBtnTxt</button>
+          <input type="hidden" asp-for="TimecardId">
+          <input type="hidden" asp-for="AppUserId">
+          <input type="hidden" asp-for="WeeklyHours" id="hoursToSendToServer">
+          <input type="hidden" asp-for="CardSubmitted" id="cardSubmittedToSendToServer">
+        </form>
+      }
+      else
+      {
+        <form asp-asp-controller="Timecard" asp-action="ReviewTimecard" class="control-panel">
+          <button type="submit" class="btn" id="approveBtn">Approve</button>
+          <button type="submit" class="btn" id="rejectBtn">Reject</button>
+          <input type="hidden" asp-for="TimecardId">
+          <input type="hidden" asp-for="AppUserId">
+          <input type="hidden" asp-for="IsApproved" id="isApprovedToSendToServer">
+        </form>
+      }
   </section>
 </main>
