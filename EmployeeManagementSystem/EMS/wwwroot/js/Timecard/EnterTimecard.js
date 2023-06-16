@@ -1,6 +1,4 @@
 ﻿$(function () {
-  HighlightCurrentNavBtn($("#enterTimecardNavBtn"));
-
   const timeInDropdown = [];
   const timeOutDropdown = [];
   const dailyTotalHours = [];

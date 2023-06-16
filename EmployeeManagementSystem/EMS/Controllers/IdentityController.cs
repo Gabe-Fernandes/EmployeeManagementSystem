@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using EMS.Views.Identity;
 
 namespace EMS.Controllers;
-public class Identity : Controller
+public class IdentityController : Controller
 {
 	private readonly SignInManager<AppUser> _signInManager;
 	private readonly UserManager<AppUser> _userManager;
@@ -18,7 +18,7 @@ public class Identity : Controller
 	private readonly IUserEmailStore<AppUser> _emailStore;
 	private readonly IUserStore<AppUser> _userStore;
 
-	public Identity(SignInManager<AppUser> signInManager,
+	public IdentityController(SignInManager<AppUser> signInManager,
 	UserManager<AppUser> userManager,
 	IUserStore<AppUser> userStore,
 	IEmailSender emailSender)

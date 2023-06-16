@@ -20,7 +20,7 @@
 </head>
 <body>
     <nav>
-      <div class="nav-btn" id="enterTimecardNavBtn"><a asp-controller="Timecard" asp-action="MyTimecards">My Timecards</a></div>
+      <div class="nav-btn" id="myTimecardsNavBtn"><a asp-controller="Timecard" asp-action="MyTimecards">My Timecards</a></div>
       @if (User.IsInRole(IdentityVM.Admin) || true)
       {
         <div class="nav-btn" id="manageUsersNavBtn"><a asp-controller="Timecard" asp-action="ManageUsers">Manage Users</a></div>

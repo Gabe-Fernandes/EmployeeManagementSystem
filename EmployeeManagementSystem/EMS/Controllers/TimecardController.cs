@@ -9,7 +9,7 @@ using System.Security.Claims;
 namespace EMS.Controllers;
 
 [Authorize]
-public class Timecard : Controller
+public class TimecardController : Controller
 {
   private readonly IHttpContextAccessor _contextAccessor;
   private readonly AppUser _user;
@@ -17,7 +17,7 @@ public class Timecard : Controller
   private readonly ITimecardRepo _timecardRepo;
   private readonly IWorkdayRepo _workdayRepo;
 
-  public Timecard(IAppUserRepo appUserRepo,
+  public TimecardController(IAppUserRepo appUserRepo,
     IHttpContextAccessor contextAccessor,
     ITimecardRepo timecardRepo,
     IWorkdayRepo workdayRepo)
@@ -62,7 +62,7 @@ public class Timecard : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> SubmitTimecard(EnterTimecardVM clientData)
   {
-    Data.Models.Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
+    Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
     timecardFromDb.Status = (clientData.CardSubmitted) ? "Submitted" : "Incomplete";
     timecardFromDb.WeeklyHours = clientData.WeeklyHours;
     _timecardRepo.Update(timecardFromDb);
@@ -80,7 +80,7 @@ public class Timecard : Controller
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ReviewTimecard(EnterTimecardVM clientData)
   {
-    Data.Models.Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
+    Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
     timecardFromDb.Status = (clientData.IsApproved) ? "Approved" : "Rejected";
     _timecardRepo.Update(timecardFromDb);
 
@@ -120,15 +120,11 @@ public class Timecard : Controller
     return View();
   }
 
-
-
   public async Task<IActionResult> PersonalInfo(string appUserId)
   {
     var appUser = await _appUserRepo.GetByIdAsync(appUserId) ?? _user;
     return View(appUser);
   }
-
-
 
   //[Authorize(Policy = AdminOnlyPolicy)]
   public async Task<IActionResult> ManageUsers(ManageUsersVM manageUsersVM)
@@ -159,10 +155,6 @@ public class Timecard : Controller
     _appUserRepo.Delete(appUserToDelete);
     return RedirectToAction("ManageUsers", "Timecard");
   }
-
-
-
-
 
   private AppUser GetUser()
   {
