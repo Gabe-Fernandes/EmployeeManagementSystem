@@ -16,18 +16,15 @@ public class TimecardController : Controller
   private readonly AppUser _user;
   private readonly IAppUserRepo _appUserRepo;
   private readonly ITimecardRepo _timecardRepo;
-  private readonly IWorkdayRepo _workdayRepo;
 
   public TimecardController(IAppUserRepo appUserRepo,
     IHttpContextAccessor contextAccessor,
-    ITimecardRepo timecardRepo,
-    IWorkdayRepo workdayRepo)
+    ITimecardRepo timecardRepo)
   {
     _appUserRepo = appUserRepo;
     _contextAccessor = contextAccessor;
     _user = GetUser();
     _timecardRepo = timecardRepo;
-    _workdayRepo = workdayRepo;
   }
 
   public async Task<IActionResult> MyTimecards(string appUserId)
@@ -48,11 +45,23 @@ public class TimecardController : Controller
       Status = timecard.Status,
       TimecardId = timecard.Id,
       AppUserId = timecard.AppUserId,
-      WeeklyHours = timecard.WeeklyHours
+      WeeklyHours = timecard.WeeklyHours,
+      StartDate = timecard.StartDate,
+
+      TimeInMon = timecard.TimeInMon,
+      TimeInTues = timecard.TimeInTues,
+      TimeInWed = timecard.TimeInWed,
+      TimeInThur = timecard.TimeInThur,
+      TimeInFri = timecard.TimeInFri,
+
+      TimeOutMon = timecard.TimeOutMon,
+      TimeOutTues = timecard.TimeOutTues,
+      TimeOutWed = timecard.TimeOutWed,
+      TimeOutThur = timecard.TimeOutThur,
+      TimeOutFri = timecard.TimeOutFri
     };
 
     ViewData[Str.AppUser] = appUser;
-    ViewData[Str.Workdays] = await _workdayRepo.GetAllFromTimecardAsync(timecardId);
     ViewData[Str.ViewingOwnTimecard] = (appUserId == usersOwnId);
     return View(viewModel);
   }
@@ -64,13 +73,17 @@ public class TimecardController : Controller
     Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
     timecardFromDb.Status = (clientData.CardSubmitted) ? Str.Submitted : Str.Incomplete;
     timecardFromDb.WeeklyHours = clientData.WeeklyHours;
+    timecardFromDb.TimeInMon = clientData.TimeInMon;
+    timecardFromDb.TimeInTues = clientData.TimeInTues;
+    timecardFromDb.TimeInWed = clientData.TimeInWed;
+    timecardFromDb.TimeInThur = clientData.TimeInThur;
+    timecardFromDb.TimeInFri = clientData.TimeInFri;
+    timecardFromDb.TimeOutMon = clientData.TimeOutMon;
+    timecardFromDb.TimeOutTues = clientData.TimeOutTues;
+    timecardFromDb.TimeOutWed = clientData.TimeOutWed;
+    timecardFromDb.TimeOutThur = clientData.TimeOutThur;
+    timecardFromDb.TimeOutFri = clientData.TimeOutFri;
     _timecardRepo.Update(timecardFromDb);
-
-    List<Workday> workdays = await _workdayRepo.GetAllFromTimecardAsync(clientData.TimecardId);
-    for (int i = 0; i < workdays.Count; i++)
-    {
-      _workdayRepo.Update(workdays[i]);
-    }
 
     return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = clientData.AppUserId });
   }

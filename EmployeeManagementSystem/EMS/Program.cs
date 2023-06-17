@@ -33,7 +33,6 @@ builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 builder.Services.AddTransient<IAppUserRepo, AppUserRepo>();
 builder.Services.AddTransient<ITimecardRepo, TimecardRepo>();
-builder.Services.AddTransient<IWorkdayRepo, WorkdayRepo>();
 
 var app = builder.Build();
 

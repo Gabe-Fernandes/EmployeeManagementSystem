@@ -38,7 +38,7 @@
               <td tabindex="0">@timecards[i].Status
                 <div class="@statusClass"><div></div><div></div></div>
               </td>
-              <td tabindex="0">@timecards[i].StartDate.ToString("MMM dd, yyyy") - @timecards[i].EndDate.ToString("MMM dd, yyyy")</td>
+              <td tabindex="0">@timecards[i].StartDate.ToString("MMM dd, yyyy") - @timecards[i].StartDate.AddDays(4).ToString("MMM dd, yyyy")</td>
               <td>@timecards[i].WeeklyHours</td>
               <td><a asp-controller="Timecard" asp-action="EnterTimecard" asp-route-timecardId="@timecards[i].Id">Review</a></td>
             </tr>

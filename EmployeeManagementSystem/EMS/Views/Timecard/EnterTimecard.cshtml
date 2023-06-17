@@ -4,10 +4,11 @@
 @{
   ViewData["Title"] = "Enter Timecard";
   AppUser appUser = ViewData[Str.AppUser] as AppUser;
-  List<Workday> workdays = ViewData[Str.Workdays] as List<Workday>;
   bool viewingOwnTimecard = (bool) ViewData[Str.ViewingOwnTimecard];
 
   string submitBtnTxt = (Model.Status == Str.Incomplete || Model.Status == Str.Rejected) ? "Submit" : "Recall";
+  float[] timeInData = { Model.TimeInMon, Model.TimeInTues, Model.TimeInWed, Model.TimeInThur, Model.TimeInFri };
+  float[] timeOutData = { Model.TimeOutMon, Model.TimeOutTues, Model.TimeOutWed, Model.TimeOutThur, Model.TimeOutFri };
 
   // Adjust your supported times here using 24 hour time
   int earliestTime = 7;
@@ -39,12 +40,19 @@
         {
           string divClass = (i % 2 == 0) ? "workday-row" : "workday-row offRow";
           <div class="@divClass">
-            <div>@workdays[i].Date.ToString("ddd, MMM dd")</div> <!-- Mon, Jan 1 -->
+            <div>@Model.StartDate.AddDays(i).ToString("ddd, MMM dd")</div> <!-- Mon, Jan 1 -->
             <div>
               <select id="timeInDropdown_@i">
                 @for (double j = earliestTime; j <= latestTime; j += 0.25)
                 {
-                  <option value="@j">@EnterTimecardVM.ConvertValueToTimeFormat(j)</option>
+                  if (j == timeInData[i])
+                  {
+                    <option value="@j" selected>@EnterTimecardVM.ConvertValueToTimeFormat(j)</option>
+                  }
+                  else
+                  {
+                    <option value="@j">@EnterTimecardVM.ConvertValueToTimeFormat(j)</option>
+                  }
                 }
               </select>
             </div>
@@ -52,11 +60,18 @@
               <select id="timeOutDropdown_@i">
                 @for (double j = earliestTime; j <= latestTime; j += 0.25)
                 {
-                  <option value="@j">@EnterTimecardVM.ConvertValueToTimeFormat(j)</option>
+                  if (j == timeOutData[i])
+                  {
+                    <option value="@j" selected>@EnterTimecardVM.ConvertValueToTimeFormat(j)</option>
+                  }
+                  else
+                  {
+                    <option value="@j">@EnterTimecardVM.ConvertValueToTimeFormat(j)</option>
+                  }
                 }
               </select>
             </div>
-            <div id="hours_@i">@workdays[0].DailyHours</div>
+            <div id="hours_@i"></div>
           </div>
         }
       }
@@ -64,12 +79,25 @@
       @if (viewingOwnTimecard)
       {
         <form asp-asp-controller="Timecard" asp-action="SubmitTimecard" class="control-panel">
+        @if (submitBtnTxt == "Submit")
+        {
           <button type="submit" class="btn" id="saveBtn">Save</button>
+        }
           <button type="submit" class="btn" id="submitBtn">@submitBtnTxt</button>
-          <input type="hidden" asp-for="TimecardId">
-          <input type="hidden" asp-for="AppUserId">
           <input type="hidden" asp-for="WeeklyHours" id="hoursToSendToServer">
           <input type="hidden" asp-for="CardSubmitted" id="cardSubmittedToSendToServer">
+          <input type="hidden" asp-for="TimecardId">
+          <input type="hidden" asp-for="AppUserId">
+          <input type="hidden" asp-for="TimeInMon" id="timeInToSendToServer_0">
+          <input type="hidden" asp-for="TimeInTues" id="timeInToSendToServer_1">
+          <input type="hidden" asp-for="TimeInWed" id="timeInToSendToServer_2">
+          <input type="hidden" asp-for="TimeInThur" id="timeInToSendToServer_3">
+          <input type="hidden" asp-for="TimeInFri" id="timeInToSendToServer_4">
+          <input type="hidden" asp-for="TimeOutMon" id="timeOutToSendToServer_0">
+          <input type="hidden" asp-for="TimeOutTues" id="timeOutToSendToServer_1">
+          <input type="hidden" asp-for="TimeOutWed" id="timeOutToSendToServer_2">
+          <input type="hidden" asp-for="TimeOutThur" id="timeOutToSendToServer_3">
+          <input type="hidden" asp-for="TimeOutFri" id="timeOutToSendToServer_4">
         </form>
       }
       else
@@ -77,9 +105,19 @@
         <form asp-asp-controller="Timecard" asp-action="ReviewTimecard" class="control-panel">
           <button type="submit" class="btn" id="approveBtn">Approve</button>
           <button type="submit" class="btn" id="rejectBtn">Reject</button>
+          <input type="hidden" asp-for="IsApproved" id="isApprovedToSendToServer">
           <input type="hidden" asp-for="TimecardId">
           <input type="hidden" asp-for="AppUserId">
-          <input type="hidden" asp-for="IsApproved" id="isApprovedToSendToServer">
+          <input type="hidden" asp-for="TimeInMon" id="timeInToSendToServer_0">
+          <input type="hidden" asp-for="TimeInTues" id="timeInToSendToServer_1">
+          <input type="hidden" asp-for="TimeInWed" id="timeInToSendToServer_2">
+          <input type="hidden" asp-for="TimeInThur" id="timeInToSendToServer_3">
+          <input type="hidden" asp-for="TimeInFri" id="timeInToSendToServer_4">
+          <input type="hidden" asp-for="TimeOutMon" id="timeOutToSendToServer_0">
+          <input type="hidden" asp-for="TimeOutTues" id="timeOutToSendToServer_1">
+          <input type="hidden" asp-for="TimeOutWed" id="timeOutToSendToServer_2">
+          <input type="hidden" asp-for="TimeOutThur" id="timeOutToSendToServer_3">
+          <input type="hidden" asp-for="TimeOutFri" id="timeOutToSendToServer_4">
         </form>
       }
   </section>
