@@ -2,7 +2,7 @@
 
 @{
 	ViewData["Title"] = "Enter Timecard";
-
+  bool viewingOwnTimecards = (bool)ViewData[Str.ViewingOwnTimecards];
 	List<Timecard> timecards = ViewData[Str.Timecards] as List<Timecard>;
 }
 
@@ -40,7 +40,16 @@
               </td>
               <td tabindex="0">@timecards[i].StartDate.ToString("MMM dd, yyyy") - @timecards[i].StartDate.AddDays(4).ToString("MMM dd, yyyy")</td>
               <td>@timecards[i].WeeklyHours</td>
-              <td><a asp-controller="Timecard" asp-action="EnterTimecard" asp-route-timecardId="@timecards[i].Id">Review</a></td>
+              @{
+                if (viewingOwnTimecards)
+                {
+                  <td><a asp-controller="Timecard" asp-action="EnterTimecard" asp-route-timecardId="@timecards[i].Id">Enter Timecard</a></td>
+                }
+                else
+                {
+                  <td><a asp-controller="Timecard" asp-action="ReviewTimecard" asp-route-timecardId="@timecards[i].Id">Review Timecard</a></td>
+                }
+              }
             </tr>
           }
         }

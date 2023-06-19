@@ -30,13 +30,14 @@ public class TimecardController : Controller
   public async Task<IActionResult> MyTimecards(string appUserId)
   {
     var appUser = await _appUserRepo.GetByIdAsync(appUserId) ?? _user;
+    string usersOwnId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
     ViewData[Str.Timecards] = await _timecardRepo.GetAllOfUserAsync(appUser.Id);
-		return View(appUser);
+    ViewData[Str.ViewingOwnTimecards] = (appUser.Id == usersOwnId);
+    return View(appUser);
   }
 
   public async Task<IActionResult> EnterTimecard(int timecardId)
   {
-    string usersOwnId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
     var timecard = await _timecardRepo.GetByIdAsync(timecardId);
     string appUserId = timecard.AppUserId;
     var appUser = await _appUserRepo.GetByIdAsync(appUserId);
@@ -62,7 +63,6 @@ public class TimecardController : Controller
     };
 
     ViewData[Str.AppUser] = appUser;
-    ViewData[Str.ViewingOwnTimecard] = (appUserId == usersOwnId);
     return View(viewModel);
   }
 
@@ -88,6 +88,36 @@ public class TimecardController : Controller
     return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = clientData.AppUserId });
   }
 
+  public async Task<IActionResult> ReviewTimecard(int timecardId)
+  {
+    var timecard = await _timecardRepo.GetByIdAsync(timecardId);
+    string appUserId = timecard.AppUserId;
+    var appUser = await _appUserRepo.GetByIdAsync(appUserId);
+    EnterTimecardVM viewModel = new EnterTimecardVM
+    {
+      Status = timecard.Status,
+      TimecardId = timecard.Id,
+      AppUserId = timecard.AppUserId,
+      WeeklyHours = timecard.WeeklyHours,
+      StartDate = timecard.StartDate,
+
+      TimeInMon = timecard.TimeInMon,
+      TimeInTues = timecard.TimeInTues,
+      TimeInWed = timecard.TimeInWed,
+      TimeInThur = timecard.TimeInThur,
+      TimeInFri = timecard.TimeInFri,
+
+      TimeOutMon = timecard.TimeOutMon,
+      TimeOutTues = timecard.TimeOutTues,
+      TimeOutWed = timecard.TimeOutWed,
+      TimeOutThur = timecard.TimeOutThur,
+      TimeOutFri = timecard.TimeOutFri
+    };
+
+    ViewData[Str.AppUser] = appUser;
+    return View(viewModel);
+  }
+
   [HttpPost]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ReviewTimecard(EnterTimecardVM clientData)
@@ -96,7 +126,7 @@ public class TimecardController : Controller
     timecardFromDb.Status = (clientData.IsApproved) ? Str.Approved : Str.Rejected;
     _timecardRepo.Update(timecardFromDb);
 
-    return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = clientData.AppUserId });
+    return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = timecardFromDb.AppUserId });
   }
 
   public async Task<IActionResult> EditPersonalInfo(string appUserId)

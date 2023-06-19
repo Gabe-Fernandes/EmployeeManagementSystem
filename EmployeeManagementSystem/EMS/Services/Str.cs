@@ -22,7 +22,7 @@ public static class Str
   public const string Timecards = "Timecards";
   public const string AppUser = "AppUser";
   public const string Workdays = "Workdays";
-  public const string ViewingOwnTimecard = "ViewingOwnTimecard";
+  public const string ViewingOwnTimecards = "ViewingOwnTimecards";
   public const string SearchMessage = "SearchMessage";
   public const string Users = "Users";
 

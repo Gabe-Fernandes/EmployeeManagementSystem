@@ -59,14 +59,6 @@
     $("#cardSubmittedToSendToServer").val(false);
     PopulateInputValuesWithTimeValues();
   });
-  $("#approveBtn").on("click", () => {
-    $("#isApprovedToSendToServer").val(true);
-    PopulateInputValuesWithTimeValues();
-  });
-  $("#rejectBtn").on("click", () => {
-    $("#isApprovedToSendToServer").val(false);
-    PopulateInputValuesWithTimeValues();
-  });
 
   function PopulateInputValuesWithTimeValues() {
     for (let i = 0; i < 5; i++) {
