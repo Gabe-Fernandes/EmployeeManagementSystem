@@ -49,6 +49,26 @@
     });
   }
 
-  // Misc. Events
+  // Phone Formatting
+
   PhoneNumberFormatting($("#registerPhoneNumber"));
+
+  // Pass Show Toggle
+
+  $("#hidePassBtn").on("click", () => {
+    TogglePasswordShow($("#registerPassword"), $("#hidePassBtn"), $("#showPassBtn"));
+    TogglePasswordShow($("#registerConfirmPassword"), $("#hideRepeatPassBtn"), $("#showRepeatPassBtn"));
+  });
+  $("#showPassBtn").on("click", () => {
+    TogglePasswordShow($("#registerPassword"), $("#showPassBtn"), $("#hidePassBtn"));
+    TogglePasswordShow($("#registerConfirmPassword"), $("#showRepeatPassBtn"), $("#hideRepeatPassBtn"));
+  });
+  $("#hideRepeatPassBtn").on("click", () => {
+    TogglePasswordShow($("#registerPassword"), $("#hidePassBtn"), $("#showPassBtn"));
+    TogglePasswordShow($("#registerConfirmPassword"), $("#hideRepeatPassBtn"), $("#showRepeatPassBtn"));
+  });
+  $("#showRepeatPassBtn").on("click", () => {
+    TogglePasswordShow($("#registerPassword"), $("#showPassBtn"), $("#hidePassBtn"));
+    TogglePasswordShow($("#registerConfirmPassword"), $("#showRepeatPassBtn"), $("#hideRepeatPassBtn"));
+  });
 });

@@ -75,6 +75,11 @@ nav .nav-highlight {
   margin-bottom: -0.4em;
 }
 
+.nav-space {
+  width: 100vw;
+  height: 10vh;
+}
+
 nav .profile-link {
   margin: 0vh 3vw 0vh auto;
 }
@@ -177,11 +182,6 @@ select {
 ::-webkit-scrollbar-thumb {
   background: #4C5760;
   border-radius: 0.5em;
-}
-
-.nav-space {
-  width: 100vw;
-  height: 10vh;
 }
 
 .confirmation-wrap {

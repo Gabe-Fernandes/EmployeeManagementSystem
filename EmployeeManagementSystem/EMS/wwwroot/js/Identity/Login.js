@@ -77,4 +77,13 @@
   $("#resendEmailConfCloseBtn").on("click", () => {
     ToggleModal($("#loginMain"), $("#resendEmailConfModal"), closeModal);
   });
+
+  // Pass Show Toggle
+
+  $("#hidePassBtn").on("click", () => {
+    TogglePasswordShow($("#passwordLoginInput"), $("#hidePassBtn"), $("#showPassBtn"));
+  });
+  $("#showPassBtn").on("click", () => {
+    TogglePasswordShow($("#passwordLoginInput"), $("#showPassBtn"), $("#hidePassBtn"));
+  });
 });

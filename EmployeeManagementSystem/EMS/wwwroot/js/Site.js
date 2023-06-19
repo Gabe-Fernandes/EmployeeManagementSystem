@@ -12,6 +12,17 @@ function ToggleModal(main, modal, direction) {
   }
 }
 
+function TogglePasswordShow(passEle, eleToHide, eleToShow) {
+  eleToHide.addClass("hide");
+  eleToShow.removeClass("hide");
+  if (passEle.attr("type") === "password") {
+    passEle.attr("type", "text");
+  }
+  else {
+    passEle.attr("type", "password");
+  }
+}
+
 function HighlightCurrentNavBtn(btnToHighlight) {
   $(".nav-btn").removeClass("nav-highlight");
   btnToHighlight.addClass("nav-highlight");

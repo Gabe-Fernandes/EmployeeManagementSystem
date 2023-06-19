@@ -85,12 +85,16 @@
 					<h2 class="pass-title">Password</h2>
 
 					<div class="input-err-wrap">
-						<input asp-for="Password" id="registerPassword" type="text" placeholder="password">
+						<input asp-for="Password" id="registerPassword" type="password" placeholder="password">
 						<span id="registerPasswordErr" class="err hide"></span>
+						<img tabindex="0" id="hidePassBtn" src="~/icons/passInvisible_512x512.png">
+						<img tabindex="0" id="showPassBtn" src="~/icons/passVisible_512x512.png" class="hide">
 					</div>
 					<div class="input-err-wrap">
-						<input id="registerConfirmPassword" type="text" placeholder="repeat password">
+						<input id="registerConfirmPassword" type="password" placeholder="repeat password">
 						<span id="registerConfirmPasswordErr" class="err hide"></span>
+						<img tabindex="0" id="hideRepeatPassBtn" src="~/icons/passInvisible_512x512.png">
+						<img tabindex="0" id="showRepeatPassBtn" src="~/icons/passVisible_512x512.png" class="hide">
 					</div>
 
 					<div class="requirement-wrap">

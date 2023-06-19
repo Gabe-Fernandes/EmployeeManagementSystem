@@ -65,6 +65,11 @@ nav {
   }
 }
 
+.nav-space {
+  width: 100vw;
+  height: 10vh;
+}
+
 // solution-specific
 nav {
   .profile-link {
@@ -165,11 +170,6 @@ select {
 ::-webkit-scrollbar-thumb {
   background: $cHeader;
   border-radius: 0.5em;
-}
-
-.nav-space {
-  width: 100vw;
-  height: 10vh;
 }
 
 .confirmation-wrap {
