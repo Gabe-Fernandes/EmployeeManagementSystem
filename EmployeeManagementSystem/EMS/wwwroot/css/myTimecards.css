@@ -18,6 +18,14 @@
   top: 0px;
   z-index: 1;
 }
+.table-wrap table .sortable-th {
+  cursor: pointer;
+}
+.table-wrap table .sortable-th:active {
+  transform: scale(0.94);
+  transform: translateY(5%);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
 .table-wrap table tr:nth-child(odd) {
   background-color: #859EA2;
 }

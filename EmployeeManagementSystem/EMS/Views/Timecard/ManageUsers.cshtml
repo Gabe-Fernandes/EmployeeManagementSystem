@@ -45,32 +45,32 @@
     <table>
       <thead>
         <tr>
-          <th tabindex="0">First Name</th>
-          <th tabindex="0">Last Name</th>
+          <th tabindex="0" class="sortable-th" id="thFirstName">First Name</th>
+          <th tabindex="0" class="sortable-th" id="thLastName">Last Name</th>
           <th tabindex="0">Details</th>
           <th tabindex="0">Remove User</th>
           <th tabindex="0">Review Timecards</th>
-          <th tabindex="0">Up To Date</th>
+          <th tabindex="0" class="sortable-th" id="thUpToDate">Up To Date</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="manageUsersTbody">
         @{
           for (int i = 0; i < appUsers.Count(); i++)
           {
-            <tr>
-              <td tabindex="0">@appUsers[i].FirstName</td>
-              <td tabindex="0">@appUsers[i].LastName</td>
+            <tr id="manageUsersTR_@i">
+              <td tabindex="0" class="sortFirstName">@appUsers[i].FirstName</td>
+              <td tabindex="0" class="sortLastName">@appUsers[i].LastName</td>
               <td><a asp-controller="Timecard" asp-action="PersonalInfo" asp-route-appUserId="@appUsers[i].Id">Details</a></td>
               <td><button tabindex="0" class="text-btn removeAppUserBtn" id="@i">Remove</button></td>
               <td><a asp-controller="Timecard" asp-action="MyTimecards" asp-route-appUserId="@appUsers[i].Id">Review</a></td>
               @{
                 if (appUsers[i].UpToDate == true)
                 {
-                  <td><div class="checkMark"><div></div><div></div></div></td>
+                  <td class="sortUpToDate"><div class="checkMark"><div></div><div></div></div></td>
                 }
                 else
                 {
-                  <td><div class="xMark"><div></div><div></div></div></td>
+                  <td class="sortUpToDate"><div class="xMark"><div></div><div></div></div></td>
                 }
               }
               <!-- This hidden <td> holds these elements. opening the modal moves them with Jquery to the modal and closing it moves them back to the <td> -->

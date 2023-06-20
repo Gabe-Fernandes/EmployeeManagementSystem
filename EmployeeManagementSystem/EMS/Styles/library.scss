@@ -242,6 +242,14 @@ $cPlaceholder: #F9F9F9;
       top: 0px;
       z-index: $zTable;
     }
+    .sortable-th {
+      cursor: pointer;
+    }
+    .sortable-th:active {
+      transform: scale(0.94);
+      transform: translateY(5%);
+      box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    }
     tr:nth-child(odd){
       background-color: $c2;
     }

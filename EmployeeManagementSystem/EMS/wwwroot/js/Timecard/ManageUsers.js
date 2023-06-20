@@ -36,6 +36,21 @@
   }
 
 
+  // TH sorting events
+
+  let thFirstNameInOrder = true;
+  let thLastNameInOrder = true;
+  let thUpToDateInOrder = true;
+
+  $("#thFirstName").on("click", () => {
+    thFirstNameInOrder = thSortEvent("manageUsersTbody", thFirstNameInOrder, "manageUsersTR", "sortFirstName");
+  });
+  $("#thLastName").on("click", () => {
+    thLastNameInOrder = thSortEvent("manageUsersTbody", thLastNameInOrder, "manageUsersTR", "sortLastName");
+  });
+  $("#thUpToDate").on("click", () => {
+    thUpToDateInOrder = thSortEvent("manageUsersTbody", thUpToDateInOrder, "manageUsersTR", "sortUpToDate");
+  });
 
   // Modal events
 
