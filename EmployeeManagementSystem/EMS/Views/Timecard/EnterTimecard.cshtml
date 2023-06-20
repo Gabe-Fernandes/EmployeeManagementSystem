@@ -4,8 +4,6 @@
 @{
   ViewData["Title"] = "Enter Timecard";
   AppUser appUser = ViewData[Str.AppUser] as AppUser;
-
-  string submitBtnTxt = (Model.Status == Str.Incomplete || Model.Status == Str.Rejected) ? "Submit" : "Recall";
   float[] timeInData = { Model.TimeInMon, Model.TimeInTues, Model.TimeInWed, Model.TimeInThur, Model.TimeInFri };
   float[] timeOutData = { Model.TimeOutMon, Model.TimeOutTues, Model.TimeOutWed, Model.TimeOutThur, Model.TimeOutFri };
 
@@ -76,11 +74,15 @@
       }
     </div>
       <form asp-asp-controller="Timecard" asp-action="SubmitTimecard" class="control-panel">
-      @if (submitBtnTxt == "Submit")
+      @if (Model.Status == Str.Incomplete || Model.Status == Str.Rejected)
       {
         <button type="submit" class="btn" id="saveBtn">Save</button>
+        <button type="submit" class="btn" id="submitBtn">Submit</button>
       }
-        <button type="submit" class="btn" id="submitBtn">@submitBtnTxt</button>
+      else
+      {
+        <button type="submit" class="btn">Recall</button>
+      }
         <input type="hidden" asp-for="WeeklyHours" id="hoursToSendToServer">
         <input type="hidden" asp-for="CardSubmitted" id="cardSubmittedToSendToServer">
         <input type="hidden" asp-for="TimecardId">

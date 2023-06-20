@@ -71,6 +71,22 @@ public class TimecardController : Controller
   public async Task<IActionResult> SubmitTimecard(EnterTimecardVM clientData)
   {
     Timecard timecardFromDb = await _timecardRepo.GetByIdAsync(clientData.TimecardId);
+
+    // Recall Timecard
+    if (timecardFromDb.Status == Str.Submitted || timecardFromDb.Status == Str.Approved)
+    {
+      timecardFromDb.Status = Str.Incomplete;
+      _timecardRepo.Update(timecardFromDb);
+
+      // UpToDate Check - if there are no unapproved timecards, user is up to date
+      var appUser = await _appUserRepo.GetByIdAsync(timecardFromDb.AppUserId);
+      var unapprovedTimecardsFromUser = await _timecardRepo.GetAllUnapprovedOfUserAsync(appUser.Id);
+      appUser.UpToDate = unapprovedTimecardsFromUser.Count == 0;
+      _appUserRepo.Update(appUser);
+      
+      return RedirectToAction(Str.EnterTimecard, Str.Timecard, new { timecardId = timecardFromDb.Id });
+    }
+
     timecardFromDb.Status = (clientData.CardSubmitted) ? Str.Submitted : Str.Incomplete;
     timecardFromDb.WeeklyHours = clientData.WeeklyHours;
     timecardFromDb.TimeInMon = clientData.TimeInMon;
@@ -126,7 +142,13 @@ public class TimecardController : Controller
     timecardFromDb.Status = (clientData.IsApproved) ? Str.Approved : Str.Rejected;
     _timecardRepo.Update(timecardFromDb);
 
-    return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = timecardFromDb.AppUserId });
+    // UpToDate Check - if there are no unapproved timecards, user is up to date
+    var appUser = await _appUserRepo.GetByIdAsync(timecardFromDb.AppUserId);
+    var unapprovedTimecardsFromUser = await _timecardRepo.GetAllUnapprovedOfUserAsync(appUser.Id);
+    appUser.UpToDate = unapprovedTimecardsFromUser.Count == 0;
+    _appUserRepo.Update(appUser);
+
+    return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = appUser.Id });
   }
 
   public async Task<IActionResult> EditPersonalInfo(string appUserId)

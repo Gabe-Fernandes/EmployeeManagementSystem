@@ -35,4 +35,6 @@ public class AppUser : IdentityUser
   [Required]
   [DataType(DataType.Date)]
   public DateTime Dob { get; set; }
+
+  public bool UpToDate { get; set; } = true;
 }

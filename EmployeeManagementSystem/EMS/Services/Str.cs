@@ -13,6 +13,7 @@ public static class Str
   public const string MyTimecards = "MyTimecards";
   public const string PersonalInfo = "PersonalInfo";
   public const string ManageUsers = "ManageUsers";
+  public const string EnterTimecard = "EnterTimecard";
 
   // TempData
   public const string conf_email_sent = "conf_email_sent";

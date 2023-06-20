@@ -64,7 +64,7 @@
               <td><button tabindex="0" class="text-btn removeAppUserBtn" id="@i">Remove</button></td>
               <td><a asp-controller="Timecard" asp-action="MyTimecards" asp-route-appUserId="@appUsers[i].Id">Review</a></td>
               @{
-                if (appUsers[i].FirstName == "this condition is an upToDate placeholder")
+                if (appUsers[i].UpToDate == true)
                 {
                   <td><div class="checkMark"><div></div><div></div></div></td>
                 }
