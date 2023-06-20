@@ -8,9 +8,10 @@ using System.Text.Encodings.Web;
 using System.Text;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using EMS.Views.Identity;
+using EMS.Services;
 
 namespace EMS.Controllers;
-public class Identity : Controller
+public class IdentityController : Controller
 {
 	private readonly SignInManager<AppUser> _signInManager;
 	private readonly UserManager<AppUser> _userManager;
@@ -18,7 +19,7 @@ public class Identity : Controller
 	private readonly IUserEmailStore<AppUser> _emailStore;
 	private readonly IUserStore<AppUser> _userStore;
 
-	public Identity(SignInManager<AppUser> signInManager,
+	public IdentityController(SignInManager<AppUser> signInManager,
 	UserManager<AppUser> userManager,
 	IUserStore<AppUser> userStore,
 	IEmailSender emailSender)
@@ -37,7 +38,7 @@ public class Identity : Controller
 	public async Task<IActionResult> Login()
 	{
 		await _signInManager.SignOutAsync();
-		await HttpContext.SignOutAsync(IdentityVM.Cookie);
+		await HttpContext.SignOutAsync(Str.Cookie);
 		return View();
 	}
 
@@ -53,7 +54,8 @@ public class Identity : Controller
 			if (result.Succeeded)
 			{
 				await GenerateSecurityContextAsync(input.Email, HttpContext);
-				return RedirectToAction("EnterTimecard", "Timecard");
+        var user = await _userManager.FindByEmailAsync(input.Email);
+        return RedirectToAction(Str.MyTimecards, Str.Timecard, user);
 			}
 		}
 		return View();
@@ -89,7 +91,7 @@ public class Identity : Controller
 				var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 				code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 				var callbackUrl = Url.Page(
-						"/EnterTimecard",
+						"/MyTimecards",
 						pageHandler: null,
 						values: new { userId, code },
 						protocol: Request.Scheme);
@@ -97,7 +99,7 @@ public class Identity : Controller
 				await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
 						$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-				TempData["Register"] = "Account Created";
+				TempData[Str.Register] = "Account Created";
 				return View();
 			}
 		}
@@ -129,7 +131,7 @@ public class Identity : Controller
 			{
 				await _signInManager.PasswordSignInAsync(user.Email, input.Password, isPersistent: false, lockoutOnFailure: false);
 				await GenerateSecurityContextAsync(input.Email, HttpContext);
-				return RedirectToAction("EnterTimecard", "Timecard");
+				return RedirectToAction(Str.MyTimecards, Str.Timecard);
 			}
 		}
 		return View();
@@ -144,8 +146,8 @@ public class Identity : Controller
 			var user = await _userManager.FindByEmailAsync(input.Email);
 			if (user == null || !await _userManager.IsEmailConfirmedAsync(user))
 			{
-				TempData["Login"] = "recovery_email_sent";
-				return RedirectToAction("Login", "Identity");
+				TempData[Str.Login] = Str.recovery_email_sent;
+				return RedirectToAction(Str.Login, Str.Identity);
 			}
 
 			var code = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -159,9 +161,9 @@ public class Identity : Controller
 			await _emailSender.SendEmailAsync(input.Email, "Reset Password",
 					$"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-			TempData["Login"] = "recovery_email_sent";
+			TempData[Str.Login] = Str.recovery_email_sent;
 		}
-		return RedirectToAction("Login", "Identity");
+		return RedirectToAction(Str.Login, Str.Identity);
 	}
 
 	[HttpPost]
@@ -173,8 +175,8 @@ public class Identity : Controller
 			var user = await _userManager.FindByEmailAsync(input.Email);
 			if (user == null)
 			{
-				TempData["Login"] = "conf_email_sent";
-				return RedirectToAction("Login", "Identity");
+				TempData[Str.Login] = Str.conf_email_sent;
+				return RedirectToAction(Str.Login, Str.Identity);
 			}
 
 			var userId = await _userManager.GetUserIdAsync(user);
@@ -188,9 +190,9 @@ public class Identity : Controller
 			await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
 					$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-			TempData["Login"] = "conf_email_sent";
+			TempData[Str.Login] = Str.conf_email_sent;
 		}
-		return RedirectToAction("Login", "Identity");
+		return RedirectToAction(Str.Login, Str.Identity);
 	}
 
 	public async Task GenerateSecurityContextAsync(string email, HttpContext context)
@@ -206,8 +208,8 @@ public class Identity : Controller
 						new Claim(ClaimTypes.Role, userFromDb.Role),
 				};
 
-		var identity = new ClaimsIdentity(claims, IdentityVM.Cookie);
+		var identity = new ClaimsIdentity(claims, Str.Cookie);
 		ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-		await context.SignInAsync(IdentityVM.Cookie, principal);
+		await context.SignInAsync(Str.Cookie, principal);
 	}
 }

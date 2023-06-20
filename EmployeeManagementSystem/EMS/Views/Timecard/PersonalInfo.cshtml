@@ -1,31 +1,33 @@
-﻿@{
+﻿@model AppUser;
+
+@{
   ViewData["Title"] = "Personal Information";
 }
 
 <main id="personalInfo">
   <div class="title-wrap">
     <h1>Personal Information</h1>
-    <a asp-controller="Timecard" asp-action="EditPersonalInfo" class="btn">Edit</a>
+    <a asp-controller="Timecard" asp-action="EditPersonalInfo" asp-route-appUserId="@Model.Id" class="btn">Edit</a>
   </div>
 
   <section class="top-section">
     <div class="info-card">
       <label>General:</label>
-      <label id="firstName" placeholder="first name">Evan</label>
-      <label id="lastName" placeholder="last name">Edwards</label>
-      <label id="dob" placeholder="DOB">01/01/1990</label>
+      <label id="firstName" placeholder="first name">@Model.FirstName</label>
+      <label id="lastName" placeholder="last name">@Model.LastName</label>
+      <label id="dob" placeholder="DOB">@Model.Dob.ToString("MMM/dd/yyyy")</label>
     </div>
     <div class="info-card">
       <label>Address:</label>
-      <label id="streetAddress" placeholder="street address">123 Example Street</label>
-      <label id="city" placeholder="city">Example City</label>
-      <label id="state" placeholder="state">NJ</label>
-      <label id="zipCode" placeholder="zip code">01234</label>
+      <label id="streetAddress" placeholder="street address">@Model.StreetAddress</label>
+      <label id="city" placeholder="city">@Model.City</label>
+      <label id="state" placeholder="state">@Model.State</label>
+      <label id="zipCode" placeholder="zip code">@Model.PostalCode</label>
     </div>
     <div class="info-card">
       <label>Contact:</label>
-      <label id="phoneNumber" placeholder="phone number">0123456789</label>
-      <label id="email" placeholder="email">example@email.com</label>
+      <label id="phoneNumber" placeholder="phone number">@Model.PhoneNumber</label>
+      <label id="email" placeholder="email">@Model.Email</label>
     </div>
   </section>
 </main>

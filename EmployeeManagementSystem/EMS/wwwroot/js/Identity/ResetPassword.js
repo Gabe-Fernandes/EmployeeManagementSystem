@@ -38,4 +38,23 @@
       HideError(allInputIDs[i], allErrIDs[i]);
     });
   }
+
+  // Pass Show Toggle
+
+  $("#hidePassBtn").on("click", () => {
+    TogglePasswordShow($("#resetPassPassword"), $("#hidePassBtn"), $("#showPassBtn"));
+    TogglePasswordShow($("#resetPassConfirmPassword"), $("#hideRepeatPassBtn"), $("#showRepeatPassBtn"));
+  });
+  $("#showPassBtn").on("click", () => {
+    TogglePasswordShow($("#resetPassPassword"), $("#showPassBtn"), $("#hidePassBtn"));
+    TogglePasswordShow($("#resetPassConfirmPassword"), $("#showRepeatPassBtn"), $("#hideRepeatPassBtn"));
+  });
+  $("#hideRepeatPassBtn").on("click", () => {
+    TogglePasswordShow($("#resetPassPassword"), $("#hidePassBtn"), $("#showPassBtn"));
+    TogglePasswordShow($("#resetPassConfirmPassword"), $("#hideRepeatPassBtn"), $("#showRepeatPassBtn"));
+  });
+  $("#showRepeatPassBtn").on("click", () => {
+    TogglePasswordShow($("#resetPassPassword"), $("#showPassBtn"), $("#hidePassBtn"));
+    TogglePasswordShow($("#resetPassConfirmPassword"), $("#showRepeatPassBtn"), $("#hideRepeatPassBtn"));
+  });
 });

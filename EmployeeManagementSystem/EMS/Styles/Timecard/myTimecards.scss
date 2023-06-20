@@ -1,0 +1,15 @@
+﻿@import "../library.scss";
+  
+.table-wrap {
+    @include TableWrap(80vw, 60vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong, false);
+    margin: 0 auto;
+    .checkMark {
+      @include Confirmation(1.4em);
+    }
+    .dashMark {
+      @include Neutral(1.4em);
+    }
+    .xMark {
+      @include Invalid(1.4em);
+    }
+  }

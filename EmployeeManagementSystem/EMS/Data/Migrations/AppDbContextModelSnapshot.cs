@@ -17,7 +17,7 @@ namespace EMS.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -31,7 +31,9 @@ namespace EMS.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -49,11 +51,13 @@ namespace EMS.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -79,7 +83,9 @@ namespace EMS.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
@@ -88,12 +94,19 @@ namespace EMS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("StreetAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UpToDate")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
@@ -121,8 +134,8 @@ namespace EMS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -130,40 +143,42 @@ namespace EMS.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WeeklyHours")
-                        .HasColumnType("int");
+                    b.Property<float>("TimeInFri")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TimeInMon")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TimeInThur")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TimeInTues")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TimeInWed")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TimeOutFri")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TimeOutMon")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TimeOutThur")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TimeOutTues")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TimeOutWed")
+                        .HasColumnType("real");
+
+                    b.Property<float>("WeeklyHours")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
                     b.ToTable("Timecards");
-                });
-
-            modelBuilder.Entity("EMS.Data.Models.Workday", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DailyHours")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TimeIn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TimeOut")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TimecardId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Workdays");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

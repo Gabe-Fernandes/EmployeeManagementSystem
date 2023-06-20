@@ -38,6 +38,16 @@
   text-indent: 5%;
   font-size: 1em;
 }
+#loginMain form .input-err-wrap img {
+  height: 1.2em;
+  width: 1.2em;
+  min-height: 1.2em;
+  min-width: 1.2em;
+  border-radius: 50%;
+  position: absolute;
+  right: 3%;
+  cursor: pointer;
+}
 #loginMain form button {
   width: 80%;
   height: 7vh;

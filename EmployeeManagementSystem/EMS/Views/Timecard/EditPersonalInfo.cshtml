@@ -11,7 +11,7 @@
     <h1>Personal Information</h1>
   </div>
 
-  <form asp-controller="Timecard" asp-action="" id="editPersonalInfoForm" class="top-section">
+  <form asp-controller="Timecard" asp-action="EditPersonalInfo" id="editPersonalInfoForm" class="top-section">
     <div class="info-card">
       <label>General:</label>
       <div class="input-err-wrap">
@@ -42,7 +42,7 @@
         <span id="editPersonalInfoStateErr" class="err hide"></span>
       </div>
       <div class="input-err-wrap">
-        <input asp-for="PostalCode" type="text" id="editPersonalInfoPostalCode" placeholder="zip code">
+        <input asp-for="PostalCode" type="text" id="editPersonalInfoPostalCode" placeholder="postal code">
         <span id="editPersonalInfoPostalCodeErr" class="err hide"></span>
       </div>
     </div>
@@ -57,10 +57,11 @@
         <span id="editPersonalInfoEmailErr" class="err hide"></span>
       </div>
     </div>
+    <input asp-for="Id" type="hidden">
   </form>
 
   <section class="bot-section">
     <button type="submit" form="editPersonalInfoForm" class="btn">Save</button>
-    <a asp-controller="Timecard" asp-action="PersonalInfo" class="btn">Close</a>
+    <a asp-controller="Timecard" asp-action="PersonalInfo" asp-route-appUserId="@Model.Id" class="btn">Close</a>
   </section>
 </main>

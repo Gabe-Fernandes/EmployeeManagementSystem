@@ -1,4 +1,5 @@
 ﻿@using System.Security.Claims;
+@using EMS.Views.Identity;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,17 +10,22 @@
     <link rel="icon" href="/icons/EMS_favicon.png">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/enterTimecard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/reviewTimecard.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/editPersonalInfo.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/personalInfo.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/manageUsers.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/myTimecards.css" asp-append-version="true" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/Site.js"></script>
     <script src="~/js/Validation.js"></script>
 </head>
 <body>
     <nav>
-      <div class="nav-btn" id="enterTimecardNavBtn"><a asp-controller="Timecard" asp-action="EnterTimecard">Enter Timecard</a></div>
-      <div class="nav-btn" id="manageUsersNavBtn"><a asp-controller="Timecard" asp-action="ManageUsers">Manage Users</a></div>
+      <div class="nav-btn" id="myTimecardsNavBtn"><a asp-controller="Timecard" asp-action="MyTimecards">My Timecards</a></div>
+      @if (User.IsInRole(Str.Admin) || true)
+      {
+        <div class="nav-btn" id="manageUsersNavBtn"><a asp-controller="Timecard" asp-action="ManageUsers">Manage Users</a></div>
+      }
       <div class="profile-link"><a asp-controller="Timecard" asp-action="PersonalInfo">@User.Identity.Name</a></div>
       <div class="logout-btn"><a asp-controller="Identity" asp-action="Login">Logout</a></div>
     </nav>

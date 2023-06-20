@@ -3,7 +3,7 @@
 
 @{
 	ViewData["Title"] = "Employee Management System Login";
-	var result = TempData["Login"] ?? "default";
+	var result = TempData[Str.Login] ?? "default";
 }
 
 <script async src="~/js/Identity/Login.js"></script>
@@ -19,8 +19,10 @@
 			<span id="errEmailLoginInput" class="err hide"></span>
 		</div>
 		<div class="input-err-wrap">
-			<input asp-for="Password" type="text" id="passwordLoginInput" placeholder="password">
+			<input asp-for="Password" type="password" id="passwordLoginInput" placeholder="password">
 			<span id="errPasswordLoginInput" class="err hide"></span>
+			<img tabindex="0" id="hidePassBtn" src="~/icons/passInvisible_512x512.png">
+			<img tabindex="0" id="showPassBtn" src="~/icons/passVisible_512x512.png" class="hide">
 		</div>
 		<button class="btn" type="submit" tabindex="0">Login</button>
 		<button class="btn" type="button" tabindex="0" id="demoBtn">Demo User</button>
@@ -53,7 +55,7 @@
 <section id="forgotPassModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Password Recovery</h3>
-		@if ((string)result == "recovery_email_sent")
+		@if ((string)result == Str.recovery_email_sent)
 		{
 			<script>ToggleModal($("#loginMain"), $("#forgotPassModal"), openModal);</script>
 			<div class="confirmation-wrap">
@@ -78,7 +80,7 @@
 <section id="resendEmailConfModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Resend Email Confirmation</h3>
-		@if ((string)result == "conf_email_sent")
+		@if ((string)result == Str.conf_email_sent)
 		{
 			<script>ToggleModal($("#loginMain"), $("#resendEmailConfModal"), openModal);</script>
 			<div class="confirmation-wrap">

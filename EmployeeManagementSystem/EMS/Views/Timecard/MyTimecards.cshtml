@@ -1,0 +1,59 @@
+﻿@model AppUser;
+
+@{
+	ViewData["Title"] = "Enter Timecard";
+  bool viewingOwnTimecards = (bool)ViewData[Str.ViewingOwnTimecards];
+	List<Timecard> timecards = ViewData[Str.Timecards] as List<Timecard>;
+}
+
+<script async src="~/js/Timecard/MyTimecards.js"></script>
+
+<main id="myTimecards">
+	<div class="title-wrap">
+		<h1>Timecards for: @Model.FirstName @Model.LastName</h1>
+	</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th tabindex="0" class="sortable-th" id="thStatus">Status</th>
+          <th tabindex="0" class="sortable-th" id="thDateRange">Date Range</th>
+          <th tabindex="0" class="sortable-th" id="thHours">Hours</th>
+          <th tabindex="0">Review</th>
+        </tr>
+      </thead>
+      <tbody id="myTimecardsTbody">
+        @{
+          for (int i = 0; i < timecards.Count(); i++)
+          {
+            string statusClass = "";
+            switch (timecards[i].Status)
+            {
+              case Str.Approved: statusClass = "checkMark"; break;
+              case Str.Submitted: statusClass = "dashMark"; break;
+              case Str.Rejected: statusClass = "xMark"; break;
+            }
+            <tr id="myTimecardsTR_@i">
+              <td tabindex="0" class="sortStatus">@timecards[i].Status
+                <div class="@statusClass"><div></div><div></div></div>
+              </td>
+              <td tabindex="0" class="sortDateRange">@timecards[i].StartDate.ToString("MMM dd, yyyy") - @timecards[i].StartDate.AddDays(4).ToString("MMM dd, yyyy")</td>
+              <td class="sortHours">@timecards[i].WeeklyHours</td>
+              @{
+                if (viewingOwnTimecards)
+                {
+                  <td><a asp-controller="Timecard" asp-action="EnterTimecard" asp-route-timecardId="@timecards[i].Id">Enter Timecard</a></td>
+                }
+                else
+                {
+                  <td><a asp-controller="Timecard" asp-action="ReviewTimecard" asp-route-timecardId="@timecards[i].Id">Review Timecard</a></td>
+                }
+              }
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+</main>

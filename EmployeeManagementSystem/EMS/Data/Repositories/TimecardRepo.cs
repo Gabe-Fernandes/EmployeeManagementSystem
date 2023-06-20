@@ -1,5 +1,6 @@
 ﻿using EMS.Data.Models;
 using EMS.Data.RepoInterfaces;
+using EMS.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace EMS.Data.Repositories;
@@ -13,12 +14,20 @@ public class TimecardRepo : ITimecardRepo
 		_db = db;
 	}
 
-	public async Task<List<Timecard>> GetAllAsync()
+	public async Task<List<Timecard>> GetAllOfUserAsync(string appUserId)
 	{
-		return await _db.Timecards.ToListAsync();
+		var timecardsOfUser = await _db.Timecards.Where(t => t.AppUserId == appUserId).ToListAsync();
+		return timecardsOfUser;
 	}
 
-	public async Task<Timecard> GetByIdAsync(int id)
+  public async Task<List<Timecard>> GetAllUnapprovedOfUserAsync(string appUserId)
+	{
+    var unapprovedTimecardsOfUser = await _db.Timecards
+			.Where(t => t.AppUserId == appUserId && t.Status != Str.Approved).ToListAsync();
+    return unapprovedTimecardsOfUser;
+  }
+
+  public async Task<Timecard> GetByIdAsync(int id)
 	{
 		return await _db.Timecards.FindAsync(id);
 	}

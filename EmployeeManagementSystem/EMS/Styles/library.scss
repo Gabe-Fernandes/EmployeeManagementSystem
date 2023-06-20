@@ -11,6 +11,7 @@ $zModal: 4;
 $cWhite: #F9F9F9;
 $cBackground: #212325;
 $cOffWhiteBackground: #D9D9D9;
+
 // Confirmation stoplight
 $cWarning: #781d1d;
 $cNeutral: #FDDA16;
@@ -190,6 +191,9 @@ $cPlaceholder: #F9F9F9;
     left: 2.5%;
   }
 }
+@mixin PasswordShowToggleWrap(){
+
+}
 @mixin Modal($w, $h, $boxShadowColor) {
   @include Flex-Col(center, center, $w, $h);
   position: absolute;
@@ -237,6 +241,14 @@ $cPlaceholder: #F9F9F9;
       position: sticky;
       top: 0px;
       z-index: $zTable;
+    }
+    .sortable-th {
+      cursor: pointer;
+    }
+    .sortable-th:active {
+      transform: scale(0.94);
+      transform: translateY(5%);
+      box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
     }
     tr:nth-child(odd){
       background-color: $c2;

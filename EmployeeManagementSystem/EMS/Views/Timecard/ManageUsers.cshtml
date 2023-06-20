@@ -5,14 +5,16 @@
   ViewData["Title"] = "Manage Users";
 
   string searchMessage = "";
-  if (ViewData["SearchMessage"] == null)
+  if (ViewData[Str.SearchMessage] == null)
   {
     searchMessage = "Showing all search results";
   }
   else
   {
-    searchMessage = ViewData["SearchMessage"].ToString();
+    searchMessage = ViewData[Str.SearchMessage].ToString();
   }
+
+  List<AppUser> appUsers = ViewData[Str.Users] as List<AppUser>;
 }
 
 <script async src="~/js/Timecard/ManageUsers.js"></script>
@@ -22,16 +24,12 @@
     <h1>Manage Users</h1>
   </div>
 
-  <form asp-controller="Timecard" asp-action="ManageUsers" id="manageUsersSearchForm" class="search-container">
+  <form method="post" asp-controller="Timecard" asp-action="ManageUsers" id="manageUsersSearchForm" class="search-container">
     <div class="left-div">
       <div class="inner-left-div">
         <div class="input-err-wrap">
-          <input asp-for="FirstName" type="text" id="manageUsersSearchFirstName" placeholder="first name">
-          <span id="manageUsersSearchFirstNameErr" class="err hide"></span>
-        </div>
-        <div class="input-err-wrap">
-          <input asp-for="LastName" type="text" id="manageUsersSearchLastName" placeholder="last name">
-          <span id="manageUsersSearchLastNameErr" class="err hide"></span>
+          <input asp-for="SearchName" type="text" id="manageUsersSearchName" placeholder="name: first last">
+          <span id="manageUsersSearchNameErr" class="err hide"></span>
         </div>
       </div>
       <div class="inner-right-div">
@@ -47,43 +45,54 @@
     <table>
       <thead>
         <tr>
-          <th tabindex="0">First Name</th>
-          <th tabindex="0">Last Name</th>
+          <th tabindex="0" class="sortable-th" id="thFirstName">First Name</th>
+          <th tabindex="0" class="sortable-th" id="thLastName">Last Name</th>
           <th tabindex="0">Details</th>
           <th tabindex="0">Remove User</th>
           <th tabindex="0">Review Timecards</th>
-          <th tabindex="0">Up To Date</th>
+          <th tabindex="0" class="sortable-th" id="thUpToDate">Up To Date</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td tabindex="0">Brianna</td>
-          <td tabindex="0">Brooks</td>
-          <td><a href="">Details</a></td>
-          <td><button tabindex="0" id="remove1" class="text-btn">Remove</button></td>
-          <td><a href="">Review</a></td>
-          <td><div class="checkMark"><div></div><div></div></div></td>
-        </tr>
-        <tr>
-          <td tabindex="0">Charles</td>
-          <td tabindex="0">Carter</td>
-          <td><a href="">Details</a></td>
-          <td><button tabindex="0" id="remove2" class="text-btn">Remove</button></td>
-          <td><a href="">Review</a></td>
-          <td><div class="xMark"><div></div><div></div></div></td>
-        </tr>
+      <tbody id="manageUsersTbody">
+        @{
+          for (int i = 0; i < appUsers.Count(); i++)
+          {
+            <tr id="manageUsersTR_@i">
+              <td tabindex="0" class="sortFirstName">@appUsers[i].FirstName</td>
+              <td tabindex="0" class="sortLastName">@appUsers[i].LastName</td>
+              <td><a asp-controller="Timecard" asp-action="PersonalInfo" asp-route-appUserId="@appUsers[i].Id">Details</a></td>
+              <td><button tabindex="0" class="text-btn removeAppUserBtn" id="@i">Remove</button></td>
+              <td><a asp-controller="Timecard" asp-action="MyTimecards" asp-route-appUserId="@appUsers[i].Id">Review</a></td>
+              @{
+                if (appUsers[i].UpToDate == true)
+                {
+                  <td class="sortUpToDate"><div class="checkMark"><div></div><div></div></div></td>
+                }
+                else
+                {
+                  <td class="sortUpToDate"><div class="xMark"><div></div><div></div></div></td>
+                }
+              }
+              <!-- This hidden <td> holds these elements. opening the modal moves them with Jquery to the modal and closing it moves them back to the <td> -->
+              <td id="wrapHoldingMovableElements_@i" class="hide">
+                <label id="moveLabel_@i" tabindex="0">Remove User: @appUsers[i].FirstName @appUsers[i].LastName?</label>
+                <button type="submit" id="moveBtn_@i" class="btn">Remove</button>
+                <input type="hidden" id="inputVal_@i" value="@appUsers[i].Id">
+              </td>
+            </tr>
+          }
+        }
       </tbody>
     </table>
   </div>
 </main>
 
 <section id="removeUserModal" class="screen-tint hide">
-  <div class="modal-background">
-    <label tabindex="0">Remove User: Albert Adams?</label>
-    <div class="modal-options">
-      <a href="" class="btn">Remove</a>
-      <button tabindex="0" id="removeUserCancelBtn" class="btn">Cancel</button>
-    </div>
+  <div id="removeUserModalBackground" class="modal-background">
+    <form method="post" asp-controller="Timecard" asp-action="ManageUsersDelete" id="removeUserModalOptionsWrap" class="modal-options">
+      <button type="button" tabindex="0" id="removeUserCancelBtn" class="btn">Cancel</button>
+      <input asp-for="AppUserToDeleteId" type="hidden" form="removeUserModalOptionsWrap" id="removeUserInput" value="">
+    </form>
     <div class="close-btn"><img tabindex="0" src="/icons/X_512x512.png" id="removeUserCloseBtn"></div>
   </div>
 </section>

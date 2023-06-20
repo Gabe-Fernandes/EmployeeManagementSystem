@@ -28,9 +28,11 @@
 		<Exec Command="mkdir $(ProjectDir)wwwroot\css" Condition="!Exists('$(ProjectDir)wwwroot\css')" />
 		<Exec Command="sass $(ProjectDir)Styles\site.scss $(ProjectDir)wwwroot\css\site.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Timecard\enterTimecard.scss $(ProjectDir)wwwroot\css\enterTimecard.css" />
+		<Exec Command="sass $(ProjectDir)Styles\Timecard\reviewTimecard.scss $(ProjectDir)wwwroot\css\reviewTimecard.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Timecard\editPersonalInfo.scss $(ProjectDir)wwwroot\css\editPersonalInfo.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Timecard\personalInfo.scss $(ProjectDir)wwwroot\css\personalInfo.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Timecard\manageUsers.scss $(ProjectDir)wwwroot\css\manageUsers.css" />
+		<Exec Command="sass $(ProjectDir)Styles\Timecard\myTimecards.scss $(ProjectDir)wwwroot\css\myTimecards.css" />
 
 		<Exec Command="sass $(ProjectDir)Styles\Identity\login.scss $(ProjectDir)wwwroot\css\login.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Identity\register.scss $(ProjectDir)wwwroot\css\register.css" />

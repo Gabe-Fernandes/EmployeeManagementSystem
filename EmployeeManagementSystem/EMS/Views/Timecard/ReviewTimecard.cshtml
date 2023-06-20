@@ -1,0 +1,52 @@
+﻿@using EMS.Views.Timecard;
+@model EnterTimecardVM;
+
+@{
+  ViewData["Title"] = "Enter Timecard";
+  AppUser appUser = ViewData[Str.AppUser] as AppUser;
+  float[] timeInData = { Model.TimeInMon, Model.TimeInTues, Model.TimeInWed, Model.TimeInThur, Model.TimeInFri };
+  float[] timeOutData = { Model.TimeOutMon, Model.TimeOutTues, Model.TimeOutWed, Model.TimeOutThur, Model.TimeOutFri };
+}
+
+<script async src="~/js/Timecard/ReviewTimecard.js"></script>
+
+<main id="reviewTimecard">
+  <div class="title-wrap">
+    <h1>Timecard For @appUser.FirstName @appUser.LastName</h1>
+  </div>
+
+  <div class="info-panel">
+    <label>Status: @Model.Status</label>
+    <label>Hours for the week: @Model.WeeklyHours</label>
+  </div>
+
+  <section class="bot-section">
+    <div class="timecard-div-table">
+      <div class="header">
+        <div>Date</div>
+        <div>Time In</div>
+        <div>Time Out</div>
+        <div>Daily Hours</div>
+      </div>
+      @{
+        for (int i = 0; i < 5; i++)
+        {
+          string divClass = (i % 2 == 0) ? "workday-row" : "workday-row offRow";
+          float dailyHours = timeOutData[i] - timeInData[i];
+          <div class="@divClass">
+            <div>@Model.StartDate.AddDays(i).ToString("ddd, MMM dd")</div>
+            <div>@EnterTimecardVM.ConvertValueToTimeFormat(timeInData[i])</div>
+            <div>@EnterTimecardVM.ConvertValueToTimeFormat(timeOutData[i])</div>
+            <div>@dailyHours</div>
+          </div>
+        }
+      }
+    </div>
+    <form asp-asp-controller="Timecard" asp-action="ReviewTimecard" class="control-panel">
+      <button type="submit" class="btn" id="approveBtn">Approve</button>
+      <button type="submit" class="btn" id="rejectBtn">Reject</button>
+      <input type="hidden" asp-for="IsApproved" id="isApprovedToSendToServer">
+      <input type="hidden" asp-for="TimecardId">
+    </form>
+  </section>
+</main>

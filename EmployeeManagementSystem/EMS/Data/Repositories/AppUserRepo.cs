@@ -13,9 +13,15 @@ public class AppUserRepo : IAppUserRepo
 		_db = db;
 	}
 
-	public async Task<IEnumerable<AppUser>> GetAllAsync()
+	public async Task<IEnumerable<AppUser>> GetAllWithSearchFilterAsync(string filter)
 	{
-		return await _db.Users.ToListAsync();
+		filter ??= string.Empty;
+		filter = filter.ToUpper();
+
+		var filteredUsers = await _db.Users.Where(u =>
+			(u.FirstName + " " + u.LastName).ToUpper().Contains(filter)).ToListAsync();
+
+		return filteredUsers;
 	}
 
 	public async Task<AppUser> GetByIdAsync(string id)
@@ -23,7 +29,12 @@ public class AppUserRepo : IAppUserRepo
 		return await _db.Users.FindAsync(id);
 	}
 
-	public bool Add(AppUser appUser)
+  public AppUser GetById(string id)
+  {
+		return _db.Users.Find(id);
+  }
+
+  public bool Add(AppUser appUser)
 	{
 		_db.Add(appUser);
 		return Save();

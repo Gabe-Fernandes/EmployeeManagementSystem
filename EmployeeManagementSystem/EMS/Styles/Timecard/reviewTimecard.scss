@@ -1,0 +1,55 @@
+﻿@import "../library.scss";
+
+#reviewTimecard {
+  .info-panel {
+    @include Flex-Row(center, center, 80vw, 10vh);
+    margin: 2vh auto;
+    border-radius: 1.2em;
+    background-color: $cHeader;
+    font-size: 1.2em;
+    label {
+      margin: 0px 8vw;
+    }
+  }
+  
+  .bot-section {
+    @include Flex-Row(flex-start, center, 80vw, 60vh);
+    margin: 0 auto;
+    
+    // static tables are better as nested divs
+    .timecard-div-table {
+      @include Flex-Col(center, center, 50vw, 50vh);
+      background-color: $cTableRow;
+      border-radius: 1.2em;
+      margin-right: 5vw;
+      font-size: 1.2em;
+      .workday-row, .header {
+        @include Flex-Row(center, center, 100%, 18%);
+        div {
+          @include Flex-Row(center, center, 25%, 100%);
+        }
+      }
+      .header {
+        background-color: $cHeader;
+        border-radius: 1.2em 1.2em 0em 0em;
+      }
+      .offRow {
+        background-color: $cTableRowOff;
+      }
+    }
+
+    .control-panel {
+      @include Flex-Col(center, center, 20vw, 60vh);
+      #approveBtn {
+        margin: 5vh 0px 2vh 0px;
+      }
+      #rejectBtn {
+        background-color: $cHighlightStrong;
+      }
+      a {
+        width: 10vw;
+        text-align: center;
+      }
+    }
+  }
+}
