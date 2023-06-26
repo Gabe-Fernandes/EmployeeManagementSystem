@@ -27,7 +27,7 @@ public class IdentityController : Controller
 		_signInManager = signInManager;
 		_userManager = userManager;
 		_userStore = userStore;
-		_emailStore = (IUserEmailStore<AppUser>)_userStore;
+		//_emailStore = (IUserEmailStore<AppUser>)_userStore;
 		_emailSender = emailSender;
 	}
 
@@ -195,7 +195,7 @@ public class IdentityController : Controller
 		return RedirectToAction(Str.Login, Str.Identity);
 	}
 
-	public async Task GenerateSecurityContextAsync(string email, HttpContext context)
+	private async Task GenerateSecurityContextAsync(string email, HttpContext context)
 	{
 		var userFromDb = await _userManager.FindByNameAsync(email);
 
