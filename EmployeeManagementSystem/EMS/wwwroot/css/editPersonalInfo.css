@@ -1,3 +1,11 @@
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
 #editPersonalInfo .top-section {
   display: flex;
   justify-content: center;

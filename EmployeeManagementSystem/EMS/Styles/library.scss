@@ -219,6 +219,14 @@ $cPlaceholder: #F9F9F9;
     @include Img-Round($size);
   }
 }
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
 @mixin TableWrap($w, $h, $c1, $c2, $cHead, $cHover, $hideScroll: false) {
   @include WidthHeight($w, $h);
   display: block;
