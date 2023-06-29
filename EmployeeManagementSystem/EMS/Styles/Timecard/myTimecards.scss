@@ -1,6 +1,7 @@
 ﻿@import "../library.scss";
   
-.table-wrap {
+#myTimecards {
+  .table-wrap {
     @include TableWrap(80vw, 60vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong, false);
     margin: 0 auto;
     .checkMark {
@@ -13,3 +14,4 @@
       @include Invalid(1.4em);
     }
   }
+}

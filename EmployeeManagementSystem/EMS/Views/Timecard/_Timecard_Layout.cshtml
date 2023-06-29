@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/css/manageUsers.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/myTimecards.css" asp-append-version="true" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/js/Site.js"></script>
+    <script async src="~/js/Site.js"></script>
     <script src="~/js/Validation.js"></script>
 </head>
 <body>
@@ -28,10 +28,15 @@
       }
       <div class="profile-link"><a asp-controller="Timecard" asp-action="PersonalInfo">@User.Identity.Name</a></div>
       <div class="logout-btn"><a asp-controller="Identity" asp-action="Login">Logout</a></div>
+
+      <div id="mobileNavBtn" class="mobile-ele btn text-btn"><img src="~/icons/hamburgerMenu_512x512.png"></div>
+      <div id="mobileNavContainer" class="mobile-ele mobileNavContainer">
+
+      </div>
     </nav>
     <div class="nav-space"></div>
 
-    <main role="main">
+    <main role="main" id="timecardMain">
         @RenderBody()
     </main>
 </body>

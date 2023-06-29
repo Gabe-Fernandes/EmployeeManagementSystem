@@ -107,7 +107,6 @@
 }
 #manageUsers .table-wrap table td {
   padding: 1em;
-  max-width: 5vw;
   text-align: center;
 }
 #manageUsers .table-wrap .checkMark {
@@ -163,6 +162,22 @@
 }
 #manageUsers .table-wrap button {
   font-size: 1em;
+}
+@media (max-width: 768px) {
+  #manageUsers .search-container {
+    flex-direction: column;
+    height: 30vh;
+  }
+  #manageUsers .search-container .left-div {
+    flex-direction: column;
+    width: 100%;
+  }
+  #manageUsers .search-container .left-div .inner-left-div {
+    width: 100%;
+  }
+  #manageUsers .search-container .inner-right-div {
+    font-size: 1em;
+  }
 }
 
 #removeUserModal .modal-background {

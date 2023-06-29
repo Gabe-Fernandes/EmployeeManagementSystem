@@ -69,3 +69,33 @@ function alphabeticallyFirst(string1, string2) {
   // if every char was a match
   return string2;
 }
+
+// Move mobile nav btns from navbar to mobile navbar
+
+function moveNavBtns() {
+  // if entering mobile mode
+  if ($(window).width() <= 768) {
+    $("#mobileNavContainer").append($("nav").children(".nav-btn"));
+    $("#mobileNavContainer").append($("nav").children(".profile-link"));
+    $("#mobileNavContainer").append($("nav").children(".logout-btn"));
+  }
+  // if exiting mobile mode
+  else {
+    $("nav").append($("#mobileNavContainer").children());
+  }
+}
+
+// execute once on each page load
+moveNavBtns();
+
+$(window).on("resize", moveNavBtns);
+
+// Mobile Nav Menu Toggle
+$("#mobileNavBtn").on("click", () => {
+  if ($("#mobileNavContainer").hasClass("slide-mobile-nav")) {
+    $("#mobileNavContainer").removeClass("slide-mobile-nav");
+  }
+  else {
+    $("#mobileNavContainer").addClass("slide-mobile-nav");
+  }
+});

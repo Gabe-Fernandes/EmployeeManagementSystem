@@ -27,7 +27,7 @@ public class IdentityController : Controller
 		_signInManager = signInManager;
 		_userManager = userManager;
 		_userStore = userStore;
-		//_emailStore = (IUserEmailStore<AppUser>)_userStore;
+		_emailStore = (IUserEmailStore<AppUser>)_userStore;
 		_emailSender = emailSender;
 	}
 
