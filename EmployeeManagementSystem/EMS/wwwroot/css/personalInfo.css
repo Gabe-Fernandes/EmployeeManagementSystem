@@ -31,5 +31,63 @@
   margin: 1.5vh 0vw;
   text-align: center;
 }
+@media (max-width: 768px) {
+  #personalInfo .top-section {
+    position: relative;
+    width: 100vw;
+    height: 60vh;
+  }
+  #personalInfo .top-section .info-card {
+    width: 100vw;
+    margin: 0px;
+    transition: left 0.5s;
+    position: absolute;
+    top: 0vh;
+    left: 0vw;
+  }
+  #personalInfo .top-section #mobilePage2 {
+    left: 100vw;
+  }
+  #personalInfo .top-section #mobilePage3 {
+    left: 100vw;
+  }
+  #personalInfo .top-section .create-acc-btn-wrap {
+    margin-top: 5vh;
+  }
+  #personalInfo .title-wrap a {
+    right: 10vw;
+  }
+}
+#personalInfo .mobile-pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8vw;
+  height: 5vw;
+  background-color: #F9F9F9;
+  position: absolute;
+  top: 3vh;
+  right: 1vw;
+}
+#personalInfo .mobile-pagination-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  font-size: 1em;
+}
+#personalInfo .mobile-pagination-container div img {
+  height: 1.2em;
+  width: 1.2em;
+  min-height: 1.2em;
+  min-width: 1.2em;
+  border-radius: 50%;
+}
+#personalInfo .mobile-pagination-container label {
+  position: absolute;
+  left: -15vw;
+}
 
 /*# sourceMappingURL=personalInfo.css.map */

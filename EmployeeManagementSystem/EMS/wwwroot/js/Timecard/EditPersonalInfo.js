@@ -50,4 +50,19 @@
     phoneNumber = phoneNumber.slice(0, 3) + "-" + phoneNumber.slice(3, 6) + "-" + phoneNumber.slice(6, 10);
     $("#editPersonalInfoPhoneNumber").val(phoneNumber);
   }
+
+  // Mobile Pagination
+
+  $("#mobilePaginationRight1").on("click", () => {
+    $("#mobilePage2").css("left", "0vw");
+  });
+  $("#mobilePaginationLeft2").on("click", () => {
+    $("#mobilePage2").css("left", "100vw");
+  });
+  $("#mobilePaginationRight2").on("click", () => {
+    $("#mobilePage3").css("left", "0vw");
+  });
+  $("#mobilePaginationLeft3").on("click", () => {
+    $("#mobilePage3").css("left", "100vw");
+  });
 });

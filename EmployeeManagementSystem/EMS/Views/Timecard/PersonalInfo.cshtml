@@ -4,6 +4,8 @@
   ViewData["Title"] = "Personal Information";
 }
 
+<script async src="~/js/Timecard/PersonalInfo.js"></script>
+
 <main id="personalInfo">
   <div class="title-wrap">
     <h1>Personal Information</h1>
@@ -11,23 +13,45 @@
   </div>
 
   <section class="top-section">
-    <div class="info-card">
+    <div class="info-card" id="mobilePage1">
       <label>General:</label>
       <label id="firstName" placeholder="first name">@Model.FirstName</label>
       <label id="lastName" placeholder="last name">@Model.LastName</label>
       <label id="dob" placeholder="DOB">@Model.Dob.ToString("MMM/dd/yyyy")</label>
+
+      <div class="mobile-ele mobile-pagination-container">
+        <div tabindex="0" class="disable"><img src="~/icons/paginationLeft_512x512.png" /></div>
+        <div tabindex="0" class="btn text-btn" id="mobilePaginationRight1"><img src="~/icons/paginationRight_512x512.png" /></div>
+        <label>1 of 3</label>
+      </div>
     </div>
-    <div class="info-card">
+
+
+    <div class="info-card" id="mobilePage2">
       <label>Address:</label>
       <label id="streetAddress" placeholder="street address">@Model.StreetAddress</label>
       <label id="city" placeholder="city">@Model.City</label>
       <label id="state" placeholder="state">@Model.State</label>
       <label id="zipCode" placeholder="zip code">@Model.PostalCode</label>
+
+      <div class="mobile-ele mobile-pagination-container">
+        <div tabindex="0" class="btn text-btn" id="mobilePaginationLeft2"><img src="~/icons/paginationLeft_512x512.png" /></div>
+        <div tabindex="0" class="btn text-btn" id="mobilePaginationRight2"><img src="~/icons/paginationRight_512x512.png" /></div>
+        <label>2 of 3</label>
+      </div>
     </div>
-    <div class="info-card">
+
+
+    <div class="info-card" id="mobilePage3">
       <label>Contact:</label>
       <label id="phoneNumber" placeholder="phone number">@Model.PhoneNumber</label>
       <label id="email" placeholder="email">@Model.Email</label>
+
+      <div class="mobile-ele mobile-pagination-container">
+        <div tabindex="0" class="btn text-btn" id="mobilePaginationLeft3"><img src="~/icons/paginationLeft_512x512.png" /></div>
+        <div tabindex="0" class="disable"><img src="~/icons/paginationRight_512x512.png" /></div>
+        <label>3 of 3</label>
+      </div>
     </div>
   </section>
 </main>
