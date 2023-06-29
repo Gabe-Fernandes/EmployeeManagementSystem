@@ -96,4 +96,50 @@
   .confirmation-wrap {
     margin-top: 12vh;
   }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    form {
+      .register-card-wrap {
+        position: relative;
+        height: 60vh;
+        section {
+          width: 100vw;
+          margin: 0px;
+          transition: left 0.5s;
+          position: absolute;
+          top: 0vh;
+          left: 0vw;
+        }
+        #mobilePage2 {
+          left: 100vw;
+        }
+        #mobilePage3 {
+          left: 100vw;
+        }
+      }
+      .create-acc-btn-wrap {
+        margin-top: 5vh;
+      }
+    }
+  }
+  .mobile-pagination-container {
+    @include Flex-Row(center, center, 8vw, 5vw);
+    background-color: $cWhite;
+    position: absolute;
+    top: 3vh;
+    right: 1vw;
+    div {
+      @include Flex-Row(center, center, 100%, 100%);
+      padding: 0px;
+      font-size: 1em;
+      img {
+        @include Img-Round(1.2em);
+      }
+    }
+    label {
+      position: absolute;
+      left: -9vw;
+    }
+  }
 }
