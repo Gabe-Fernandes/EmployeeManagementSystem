@@ -332,6 +332,12 @@ nav .slide-mobile-nav {
   #timecardMain div.table-wrap table thead {
     display: none;
   }
+  #timecardMain div.table-wrap table tr:hover {
+    background-color: revert;
+  }
+  #timecardMain div.table-wrap table tr:nth-child(odd) {
+    background-color: #859EA2;
+  }
   #timecardMain div.table-wrap table td {
     display: flex;
     flex-direction: column;

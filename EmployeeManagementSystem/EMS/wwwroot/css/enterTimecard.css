@@ -79,5 +79,24 @@
   width: 10vw;
   text-align: center;
 }
+@media (max-width: 768px) {
+  #enterTimecard .bot-section {
+    flex-direction: column;
+  }
+  #enterTimecard .bot-section .timecard-div-table {
+    margin: 0px;
+    width: 80vw;
+  }
+  #enterTimecard .bot-section .control-panel {
+    flex-direction: row;
+    height: 20vh;
+  }
+  #enterTimecard .bot-section .control-panel #saveBtn {
+    margin: 0vh 7vw;
+  }
+  #enterTimecard .bot-section .control-panel button {
+    margin: 0vh 7vw;
+  }
+}
 
 /*# sourceMappingURL=enterTimecard.css.map */

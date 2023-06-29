@@ -295,7 +295,8 @@ $cPlaceholder: #F9F9F9;
     }
     td{
       padding: 1em;
-      //max-width: 5vw; // this prevents columns from stretching too large, but if we're making them adjustible, leave it commented out
+      // this prevents columns from stretching too large, but if we're making them adjustible, leave it commented out
+      //max-width: 5vw;
       text-align: center;
     }
   }

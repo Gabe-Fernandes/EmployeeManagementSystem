@@ -14,6 +14,21 @@
 	</div>
 
   <div class="table-wrap">
+    <table class="mobile-ele">
+      <tbody>
+        @{
+          for (int i = 0; i < timecards.Count(); i++)
+          {
+            <tr>
+              <td tabindex="0">Status</td>
+              <td tabindex="0">Date Range</td>
+              <td tabindex="0">Hours</td>
+              <td tabindex="0">Review</td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
     <table>
       <thead>
         <tr>

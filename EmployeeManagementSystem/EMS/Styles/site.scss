@@ -251,6 +251,14 @@ nav {
         thead {
           display: none;
         }
+        tr {
+          &:hover {
+            background-color: revert;
+          }
+          &:nth-child(odd){
+            background-color: $cTableRowOff;
+          }
+        }
         td {
           @include Flex-Col(center, center, 50vw, 10vh);
           padding: 0px;
