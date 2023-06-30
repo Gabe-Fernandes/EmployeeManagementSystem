@@ -166,7 +166,7 @@
 @media (max-width: 768px) {
   #manageUsers .search-container {
     flex-direction: column;
-    height: 20vh;
+    height: 30vh;
   }
   #manageUsers .search-container .left-div {
     flex-direction: column;
