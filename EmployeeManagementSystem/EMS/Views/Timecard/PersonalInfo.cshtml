@@ -13,8 +13,8 @@
   </div>
 
   <section class="top-section">
-    <div class="info-card" id="mobilePage1">
-      <label>General:</label>
+    <div class="info-card hide" id="mobilePage1">
+      <label class="info-card-title">General:</label>
       <label id="firstName" placeholder="first name">@Model.FirstName</label>
       <label id="lastName" placeholder="last name">@Model.LastName</label>
       <label id="dob" placeholder="DOB">@Model.Dob.ToString("MMM/dd/yyyy")</label>
@@ -27,8 +27,8 @@
     </div>
 
 
-    <div class="info-card" id="mobilePage2">
-      <label>Address:</label>
+    <div class="info-card hide" id="mobilePage2">
+      <label class="info-card-title">Address:</label>
       <label id="streetAddress" placeholder="street address">@Model.StreetAddress</label>
       <label id="city" placeholder="city">@Model.City</label>
       <label id="state" placeholder="state">@Model.State</label>
@@ -42,8 +42,8 @@
     </div>
 
 
-    <div class="info-card" id="mobilePage3">
-      <label>Contact:</label>
+    <div class="info-card hide" id="mobilePage3">
+      <label class="info-card-title">Contact:</label>
       <label id="phoneNumber" placeholder="phone number">@Model.PhoneNumber</label>
       <label id="email" placeholder="email">@Model.Email</label>
 

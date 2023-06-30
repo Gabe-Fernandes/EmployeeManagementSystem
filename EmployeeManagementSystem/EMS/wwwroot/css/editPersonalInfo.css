@@ -72,14 +72,13 @@
 }
 @media (max-width: 768px) {
   #editPersonalInfo .top-section {
-    position: relative;
     width: 100vw;
     height: 60vh;
   }
   #editPersonalInfo .top-section .info-card {
-    width: 100vw;
+    width: 70vw;
     margin: 0px;
-    position: absolute;
+    position: relative;
     top: 0vh;
     left: 0vw;
   }
@@ -92,7 +91,7 @@
   justify-content: center;
   align-items: center;
   width: 8vw;
-  height: 5vw;
+  height: 5vh;
   background-color: #F9F9F9;
   position: absolute;
   top: 3vh;
@@ -116,7 +115,13 @@
 }
 #editPersonalInfo .mobile-pagination-container label {
   position: absolute;
-  left: -15vw;
+  left: -9vw;
+}
+@media (min-width: 426px) and (max-width: 768px) {
+  #editPersonalInfo .mobile-pagination-container {
+    width: 6vw;
+    height: 3vh;
+  }
 }
 
 /*# sourceMappingURL=editPersonalInfo.css.map */

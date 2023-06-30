@@ -12,7 +12,7 @@
   </div>
 
   <form asp-controller="Timecard" asp-action="EditPersonalInfo" id="editPersonalInfoForm" class="top-section">
-    <div class="info-card" id="mobilePage1">
+    <div class="info-card hide" id="mobilePage1">
       <label>General:</label>
       <div class="input-err-wrap">
         <input asp-for="FirstName" type="text" id="editPersonalInfoFirstName" placeholder="first name">
@@ -35,7 +35,7 @@
     </div>
 
 
-    <div class="info-card" id="mobilePage2">
+    <div class="info-card hide" id="mobilePage2">
       <label>Address:</label>
       <div class="input-err-wrap">
         <input asp-for="StreetAddress" type="text" id="editPersonalInfoStreetAddress" placeholder="street address">
@@ -62,7 +62,7 @@
     </div>
 
 
-    <div class="info-card" id="mobilePage3">
+    <div class="info-card hide" id="mobilePage3">
       <label>Contact:</label>
       <div class="input-err-wrap">
         <input asp-for="PhoneNumber" type="text" id="editPersonalInfoPhoneNumber" placeholder="phone number">

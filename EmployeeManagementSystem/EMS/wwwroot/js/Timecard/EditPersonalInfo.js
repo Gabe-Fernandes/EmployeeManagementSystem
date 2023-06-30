@@ -70,6 +70,7 @@
   }
   // execute once on each page load
   hidePaginatedContent();
+  $("#mobilePage1").removeClass("hide");
   $(window).on("resize", hidePaginatedContent);
 
   // Mobile Pagination
