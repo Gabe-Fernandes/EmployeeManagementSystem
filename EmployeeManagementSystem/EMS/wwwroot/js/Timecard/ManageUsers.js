@@ -43,13 +43,13 @@
   let thUpToDateInOrder = true;
 
   $("#thFirstName").on("click", () => {
-    thFirstNameInOrder = thSortEvent("manageUsersTbody", thFirstNameInOrder, "manageUsersTR", "sortFirstName");
+    thFirstNameInOrder = thSortEvent("manageUsersTbody", thFirstNameInOrder, "manageUsersTR", "sortFirstName", alphabeticallyFirst);
   });
   $("#thLastName").on("click", () => {
-    thLastNameInOrder = thSortEvent("manageUsersTbody", thLastNameInOrder, "manageUsersTR", "sortLastName");
+    thLastNameInOrder = thSortEvent("manageUsersTbody", thLastNameInOrder, "manageUsersTR", "sortLastName", alphabeticallyFirst);
   });
   $("#thUpToDate").on("click", () => {
-    thUpToDateInOrder = thSortEvent("manageUsersTbody", thUpToDateInOrder, "manageUsersTR", "sortUpToDate");
+    thUpToDateInOrder = thSortEvent("manageUsersTbody", thUpToDateInOrder, "manageUsersTR", "sortUpToDate", alphabeticallyFirst);
   });
 
   // Modal events

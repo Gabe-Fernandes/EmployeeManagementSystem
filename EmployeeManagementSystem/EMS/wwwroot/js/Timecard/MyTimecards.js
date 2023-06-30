@@ -8,12 +8,12 @@
   let thHorusInOrder = true;
 
   $("#thStatus").on("click", () => {
-    thStatusInOrder = thSortEvent("myTimecardsTbody", thStatusInOrder, "myTimecardsTR", "sortStatus");
+    thStatusInOrder = thSortEvent("myTimecardsTbody", thStatusInOrder, "myTimecardsTR", "sortStatus", alphabeticallyFirst);
   });
   $("#thDateRange").on("click", () => {
-    thDateRangeInOrder = thSortEvent("myTimecardsTbody", thDateRangeInOrder, "myTimecardsTR", "sortDateRange");
+    thDateRangeInOrder = thSortEvent("myTimecardsTbody", thDateRangeInOrder, "myTimecardsTR", "sortDateRange", chronologicallyFirst);
   });
   $("#thHours").on("click", () => {
-    thHorusInOrder = thSortEvent("myTimecardsTbody", thHorusInOrder, "myTimecardsTR", "sortHours");
+    thHorusInOrder = thSortEvent("myTimecardsTbody", thHorusInOrder, "myTimecardsTR", "sortHours", numericallyFirst);
   });
 });
