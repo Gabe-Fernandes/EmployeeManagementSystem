@@ -227,7 +227,7 @@ select {
 }
 
 nav {
-  #mobileNavBtn {
+  .mobile-nav-btn {
     margin: 0vh 5vw 0vh auto;
     img {
       @include Img-Round(1.2em);

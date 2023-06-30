@@ -292,10 +292,10 @@ select {
     display: none;
   }
 }
-nav #mobileNavBtn {
+nav .mobile-nav-btn {
   margin: 0vh 5vw 0vh auto;
 }
-nav #mobileNavBtn img {
+nav .mobile-nav-btn img {
   height: 1.2em;
   width: 1.2em;
   min-height: 1.2em;

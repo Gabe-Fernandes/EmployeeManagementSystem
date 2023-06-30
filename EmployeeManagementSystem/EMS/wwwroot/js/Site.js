@@ -138,3 +138,15 @@ $("#mobileNavBtn").on("click", () => {
     $("#mobileNavContainer").addClass("slide-mobile-nav");
   }
 });
+
+// Keyboard accessibility for btns that are <img> elements
+
+const imgBtns = $(`img[tabindex="0"]`);
+
+for (let i = 0; i < imgBtns.length; i++) {
+  $(`#${imgBtns[i].id}`).on("keypress", (event) => {
+    if (event.which === 13) {
+      $(`#${imgBtns[i].id}`).trigger("click");
+    }
+  });
+}
