@@ -40,16 +40,9 @@
   #personalInfo .top-section .info-card {
     width: 100vw;
     margin: 0px;
-    transition: left 0.5s;
     position: absolute;
     top: 0vh;
     left: 0vw;
-  }
-  #personalInfo .top-section #mobilePage2 {
-    left: 100vw;
-  }
-  #personalInfo .top-section #mobilePage3 {
-    left: 100vw;
   }
   #personalInfo .top-section .create-acc-btn-wrap {
     margin-top: 5vh;

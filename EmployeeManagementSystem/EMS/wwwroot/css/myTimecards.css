@@ -13,6 +13,7 @@
   border-radius: 0.5em;
   background-color: #93A8AC;
   overflow-y: auto;
+  overflow-x: hidden;
   margin: 0 auto;
 }
 #myTimecards .table-wrap table {
