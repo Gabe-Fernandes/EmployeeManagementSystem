@@ -42,6 +42,23 @@
   </form>
 
   <div class="table-wrap">
+    <table class="mobile-ele">
+      <tbody>
+        @{
+          for (int i = 0; i < appUsers.Count(); i++)
+          {
+            <tr>
+              <td tabindex="0">First Name</td>
+              <td tabindex="0">Last Name</td>
+              <td tabindex="0">Details</td>
+              <td tabindex="0">Remove User</td>
+              <td tabindex="0">Review Timecards</td>
+              <td tabindex="0">Up To Date</td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
     <table>
       <thead>
         <tr>

@@ -238,4 +238,118 @@ select {
   transform: translate(-55%, 0%) rotate(45deg);
 }
 
+@media (max-width: 320px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media (min-width: 321px) and (max-width: 375px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media (min-width: 376px) and (max-width: 425px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media (min-width: 426px) and (max-width: 768px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1440px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media (min-width: 2560) {
+  html {
+    font-size: 32px;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-ele {
+    opacity: 0% !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    display: none;
+  }
+}
+nav #mobileNavBtn {
+  margin: 0vh 5vw 0vh auto;
+}
+nav #mobileNavBtn img {
+  height: 1.2em;
+  width: 1.2em;
+  min-height: 1.2em;
+  min-width: 1.2em;
+  border-radius: 50%;
+}
+nav .mobileNavContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55vw;
+  height: 60vh;
+  background-color: #859EA2;
+  border-radius: 0.8em;
+  transition: right 0.3s;
+  position: absolute;
+  top: 12vh;
+  right: -95vw;
+  border: #4C5760 2px solid;
+}
+nav .mobileNavContainer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 25%;
+  margin: 0px;
+}
+nav .slide-mobile-nav {
+  right: 5vw;
+}
+
+@media (max-width: 768px) {
+  #timecardMain div.table-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100vw;
+    height: 100%;
+  }
+  #timecardMain div.table-wrap table {
+    width: 50vw;
+  }
+  #timecardMain div.table-wrap table thead {
+    display: none;
+  }
+  #timecardMain div.table-wrap table tr:hover {
+    background-color: revert;
+  }
+  #timecardMain div.table-wrap table tr:nth-child(odd) {
+    background-color: #859EA2;
+  }
+  #timecardMain div.table-wrap table td {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    height: 10vh;
+    padding: 0px;
+  }
+  #timecardMain div.table-wrap table td:first-of-type {
+    background-color: #4C5760;
+  }
+}
+
 /*# sourceMappingURL=site.css.map */

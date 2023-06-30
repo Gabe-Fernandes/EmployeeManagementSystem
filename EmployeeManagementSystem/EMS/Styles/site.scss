@@ -23,10 +23,7 @@ input, h1, select, option {
 }
 
 .hide {
-  opacity: 0% !important;
-  pointer-events: none !important;
-  position: absolute !important;
-  display: none;
+  @include Hide();
 }
 
 .disable {
@@ -186,5 +183,90 @@ select {
   .confirmation {
     @include Confirmation(6em);
     margin-top: 4vh;
+  }
+}
+
+@media (max-width: $bmaxMobileSmall) {
+  html{ font-size: 10px; }
+}
+@media (min-width: $bminMobileMedium) and (max-width: $bmaxMobileMedium) {
+  html{ font-size: 10px; }
+}
+@media (min-width: $bminMobileLarge) and (max-width: $bmaxMobileLarge) {
+  html { font-size: 10px; }
+}
+@media (min-width: $bminTablet) and (max-width: $bmaxTablet) {
+  html{ font-size: 13px; }
+}
+@media (min-width: $bminLaptop) and (max-width: $bmaxLaptop) {
+  html{ font-size: 14px; }
+}
+@media (min-width: $bminLaptopLarge) and (max-width: $bmaxLaptopLarge) {
+  html{ font-size: 16px; }
+}
+@media (min-width: $bmin4k) {
+  html{ font-size: 32px; }
+}
+
+// hide mobile html
+@media (min-width: $bminLaptop) {
+  .mobile-ele {
+    @include Hide();
+  }
+}
+
+nav {
+  #mobileNavBtn {
+    margin: 0vh 5vw 0vh auto;
+    img {
+      @include Img-Round(1.2em);
+    }
+  }
+  .mobileNavContainer {
+    @include Flex-Col(center, center, 55vw, 60vh);
+    background-color: $cTableRowOff;
+    border-radius: 0.8em;
+    transition: right 0.3s;
+    position: absolute;
+    top: 12vh;
+    right: -95vw;
+    border: $cHeader 2px solid;
+    div {
+      @include Flex-Row(center, center, 80%, 25%);
+      margin: 0px;
+    }
+  }
+  .slide-mobile-nav {
+    right: 5vw;
+  }
+}
+
+#timecardMain {
+  // general mobile styles
+  @media (max-width: $bmaxTablet) {
+    div.table-wrap {
+      @include Flex-Row(center, flex-start, 100vw, 100%);
+      table {
+        width: 50vw;
+        thead {
+          display: none;
+        }
+        tr {
+          &:hover {
+            background-color: revert;
+          }
+          &:nth-child(odd){
+            background-color: $cTableRowOff;
+          }
+        }
+        td {
+          @include Flex-Col(center, center, 50vw, 10vh);
+          padding: 0px;
+        }
+        td:first-of-type {
+          background-color: $cHeader;
+        }
+      }
+    }
   }
 }

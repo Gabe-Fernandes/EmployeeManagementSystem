@@ -6,6 +6,26 @@ $zNavbar: 2;
 $zScreenTint: 3;
 $zModal: 4;
 
+// screen size breakpoints
+$bmaxMobileSmall: 320px;
+
+$bminMobileMedium: 321px;
+$bmaxMobileMedium: 375px;
+
+$bminMobileLarge: 376px;
+$bmaxMobileLarge: 425px;
+
+$bminTablet: 426px;
+$bmaxTablet: 768px;
+
+$bminLaptop: 769px;
+$bmaxLaptop: 1024px;
+
+$bminLaptopLarge: 1025px;
+$bmaxLaptopLarge: 1440px;
+
+$bmin4k: 2560;
+
 // Color Palette:
 // Utility Colors
 $cWhite: #F9F9F9;
@@ -219,6 +239,12 @@ $cPlaceholder: #F9F9F9;
     @include Img-Round($size);
   }
 }
+@mixin Hide() {
+  opacity: 0% !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  display: none;
+}
 /*
   HTML guide for sorting <th>
 
@@ -269,7 +295,8 @@ $cPlaceholder: #F9F9F9;
     }
     td{
       padding: 1em;
-      max-width: 5vw;
+      // this prevents columns from stretching too large, but if we're making them adjustible, leave it commented out
+      //max-width: 5vw;
       text-align: center;
     }
   }

@@ -52,6 +52,24 @@
       font-size: 1em;
     }
   }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .search-container {
+      flex-direction: column;
+      height: 20vh;
+      .left-div {
+        flex-direction: column;
+        width: 100%;
+        .inner-left-div {
+          width: 100%;
+        }
+      }
+      .inner-right-div {
+        font-size: 1em;
+      }
+    }
+  }
 }
 
 #removeUserModal {

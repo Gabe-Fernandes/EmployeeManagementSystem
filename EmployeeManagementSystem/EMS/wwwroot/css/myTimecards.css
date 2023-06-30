@@ -6,7 +6,7 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
-.table-wrap {
+#myTimecards .table-wrap {
   width: 80vw;
   height: 60vh;
   display: block;
@@ -15,40 +15,39 @@
   overflow-y: auto;
   margin: 0 auto;
 }
-.table-wrap table {
+#myTimecards .table-wrap table {
   width: 100%;
   border-collapse: collapse;
 }
-.table-wrap table th {
+#myTimecards .table-wrap table th {
   padding: 1em;
   background-color: #4C5760;
   position: sticky;
   top: 0px;
   z-index: 1;
 }
-.table-wrap table .sortable-th {
+#myTimecards .table-wrap table .sortable-th {
   cursor: pointer;
 }
-.table-wrap table .sortable-th:active {
+#myTimecards .table-wrap table .sortable-th:active {
   transform: scale(0.94);
   transform: translateY(5%);
   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
-.table-wrap table tr:nth-child(odd) {
+#myTimecards .table-wrap table tr:nth-child(odd) {
   background-color: #859EA2;
 }
-.table-wrap table tr {
+#myTimecards .table-wrap table tr {
   transition: background-color 0.3s;
 }
-.table-wrap table tr:hover {
+#myTimecards .table-wrap table tr:hover {
   background-color: #DD9631;
 }
-.table-wrap table td {
+#myTimecards .table-wrap table td {
   padding: 1em;
-  max-width: 5vw;
   text-align: center;
 }
-.table-wrap .checkMark {
+#myTimecards .table-wrap .checkMark {
   height: 1.4em;
   width: 1.4em;
   min-height: 1.4em;
@@ -58,7 +57,7 @@
   position: relative;
   margin: 0 auto;
 }
-.table-wrap .checkMark div {
+#myTimecards .table-wrap .checkMark div {
   background-color: #F9F9F9;
   border-radius: 0.4em;
   position: absolute;
@@ -68,14 +67,14 @@
   left: 19%;
   transform: translate(-20%, -65%) rotate(-45deg);
 }
-.table-wrap .checkMark div + div {
+#myTimecards .table-wrap .checkMark div + div {
   width: 0.1162em;
   height: 1.05em;
   top: 15%;
   left: 55%;
   transform: translate(-55%, 0%) rotate(45deg);
 }
-.table-wrap .dashMark {
+#myTimecards .table-wrap .dashMark {
   height: 1.4em;
   width: 1.4em;
   min-height: 1.4em;
@@ -85,7 +84,7 @@
   position: relative;
   margin: 0 auto;
 }
-.table-wrap .dashMark div {
+#myTimecards .table-wrap .dashMark div {
   width: 1.00002em;
   height: 0.14em;
   background-color: #F9F9F9;
@@ -96,10 +95,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.table-wrap .dashMark div + div {
+#myTimecards .table-wrap .dashMark div + div {
   opacity: 0%;
 }
-.table-wrap .xMark {
+#myTimecards .table-wrap .xMark {
   height: 1.4em;
   width: 1.4em;
   min-height: 1.4em;
@@ -110,7 +109,7 @@
   box-shadow: inset 0 0 0.1em 0.1em #781d1d;
   margin: 0 auto;
 }
-.table-wrap .xMark div {
+#myTimecards .table-wrap .xMark div {
   width: 0.1162em;
   height: 1.00002em;
   background-color: #F9F9F9;
@@ -120,7 +119,7 @@
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
 }
-.table-wrap .xMark div + div {
+#myTimecards .table-wrap .xMark div + div {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 

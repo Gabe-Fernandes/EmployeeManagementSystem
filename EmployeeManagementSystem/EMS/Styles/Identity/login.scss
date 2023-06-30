@@ -55,10 +55,26 @@
       div + div { @include Flex-Row(flex-end, center, 50%, 100%); }
     }
   }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    form {
+      width: 80vw;
+    }
+  }
+}
+
+#identityMain {
+  // mobile styles for modals
+  @media (max-width: $bmaxTablet) {
+    .login-modal {
+      width: 70vw;
+    }
+  }
 }
 
 .login-modal{
-  @include Modal(30vw, 40vh, $cHeader);
+  @include Modal(30vw, 30vh, $cHeader);
   justify-content: center;
   transition: width 0.25s;
   h3{

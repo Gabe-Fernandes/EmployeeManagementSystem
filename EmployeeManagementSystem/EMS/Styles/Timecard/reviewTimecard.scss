@@ -52,4 +52,25 @@
       }
     }
   }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .bot-section {
+      flex-direction: column;
+      .timecard-div-table {
+        margin: 0px;
+        width: 80vw;
+      }
+      .control-panel {
+        flex-direction: row;
+        height: 20vh;
+        #approveBtn {
+          margin: 0vw 7vw;
+        }
+        button {
+          margin: 0vh 7vw;
+        }
+      }
+    }
+  }
 }

@@ -79,5 +79,24 @@
   width: 10vw;
   text-align: center;
 }
+@media (max-width: 768px) {
+  #reviewTimecard .bot-section {
+    flex-direction: column;
+  }
+  #reviewTimecard .bot-section .timecard-div-table {
+    margin: 0px;
+    width: 80vw;
+  }
+  #reviewTimecard .bot-section .control-panel {
+    flex-direction: row;
+    height: 20vh;
+  }
+  #reviewTimecard .bot-section .control-panel #approveBtn {
+    margin: 0vw 7vw;
+  }
+  #reviewTimecard .bot-section .control-panel button {
+    margin: 0vh 7vw;
+  }
+}
 
 /*# sourceMappingURL=reviewTimecard.css.map */
