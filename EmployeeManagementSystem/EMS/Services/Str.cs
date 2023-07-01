@@ -4,7 +4,7 @@
 public static class Str
 {
   // Identity controllers & actions
-  public const string Identity = "IdentityController";
+  public const string Identity = "Identity";
   public const string Login = "Login";
   public const string Register = "Register";
 
