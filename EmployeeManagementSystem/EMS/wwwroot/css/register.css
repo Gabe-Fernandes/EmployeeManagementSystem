@@ -72,7 +72,7 @@
   align-items: center;
   justify-content: center;
   width: 70%;
-  height: 7vh;
+  height: 9vh;
   position: relative;
 }
 #registerMain form .register-card-wrap section .input-err-wrap-date input[type=date] {

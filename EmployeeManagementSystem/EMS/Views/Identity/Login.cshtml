@@ -17,12 +17,14 @@
 		<div class="input-err-wrap">
 			<input asp-for="Email" type="text" id="emailLoginInput" placeholder="email">
 			<span id="errEmailLoginInput" class="err hide"></span>
+			<span id="errEmailFailedLogin" class="err hide"></span>
 		</div>
 		<div class="input-err-wrap">
 			<input asp-for="Password" type="password" id="passwordLoginInput" placeholder="password">
 			<span id="errPasswordLoginInput" class="err hide"></span>
 			<img tabindex="0" id="hidePassBtn" src="~/icons/passInvisible_512x512.png">
 			<img tabindex="0" id="showPassBtn" src="~/icons/passVisible_512x512.png" class="hide">
+			<span id="errPasswordFailedLogin" class="err hide"></span>
 		</div>
 		<button class="btn" type="submit" tabindex="0">Login</button>
 		<button class="btn" type="button" tabindex="0" id="demoBtn">Demo User</button>
@@ -32,6 +34,11 @@
 			<div><button class="text-btn login-bot-btn" id="resendEmailConfBtn" type="button" tabindex="0">resend email<br>confirmation?</button></div>
 		</div>
 	</form>
+
+	@if ((string)result == Str.failed_login_attempt)
+	{
+		<div class="failed-login hide"></div>
+	}
 </main>
 
 <section id="demoModal" class="screen-tint hide">

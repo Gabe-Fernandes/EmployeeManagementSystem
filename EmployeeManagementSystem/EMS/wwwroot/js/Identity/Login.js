@@ -1,6 +1,12 @@
 ﻿$(function () {
   // Validation Events
 
+  // check for failed login on page load
+  if ($(".failed-login").length == 1) {
+    ShowError("emailLoginInput", "errEmailFailedLogin", "Email or password are incorrect");
+    ShowError("passwordLoginInput", "errPasswordFailedLogin", "Email or password are incorrect");
+  }
+
   $("#loginForm").on("submit", (evt) => {
     const inputFields = [$("#emailLoginInput"), $("#passwordLoginInput")];
     const errIDs = ["errEmailLoginInput", "errPasswordLoginInput"];
@@ -77,9 +83,6 @@
   $("#resendEmailConfCloseBtn").on("click", () => {
     ToggleModal($("#loginMain"), $("#resendEmailConfModal"), closeModal);
   });
-
-  console.log($("#recoverPassForm").length)
-  console.log($("#resendEmailConfForm").length)
 
   // open modal if showing confirmation onpageload
   if ($("#recoverPassForm").length === 0) {

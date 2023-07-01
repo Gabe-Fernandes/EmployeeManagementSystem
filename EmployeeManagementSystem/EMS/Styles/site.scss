@@ -242,7 +242,7 @@ nav {
     top: 12vh;
     right: -95vw;
     border: $cHeader 2px solid;
-    div {
+    div, form {
       @include Flex-Row(center, center, 80%, 25%);
       margin: 0px;
     }

@@ -27,7 +27,7 @@
         <div class="nav-btn" id="manageUsersNavBtn"><a asp-controller="Timecard" asp-action="ManageUsers">Manage Users</a></div>
       }
       <div class="profile-link"><a asp-controller="Timecard" asp-action="PersonalInfo">@User.Identity.Name</a></div>
-      <form method="post" asp-controller="Identity" asp-action="Logout">
+      <form method="post" asp-controller="Identity" asp-action="Logout" class="logout-form">
         <div class="logout-btn"><button type="submit" class="text-btn">Logout</button></div>
       </form>
 

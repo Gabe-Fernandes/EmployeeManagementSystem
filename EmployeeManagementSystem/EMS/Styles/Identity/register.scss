@@ -36,7 +36,7 @@
           }
         }
         .input-err-wrap-date {
-          @include Flex-Col(center, center, 70%, 7vh);
+          @include Flex-Col(center, center, 70%, 9vh);
           position: relative;
           input[type=date] {
             @include WidthHeight(80%, 80%);

@@ -18,9 +18,10 @@ public static class Str
   // TempData
   public const string conf_email_sent = "conf_email_sent";
   public const string recovery_email_sent = "recovery_email_sent";
+  public const string failed_login_attempt = "failed_login_attempt";
 
-  // ViewData
-  public const string Timecards = "Timecards";
+	// ViewData
+	public const string Timecards = "Timecards";
   public const string AppUser = "AppUser";
   public const string Workdays = "Workdays";
   public const string ViewingOwnTimecards = "ViewingOwnTimecards";

@@ -97,6 +97,12 @@
   width: 50%;
   height: 100%;
 }
+#loginMain .failed-login-err {
+  top: 43.8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 @media (max-width: 768px) {
   #loginMain form {
     width: 80vw;
