@@ -26,14 +26,14 @@
         font-size: 1em;
       }
       img {
-        @include Img-Round(1.2em);
+        @include Img-Round(1.8em);
         position: absolute;
         right: 3%;
         cursor: pointer;
       }
     }
     button {
-      @include WidthHeight(80%, 7vh);
+      @include WidthHeight(50%, 5vh);
       margin: 1vh 0vw;
       border-radius: 0.25em;
       padding: 0px;
