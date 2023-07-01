@@ -78,6 +78,17 @@
     ToggleModal($("#loginMain"), $("#resendEmailConfModal"), closeModal);
   });
 
+  console.log($("#recoverPassForm").length)
+  console.log($("#resendEmailConfForm").length)
+
+  // open modal if showing confirmation onpageload
+  if ($("#recoverPassForm").length === 0) {
+    ToggleModal($("#loginMain"), $("#forgotPassModal"), openModal);
+  }
+  if ($("#resendEmailConfForm").length === 0) {
+    ToggleModal($("#loginMain"), $("#resendEmailConfModal"), openModal);
+  }
+
   // Pass Show Toggle
 
   $("#hidePassBtn").on("click", () => {

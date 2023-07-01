@@ -131,6 +131,7 @@
   font-size: 1.8em;
   width: 80%;
   text-align: center;
+  margin-top: 1.5vh;
 }
 .login-modal form {
   width: 60%;
@@ -155,6 +156,12 @@
 .login-modal form button {
   width: 100%;
   border-radius: 0.3em;
+}
+.login-modal .confirmation-wrap {
+  width: 100%;
+}
+.login-modal .confirmation-wrap .confirmation {
+  margin-top: 2vh;
 }
 .login-modal .close-btn {
   display: flex;
