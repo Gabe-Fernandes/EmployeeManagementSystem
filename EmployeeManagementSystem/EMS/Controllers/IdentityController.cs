@@ -31,8 +31,14 @@ public class IdentityController : Controller
 		_emailSender = emailSender;
 	}
 
-	[TempData]
-	public string ErrorMessage { get; set; }
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	public async Task<IActionResult> Logout()
+	{
+		await _signInManager.SignOutAsync();
+		await HttpContext.SignOutAsync(Str.Cookie);
+		return RedirectToAction(Str.Login, Str.Identity);
+	}
 
 	[HttpGet]
 	public async Task<IActionResult> Login()

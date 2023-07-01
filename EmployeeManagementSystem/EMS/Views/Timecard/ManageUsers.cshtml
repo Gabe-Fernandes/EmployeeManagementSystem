@@ -42,6 +42,12 @@
   </form>
 
   <div class="table-wrap">
+    @{
+      if (appUsers.Count() == 0)
+      {
+        <label class="empty-table-msg">There are no users to display.</label>
+      }
+    }
     <table class="mobile-ele">
       <tbody>
         @{

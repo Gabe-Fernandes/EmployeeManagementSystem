@@ -190,7 +190,7 @@ public class TimecardController : Controller
     return View(appUser);
   }
 
-  //[Authorize(Policy = AdminOnlyPolicy)]
+  [Authorize(Policy = Str.AdminOnlyPolicy)]
   public async Task<IActionResult> ManageUsers(ManageUsersVM manageUsersVM)
   {
     if (ModelState.IsValid)
@@ -210,7 +210,7 @@ public class TimecardController : Controller
     return View();
   }
   
-  //[Authorize(Policy = AdminOnlyPolicy)]
+  [Authorize(Policy = Str.AdminOnlyPolicy)]
   [HttpPost]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ManageUsersDelete(ManageUsersVM manageUsersVM)

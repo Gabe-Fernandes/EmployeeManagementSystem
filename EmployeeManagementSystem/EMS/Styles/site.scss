@@ -16,6 +16,7 @@ html {
 
 body {
   background-color: $cOffWhiteBackground;
+  overflow-x: hidden;
 }
 
 input, h1, select, option {
@@ -83,6 +84,16 @@ nav {
   a {
     position: absolute;
     right: 30vw;
+  }
+}
+
+.table-wrap {
+  position: relative;
+  .empty-table-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -196,13 +207,13 @@ select {
   html { font-size: 10px; }
 }
 @media (min-width: $bminTablet) and (max-width: $bmaxTablet) {
-  html{ font-size: 13px; }
+  html{ font-size: 11px; }
 }
 @media (min-width: $bminLaptop) and (max-width: $bmaxLaptop) {
-  html{ font-size: 14px; }
+  html{ font-size: 12px; }
 }
 @media (min-width: $bminLaptopLarge) and (max-width: $bmaxLaptopLarge) {
-  html{ font-size: 16px; }
+  html{ font-size: 15px; }
 }
 @media (min-width: $bmin4k) {
   html{ font-size: 32px; }
@@ -216,7 +227,7 @@ select {
 }
 
 nav {
-  #mobileNavBtn {
+  .mobile-nav-btn {
     margin: 0vh 5vw 0vh auto;
     img {
       @include Img-Round(1.2em);
@@ -245,7 +256,7 @@ nav {
   // general mobile styles
   @media (max-width: $bmaxTablet) {
     div.table-wrap {
-      @include Flex-Row(center, flex-start, 100vw, 100%);
+      @include Flex-Row(center, flex-start, 95vw, 75vh);
       table {
         width: 50vw;
         thead {

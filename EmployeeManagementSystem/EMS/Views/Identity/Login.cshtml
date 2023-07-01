@@ -38,13 +38,13 @@
 	<div class="login-modal">
 		<h3>Demo Role</h3>
 		<form method="post" asp-controller="Identity" asp-action="Login">
-			<input asp-for="Email" hidden value="emp@demo.com" />
-			<input asp-for="Password" hidden  value="Ab34567*" />
+			<input asp-for="Email" hidden value="emp@demo.com" id="employeeEmail"/>
+			<input asp-for="Password" hidden value="Ab34567*" id="employeePassword" />
 			<button class="btn" type="submit">Employee</button>
 		</form>
 		<form method="post" asp-controller="Identity" asp-action="Login">
-			<input asp-for="Email" hidden value="admin@demo.com" />
-			<input asp-for="Password" hidden value="Ab34567*" />
+			<input asp-for="Email" hidden value="admin@demo.com" id="adminEmail"/>
+			<input asp-for="Password" hidden value="Ab34567*" id="adminPassword"/>
 			<button class="btn" type="submit">Admin</button>
 		</form>
 		<div class="close-btn"><img src="/icons/X_512x512.png" tabindex="0" id="demoCloseBtn"/></div>

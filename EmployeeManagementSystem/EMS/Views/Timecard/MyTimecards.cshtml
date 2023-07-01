@@ -14,6 +14,12 @@
 	</div>
 
   <div class="table-wrap">
+    @{
+      if (timecards.Count() == 0)
+      {
+        <label class="empty-table-msg">There are no timecards to display.</label>
+      }
+    }
     <table class="mobile-ele">
       <tbody>
         @{

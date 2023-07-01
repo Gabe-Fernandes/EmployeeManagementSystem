@@ -28,7 +28,7 @@ function HighlightCurrentNavBtn(btnToHighlight) {
   btnToHighlight.addClass("nav-highlight");
 }
 
-function thSortEvent(tbody, directionFlag, rowNamespace, tdSortClass) {
+function thSortEvent(tbody, directionFlag, rowNamespace, tdSortClass, sortingFunction) {
   const rowCount = $(`#${tbody}`).children().length;
 
   // sort content
@@ -37,7 +37,7 @@ function thSortEvent(tbody, directionFlag, rowNamespace, tdSortClass) {
     const row = $(`#${rowNamespace}_${i}`)
     const rowText = row.children(`.${tdSortClass}`).html();
     const rowObj = { row: row, rowText: rowText };
-    sortedRows = sortRows(sortedRows, rowObj);
+    sortedRows = positionRowInCollection(sortedRows, rowObj, sortingFunction);
   }
 
   // move content
@@ -47,10 +47,11 @@ function thSortEvent(tbody, directionFlag, rowNamespace, tdSortClass) {
   }
   return !directionFlag;
 }
-function sortRows(sortedRows, rowObj) {
+function positionRowInCollection(sortedRows, rowObj, sortingFunction) {
   for (let i = 0; i < sortedRows.length; i++) {
-    // if the provided row is alphabetically before the row at index i, insert the rowObj
-    if (alphabeticallyFirst(rowObj.rowText, sortedRows[i].rowText) === rowObj.rowText) {
+    // if the provided row is sorted before the row at index i, insert the rowObj
+    const result = sortingFunction(rowObj.rowText, sortedRows[i].rowText);
+    if (result === rowObj.rowText) {
       sortedRows.splice(i, 0, rowObj);
       return sortedRows;
     }
@@ -68,6 +69,44 @@ function alphabeticallyFirst(string1, string2) {
   }
   // if every char was a match
   return string2;
+}
+function numericallyFirst(num1, num2) {
+  const numToSort = parseFloat(num1);
+  const numFromArr = parseFloat(num2);
+  return (numToSort < numFromArr) ? numToSort.toString() : numFromArr.toString();
+}
+function chronologicallyFirst(date1, date2) {
+  const year1 = parseInt(date1[8] + date1[9] + date1[10] + date1[11]);
+  const year2 = parseInt(date2[8] + date2[9] + date2[10] + date2[11]);
+  if (year1 !== year2) {
+    return (year1 < year2) ? date1 : date2;
+  }
+
+  const month1 = abbreviatedMonthToInt(date1[0] + date1[1] + date1[2]);
+  const month2 = abbreviatedMonthToInt(date2[0] + date2[1] + date2[2]);
+  if (month1 !== month2) {
+    return (month1 < month2) ? date1 : date2;
+  }
+
+  const day1 = parseInt(date1[4] + date1[5]);
+  const day2 = parseInt(date2[4] + date2[5]);
+  return (day1 < day2) ? date1 : date2;
+}
+function abbreviatedMonthToInt(abbreviatedMonth) {
+  switch (abbreviatedMonth) {
+    case "Jan": return 1; break;
+    case "Feb": return 2; break;
+    case "Mar": return 3; break;
+    case "Apr": return 4; break;
+    case "May": return 5; break;
+    case "Jun": return 6; break;
+    case "Jul": return 7; break;
+    case "Aug": return 8; break;
+    case "Sep": return 9; break;
+    case "Oct": return 10; break;
+    case "Nov": return 11; break;
+    case "Dec": return 12; break;
+  }
 }
 
 // Move mobile nav btns from navbar to mobile navbar
@@ -99,3 +138,15 @@ $("#mobileNavBtn").on("click", () => {
     $("#mobileNavContainer").addClass("slide-mobile-nav");
   }
 });
+
+// Keyboard accessibility for btns that are <img> elements
+
+const imgBtns = $(`img[tabindex="0"]`);
+
+for (let i = 0; i < imgBtns.length; i++) {
+  $(`#${imgBtns[i].id}`).on("keypress", (event) => {
+    if (event.which === 13) {
+      $(`#${imgBtns[i].id}`).trigger("click");
+    }
+  });
+}

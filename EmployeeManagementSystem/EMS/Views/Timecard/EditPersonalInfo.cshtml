@@ -12,7 +12,7 @@
   </div>
 
   <form asp-controller="Timecard" asp-action="EditPersonalInfo" id="editPersonalInfoForm" class="top-section">
-    <div class="info-card" id="mobilePage1">
+    <div class="info-card hide" id="mobilePage1">
       <label>General:</label>
       <div class="input-err-wrap">
         <input asp-for="FirstName" type="text" id="editPersonalInfoFirstName" placeholder="first name">
@@ -28,14 +28,14 @@
       </div>
 
       <div class="mobile-ele mobile-pagination-container">
-        <div tabindex="0" class="disable"><img src="~/icons/paginationLeft_512x512.png" /></div>
-        <div tabindex="0" class="btn text-btn" id="mobilePaginationRight1"><img src="~/icons/paginationRight_512x512.png" /></div>
+        <div class="disable"><img src="~/icons/paginationLeft_512x512.png" /></div>
+        <div class="btn text-btn"><img tabindex="0" id="mobilePaginationRight1" src="~/icons/paginationRight_512x512.png" /></div>
         <label>1 of 3</label>
       </div>
     </div>
 
 
-    <div class="info-card" id="mobilePage2">
+    <div class="info-card hide" id="mobilePage2">
       <label>Address:</label>
       <div class="input-err-wrap">
         <input asp-for="StreetAddress" type="text" id="editPersonalInfoStreetAddress" placeholder="street address">
@@ -55,14 +55,14 @@
       </div>
 
       <div class="mobile-ele mobile-pagination-container">
-        <div tabindex="0" class="btn text-btn" id="mobilePaginationLeft2"><img src="~/icons/paginationLeft_512x512.png" /></div>
-        <div tabindex="0" class="btn text-btn" id="mobilePaginationRight2"><img src="~/icons/paginationRight_512x512.png" /></div>
+        <div class="btn text-btn"><img tabindex="0" id="mobilePaginationLeft2" src="~/icons/paginationLeft_512x512.png" /></div>
+        <div class="btn text-btn"><img tabindex="0" id="mobilePaginationRight2" src="~/icons/paginationRight_512x512.png" /></div>
         <label>2 of 3</label>
       </div>
     </div>
 
 
-    <div class="info-card" id="mobilePage3">
+    <div class="info-card hide" id="mobilePage3">
       <label>Contact:</label>
       <div class="input-err-wrap">
         <input asp-for="PhoneNumber" type="text" id="editPersonalInfoPhoneNumber" placeholder="phone number">
@@ -74,8 +74,8 @@
       </div>
 
       <div class="mobile-ele mobile-pagination-container">
-        <div tabindex="0" class="btn text-btn" id="mobilePaginationLeft3"><img src="~/icons/paginationLeft_512x512.png" /></div>
-        <div tabindex="0" class="disable"><img src="~/icons/paginationRight_512x512.png" /></div>
+        <div class="btn text-btn"><img tabindex="0" id="mobilePaginationLeft3" src="~/icons/paginationLeft_512x512.png" /></div>
+        <div class="disable"><img src="~/icons/paginationRight_512x512.png" /></div>
         <label>3 of 3</label>
       </div>
     </div>
