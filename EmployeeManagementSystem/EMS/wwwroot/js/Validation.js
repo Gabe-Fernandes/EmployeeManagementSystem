@@ -36,6 +36,10 @@ function HideError(inputId, errorId) {
 
 
 function AllCharsValid(inputFields, errIDs) {
+  if (inputFields.length === 1) {
+    inputFields = [inputFields];
+    errIDs = [errIDs];
+  }
   let inputValidity = true;
   for (let i = 0; i < inputFields.length; i++) {
     for (let j = 0; j < inputFields[i].val().length; j++) {
@@ -50,6 +54,10 @@ function AllCharsValid(inputFields, errIDs) {
 }
 
 function ValidateRequiredInput(inputFields, errIDs) {
+  if (inputFields.length === 1) {
+    inputFields = [inputFields];
+    errIDs = [errIDs];
+  }
   let inputValidity = true;
   for (let i = 0; i < inputFields.length; i++) {
     if (inputFields[i].val() === "") {
@@ -61,6 +69,10 @@ function ValidateRequiredInput(inputFields, errIDs) {
 }
 
 function ValidCharLimit(inputFields, errIDs, limit) {
+  if (inputFields.length === 1) {
+    inputFields = [inputFields];
+    errIDs = [errIDs];
+  }
   let inputValidity = true;
   for (let i = 0; i < inputFields.length; i++) {
     if (inputFields[i].val().length > limit) {
@@ -251,4 +263,35 @@ function ValidatePostalCode(inputID, errID) {
     }
   }
   return true;
+}
+
+
+
+// --------------------------------------  Real Time Validation -------------------------------------- //
+
+
+
+// Real-Time Validation
+
+function realTimeValidation(allInputIDs, allErrIDs, allInputFields, charLimit, specificTestsFunction) {
+  for (let i = 0; i < allInputIDs.length; i++) {
+    allInputFields[i].on("input", () => {
+      let errorExists = false;
+
+      if (ValidCharLimit(allInputFields[i], allErrIDs[i], charLimit) === false) {
+        errorExists = true;
+      }
+      if (AllCharsValid(allInputFields[i], allErrIDs[i]) === false) {
+        errorExists = true;
+      }
+
+      if (specificTestsFunction !== undefined) {
+        if (specificTestsFunction(i) === true) { errorExists = true; }
+      }
+
+      if (errorExists === false) {
+        HideError(allInputIDs[i], allErrIDs[i]);
+      }
+    });
+  }
 }

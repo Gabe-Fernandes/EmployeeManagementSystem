@@ -15,13 +15,13 @@
 
 	<form method="post" asp-controller="Identity" asp-action="Login" id="loginForm">
 		<div class="input-err-wrap">
-			<input asp-for="Email" type="text" id="emailLoginInput" placeholder="email">
-			<span id="errEmailLoginInput" class="err hide"></span>
+			<input asp-for="Email" type="text" id="loginEmail" placeholder="email">
+			<span id="loginEmailErr" class="err hide"></span>
 			<span id="errEmailFailedLogin" class="err hide"></span>
 		</div>
 		<div class="input-err-wrap">
-			<input asp-for="Password" type="password" id="passwordLoginInput" placeholder="password">
-			<span id="errPasswordLoginInput" class="err hide"></span>
+			<input asp-for="Password" type="password" id="loginPassword" placeholder="password">
+			<span id="loginPasswordErr" class="err hide"></span>
 			<img tabindex="0" id="hidePassBtn" src="~/icons/passInvisible_512x512.png">
 			<img tabindex="0" id="showPassBtn" src="~/icons/passVisible_512x512.png" class="hide">
 			<span id="errPasswordFailedLogin" class="err hide"></span>
@@ -73,8 +73,8 @@
 		{
 			<form method="post" asp-controller="Identity" asp-action="ForgotPassword" id="recoverPassForm">
 				<div class="input-err-wrap">
-					<input asp-for="Email" id="forgotPassEmail" placeholder="email" />
-					<span id="errforgotPassEmail" class="err errEmail hide"></span>
+					<input asp-for="Email" id="loginForgotPassEmail" placeholder="email" />
+					<span id="loginForgotPassEmailErr" class="err errEmail hide"></span>
 				</div>
 				<button class="btn" type="submit">Recover</button>
 			</form>
@@ -97,8 +97,8 @@
 		{
 			<form method="post" asp-controller="Identity" asp-action="ResendEmailConf" id="resendEmailConfForm">
 				<div class="input-err-wrap">
-					<input asp-for="Email" id="resendEmailConfEmail" placeholder="email" />
-					<span id="errResendEmailConfEmail" class="err errEmail hide"></span>
+					<input asp-for="Email" id="loginResendEmailConfEmail" placeholder="email" />
+					<span id="loginResendEmailConfEmailErr" class="err errEmail hide"></span>
 				</div>
 				<button class="btn" type="submit">Resend Confirmation</button>
 			</form>
