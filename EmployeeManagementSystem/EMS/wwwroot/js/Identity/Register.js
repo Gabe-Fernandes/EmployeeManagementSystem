@@ -1,5 +1,5 @@
 ﻿$(function () {
-  let passValid = false;
+  const charLimit = 40;
   const allInputNames = ["Email", "FirstName", "LastName", "PhoneNumber", "DOB", "StreetAddress",
                          "City", "State", "PostalCode", "Password", "ConfirmPassword"];
   let allInputIDs = [];
@@ -15,38 +15,54 @@
   // Validation Events
 
   $("#registerForm").on("submit", (evt) => {
-    let errorExists = RunCommonValidationTests(allInputFields, allErrIDs, 40);
+    RunCommonValidationTests(allInputFields, allErrIDs, charLimit);
 
     if (ValidEmail($("#registerEmail").val()) === false) {
       ShowError("registerEmail", "registerEmailErr", "invalid email");
-      errorExists = true;
     }
-    if (CheckPasswordMatch($("#registerPassword").val(), "registerConfirmPassword", "registerConfirmPasswordErr") === false) {
-      errorExists = true;
-    }
-    if (DateIsPastDate("registerDOB", "registerDOBErr") === false) {
-      errorExists = true;
-    }
-    if (ValidatePostalCode("registerPostalCode", "registerPostalCodeErr") === false) {
-      errorExists = true;
-    }
-    if (ValidatePhoneNumber("registerPhoneNumber", "registerPhoneNumberErr") === false) {
-      errorExists = true;
-    }
+    CheckPasswordMatch($("#registerPassword").val(), "registerConfirmPassword", "registerConfirmPasswordErr");
+    DateIsPastDate("registerDOB", "registerDOBErr");
+    ValidatePostalCode("registerPostalCode", "registerPostalCodeErr");
+    ValidatePhoneNumber("registerPhoneNumber", "registerPhoneNumberErr");
 
-    if (errorExists || !passValid) { evt.preventDefault() }
+    if ($(".err-input").length > 0) { evt.preventDefault() }
   });
 
-  $("#registerPassword").on("input", () => {
-    passValid = LivePasswordValidation($("#registerPassword").val());
-  });
+  // Real-Time Validation
+  realTimeValidation(allInputIDs, allErrIDs, allInputFields, charLimit, registerValidations);
 
-  // Clear Error Handling Events
-
-  for (let i = 0; i < allInputIDs.length; i++) {
-    $(`#${allInputIDs[i]}`).on("input", () => {
-      HideError(allInputIDs[i], allErrIDs[i]);
-    });
+  function registerValidations(i) {
+    if (allInputIDs[i] === "registerEmail") {
+      if (ValidEmail(allInputFields[i].val()) === false) {
+        ShowError(allInputIDs[i], allErrIDs[i], "invalid email");
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "registerPassword") {
+      if (LivePasswordValidation(allInputFields[i].val()) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "registerConfirmPassword") {
+      if (CheckPasswordMatch($("#registerPassword").val(), allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "registerDOB") {
+      if (DateIsPastDate(allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "registerPostalCode") {
+      if (ValidatePostalCode(allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "registerPhoneNumber" && allInputFields[i].val().length <= 12) {
+      if (ValidatePhoneNumber(allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
   }
 
   // Phone Formatting

@@ -1,6 +1,7 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#manageUsersNavBtn"));
 
+  const charLimit = 30;
   const allInputNames = ["SearchName"];
   let allInputIDs = [];
   let allInputFields = [];
@@ -13,28 +14,17 @@
   }
   $("#manageUsersSearchForm").on("submit", (evt) => {
     // validation
-    let errorExists = false;
-    if (AllCharsValid(allInputFields, allErrIDs) === false) {
-      errorExists = true;
-    }
-    if (ValidCharLimit(allInputFields, allErrIDs, 30) === false) {
-      errorExists = true;
-    }
+    AllCharsValid(allInputFields, allErrIDs);
+    ValidCharLimit(allInputFields, allErrIDs, charLimit);
 
-    if (errorExists) {
+    if ($(".err-input").length > 0) {
       $("#searchLbl").text("error");
       evt.preventDefault()
     }
   });
 
-  // Clear Error Handling Events
-
-  for (let i = 0; i < allInputIDs.length; i++) {
-    $(`#${allInputIDs[i]}`).on("input", () => {
-      HideError(allInputIDs[i], allErrIDs[i]);
-    });
-  }
-
+  // Real-Time Validation
+  realTimeValidation(allInputIDs, allErrIDs, allInputFields, charLimit, undefined);
 
   // TH sorting events
 

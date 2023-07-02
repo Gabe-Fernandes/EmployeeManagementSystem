@@ -116,7 +116,7 @@ function moveNavBtns() {
   if ($(window).width() <= 768) {
     $("#mobileNavContainer").append($("nav").children(".nav-btn"));
     $("#mobileNavContainer").append($("nav").children(".profile-link"));
-    $("#mobileNavContainer").append($("nav").children(".logout-btn"));
+    $("#mobileNavContainer").append($("nav").children(".logout-form"));
   }
   // if exiting mobile mode
   else {

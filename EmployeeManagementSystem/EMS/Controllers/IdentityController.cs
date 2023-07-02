@@ -64,6 +64,7 @@ public class IdentityController : Controller
         return RedirectToAction(Str.MyTimecards, Str.Timecard, user);
 			}
 		}
+		TempData[Str.Login] = Str.failed_login_attempt;
 		return View();
 	}
 

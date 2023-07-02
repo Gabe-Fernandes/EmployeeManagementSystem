@@ -1,5 +1,5 @@
 ﻿$(function () {
-  let passValid = false;
+  const charLimit = 40;
   const allInputNames = ["Email", "Password", "ConfirmPassword"];
   let allInputIDs = [];
   let allInputFields = [];
@@ -14,29 +14,36 @@
   // Validation Events
 
   $("#resetPasswordForm").on("submit", (evt) => {
-    let errorExists = RunCommonValidationTests(allInputFields, allErrIDs, 40);
+    RunCommonValidationTests(allInputFields, allErrIDs, charLimit);
 
     if (ValidEmail($("#resetPassEmail").val()) === false) {
       ShowError("resetPassEmail", "resetPassEmailErr", "invalid email");
-      errorExists = true;
     }
-    if (CheckPasswordMatch($("#resetPassPassword").val(), "resetPassConfirmPassword", "resetPassConfirmPasswordErr") === false) {
-      errorExists = true;
-    }
+    CheckPasswordMatch($("#resetPassPassword").val(), "resetPassConfirmPassword", "resetPassConfirmPasswordErr");
 
-    if (errorExists || !passValid) { evt.preventDefault() }
+    if ($(".err-input").length > 0) { evt.preventDefault() }
   });
 
-  $("#resetPassPassword").on("input", () => {
-    passValid = LivePasswordValidation($("#resetPassPassword").val());
-  });
+  // Real-Time Validation
+  realTimeValidation(allInputIDs, allErrIDs, allInputFields, charLimit, resetPassValidations);
 
-  // Clear Error Handling Events
-
-  for (let i = 0; i < allInputIDs.length; i++) {
-    $(`#${allInputIDs[i]}`).on("input", () => {
-      HideError(allInputIDs[i], allErrIDs[i]);
-    });
+  function resetPassValidations(i) {
+    if (allInputIDs[i] === "resetPassEmail") {
+      if (ValidEmail(allInputFields[i].val()) === false) {
+        ShowError(allInputIDs[i], allErrIDs[i], "invalid email");
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "resetPassPassword") {
+      if (LivePasswordValidation(allInputFields[i].val()) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "resetPassConfirmPassword") {
+      if (CheckPasswordMatch($("#resetPassPassword").val(), allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
   }
 
   // Pass Show Toggle

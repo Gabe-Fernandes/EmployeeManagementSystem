@@ -1,4 +1,5 @@
 ﻿$(function () {
+  const charLimit = 40;
   const allInputNames = ["Email", "FirstName", "LastName", "PhoneNumber", "DOB", "StreetAddress",
     "City", "State", "PostalCode"];
   let allInputIDs = [];
@@ -14,31 +15,42 @@
   // Validation Events
 
   $("#editPersonalInfoForm").on("submit", (evt) => {
-    let errorExists = RunCommonValidationTests(allInputFields, allErrIDs, 40);
-
+    RunCommonValidationTests(allInputFields, allErrIDs, charLimit);
     if (ValidEmail($("#editPersonalInfoEmail").val()) === false) {
       ShowError("editPersonalInfoEmail", "editPersonalInfoEmailErr", "invalid email");
-      errorExists = true;
     }
-    if (DateIsPastDate("editPersonalInfoDOB", "editPersonalInfoDOBErr") === false) {
-      errorExists = true;
-    }
-    if (ValidatePostalCode("editPersonalInfoPostalCode", "editPersonalInfoPostalCodeErr") === false) {
-      errorExists = true;
-    }
-    if (ValidatePhoneNumber("editPersonalInfoPhoneNumber", "editPersonalInfoPhoneNumberErr") === false) {
-      errorExists = true;
-    }
+    DateIsPastDate("editPersonalInfoDOB", "editPersonalInfoDOBErr");
+    ValidatePostalCode("editPersonalInfoPostalCode", "editPersonalInfoPostalCodeErr");
+    ValidatePhoneNumber("editPersonalInfoPhoneNumber", "editPersonalInfoPhoneNumberErr");
 
-    if (errorExists) { evt.preventDefault() }
+    if ($(".err-input").length > 0) { evt.preventDefault() }
   });
 
-  // Clear Error Handling Events
+  // Real-Time Validation
+  realTimeValidation(allInputIDs, allErrIDs, allInputFields, charLimit, editPersonalInfoValidations);
 
-  for (let i = 0; i < allInputIDs.length; i++) {
-    $(`#${allInputIDs[i]}`).on("input", () => {
-      HideError(allInputIDs[i], allErrIDs[i]);
-    });
+  function editPersonalInfoValidations(i) {
+    if (allInputIDs[i] === "editPersonalInfoEmail") {
+      if (ValidEmail(allInputFields[i].val()) === false) {
+        ShowError(allInputIDs[i], allErrIDs[i], "invalid email");
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "editPersonalInfoDOB") {
+      if (DateIsPastDate(allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "editPersonalInfoPostalCode") {
+      if (ValidatePostalCode(allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "editPersonalInfoPhoneNumber" && allInputFields[i].val().length <= 12) {
+      if (ValidatePhoneNumber(allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
   }
 
   // Misc. Events

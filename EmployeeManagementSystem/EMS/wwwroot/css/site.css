@@ -317,7 +317,7 @@ nav .mobileNavContainer {
   right: -95vw;
   border: #4C5760 2px solid;
 }
-nav .mobileNavContainer div {
+nav .mobileNavContainer div, nav .mobileNavContainer form {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,60 +1,76 @@
 ﻿$(function () {
+  // check for failed login on page load
+  if ($(".failed-login").length == 1) {
+    ShowError("loginEmail", "loginEmailErr", "Email or password are incorrect");
+    ShowError("loginPassword", "loginPasswordErr", "Email or password are incorrect");
+  }
+
   // Validation Events
 
-  $("#loginForm").on("submit", (evt) => {
-    const inputFields = [$("#emailLoginInput"), $("#passwordLoginInput")];
-    const errIDs = ["errEmailLoginInput", "errPasswordLoginInput"];
+  const charLimit = 40;
+  const allInputNames = ["Email", "Password", "ForgotPassEmail", "ResendEmailConfEmail"];
+  let allInputIDs = [];
+  let allInputFields = [];
+  let allErrIDs = [];
 
-    let errorExists = RunCommonValidationTests(inputFields, errIDs, 40);
+  for (let i = 0; i < allInputNames.length; i++) {
+    allInputIDs.push(`login${allInputNames[i]}`);
+    allInputFields.push($(`#${allInputIDs[i]}`));
+    allErrIDs.push(`${allInputIDs[i]}Err`);
+  }
+
+  $("#loginForm").on("submit", (evt) => {
+    const inputFields = [$("#loginEmail"), $("#loginPassword")];
+    const errIDs = ["loginEmailErr", "loginPasswordErr"];
+
+    RunCommonValidationTests(inputFields, errIDs, charLimit);
 
     // test valid email
-    if (ValidEmail($("#emailLoginInput").val()) === false) {
-      ShowError("emailLoginInput", "errEmailLoginInput", "invalid email");
-      errorExists = true;
+    if (ValidEmail($("#loginEmail").val()) === false) {
+      ShowError("loginEmail", "loginEmailErr", "invalid email");
     }
 
-    if (errorExists) { evt.preventDefault() }
+    if ($(".err-input").length > 0) { evt.preventDefault() }
   });
   
   $("#recoverPassForm").on("submit", (evt) => {
-    const inputFields = [$("#forgotPassEmail")];
-    const errIDs = ["errforgotPassEmail"];
+    const inputFields = $("#loginForgotPassEmail");
+    const errIDs = "loginForgotPassEmailErr";
 
-    let errorExists = RunCommonValidationTests(inputFields, errIDs, 40);
+    RunCommonValidationTests(inputFields, errIDs, charLimit);
 
     // test valid email
-    if (ValidEmail($("#forgotPassEmail").val()) === false) {
-      ShowError("forgotPassEmail", "errforgotPassEmail", "invalid email");
-      errorExists = true;
+    if (ValidEmail($("#loginForgotPassEmail").val()) === false) {
+      ShowError("loginForgotPassEmail", "loginForgotPassEmailErr", "invalid email");
     }
 
-    if (errorExists) { evt.preventDefault() }
+    if ($(".err-input").length > 0) { evt.preventDefault() }
   });
 
   $("#resendEmailConfForm").on("submit", (evt) => {
-    const inputFields = [$("#resendEmailConfEmail")];
-    const errIDs = ["errResendEmailConfEmail"];
+    const inputFields = $("#loginResendEmailConfEmail");
+    const errIDs = "loginResendEmailConfEmailErr";
 
-    let errorExists = RunCommonValidationTests(inputFields, errIDs, 40);
+    RunCommonValidationTests(inputFields, errIDs, charLimit);
 
     // test valid email
-    if (ValidEmail($("#resendEmailConfEmail").val()) === false) {
-      ShowError("resendEmailConfEmail", "errResendEmailConfEmail", "invalid email");
-      errorExists = true;
+    if (ValidEmail($("#loginResendEmailConfEmail").val()) === false) {
+      ShowError("loginResendEmailConfEmail", "loginResendEmailConfEmailErr", "invalid email");
     }
 
-    if (errorExists) { evt.preventDefault() }
+    if ($(".err-input").length > 0) { evt.preventDefault() }
   });
 
-  // Clear Error Handling Events
+  // Real-Time Validation
+  realTimeValidation(allInputIDs, allErrIDs, allInputFields, charLimit, loginValidations);
 
-  const allInputIDs = ["emailLoginInput", "passwordLoginInput", "forgotPassEmail", "resendEmailConfEmail"];
-  const allErrIDs = ["errEmailLoginInput", "errPasswordLoginInput", "errforgotPassEmail", "errResendEmailConfEmail"];
-
-  for (let i = 0; i < allInputIDs.length; i++) {
-    $(`#${allInputIDs[i]}`).on("input", () => {
-      HideError(allInputIDs[i], allErrIDs[i]);
-    });
+  function loginValidations(i) {
+    if (allInputIDs[i] === "loginEmail" || allInputIDs[i] === "loginForgotPassEmail" || allInputIDs[i] === "loginResendEmailConfEmail") {
+      if (ValidEmail(allInputFields[i].val()) === false) {
+        ShowError(allInputIDs[i], allErrIDs[i], "invalid email");
+        return true; // errorExists === true
+      }
+    }
   }
 
   // Modal events
@@ -78,9 +94,6 @@
     ToggleModal($("#loginMain"), $("#resendEmailConfModal"), closeModal);
   });
 
-  console.log($("#recoverPassForm").length)
-  console.log($("#resendEmailConfForm").length)
-
   // open modal if showing confirmation onpageload
   if ($("#recoverPassForm").length === 0) {
     ToggleModal($("#loginMain"), $("#forgotPassModal"), openModal);
@@ -92,9 +105,9 @@
   // Pass Show Toggle
 
   $("#hidePassBtn").on("click", () => {
-    TogglePasswordShow($("#passwordLoginInput"), $("#hidePassBtn"), $("#showPassBtn"));
+    TogglePasswordShow($("#loginPassword"), $("#hidePassBtn"), $("#showPassBtn"));
   });
   $("#showPassBtn").on("click", () => {
-    TogglePasswordShow($("#passwordLoginInput"), $("#showPassBtn"), $("#hidePassBtn"));
+    TogglePasswordShow($("#loginPassword"), $("#showPassBtn"), $("#hidePassBtn"));
   });
 });
