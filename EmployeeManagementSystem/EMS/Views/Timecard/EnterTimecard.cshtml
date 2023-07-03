@@ -4,8 +4,8 @@
 @{
   ViewData["Title"] = "Enter Timecard";
   AppUser appUser = ViewData[Str.AppUser] as AppUser;
-  float[] timeInData = { Model.TimeInMon, Model.TimeInTues, Model.TimeInWed, Model.TimeInThur, Model.TimeInFri };
-  float[] timeOutData = { Model.TimeOutMon, Model.TimeOutTues, Model.TimeOutWed, Model.TimeOutThur, Model.TimeOutFri };
+  float[] timeInData = { Model.TimeInMon, Model.TimeInTues, Model.TimeInWed, Model.TimeInThur, Model.TimeInFri, Model.TimeInSat, Model.TimeInSun };
+  float[] timeOutData = { Model.TimeOutMon, Model.TimeOutTues, Model.TimeOutWed, Model.TimeOutThur, Model.TimeOutFri, Model.TimeOutSat, Model.TimeOutSun };
 
   // Adjust your supported times here using 24 hour time
   int earliestTime = 7;
@@ -37,7 +37,7 @@
         <div>Daily Hours</div>
       </div>
       @{
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 7; i++)
         {
           string divClass = (i % 2 == 0) ? "workday-row" : "workday-row offRow";
           <div class="@divClass">
@@ -96,11 +96,15 @@
         <input type="hidden" asp-for="TimeInWed" id="timeInToSendToServer_2">
         <input type="hidden" asp-for="TimeInThur" id="timeInToSendToServer_3">
         <input type="hidden" asp-for="TimeInFri" id="timeInToSendToServer_4">
+        <input type="hidden" asp-for="TimeInSat" id="timeInToSendToServer_5">
+        <input type="hidden" asp-for="TimeInSun" id="timeInToSendToServer_6">
         <input type="hidden" asp-for="TimeOutMon" id="timeOutToSendToServer_0">
         <input type="hidden" asp-for="TimeOutTues" id="timeOutToSendToServer_1">
         <input type="hidden" asp-for="TimeOutWed" id="timeOutToSendToServer_2">
         <input type="hidden" asp-for="TimeOutThur" id="timeOutToSendToServer_3">
         <input type="hidden" asp-for="TimeOutFri" id="timeOutToSendToServer_4">
+        <input type="hidden" asp-for="TimeOutSat" id="timeOutToSendToServer_5">
+        <input type="hidden" asp-for="TimeOutSun" id="timeOutToSendToServer_6">
       </form>
   </section>
 </main>

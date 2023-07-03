@@ -54,12 +54,16 @@ public class TimecardController : Controller
       TimeInWed = timecard.TimeInWed,
       TimeInThur = timecard.TimeInThur,
       TimeInFri = timecard.TimeInFri,
+      TimeInSat = timecard.TimeInSat,
+      TimeInSun = timecard.TimeInSun,
 
       TimeOutMon = timecard.TimeOutMon,
       TimeOutTues = timecard.TimeOutTues,
       TimeOutWed = timecard.TimeOutWed,
       TimeOutThur = timecard.TimeOutThur,
-      TimeOutFri = timecard.TimeOutFri
+      TimeOutFri = timecard.TimeOutFri,
+      TimeOutSat = timecard.TimeOutSat,
+      TimeOutSun = timecard.TimeOutSun
     };
 
     ViewData[Str.AppUser] = appUser;
@@ -94,11 +98,16 @@ public class TimecardController : Controller
     timecardFromDb.TimeInWed = clientData.TimeInWed;
     timecardFromDb.TimeInThur = clientData.TimeInThur;
     timecardFromDb.TimeInFri = clientData.TimeInFri;
+    timecardFromDb.TimeInSat = clientData.TimeInSat;
+    timecardFromDb.TimeInSun = clientData.TimeInSun;
+
     timecardFromDb.TimeOutMon = clientData.TimeOutMon;
     timecardFromDb.TimeOutTues = clientData.TimeOutTues;
     timecardFromDb.TimeOutWed = clientData.TimeOutWed;
     timecardFromDb.TimeOutThur = clientData.TimeOutThur;
     timecardFromDb.TimeOutFri = clientData.TimeOutFri;
+    timecardFromDb.TimeOutSat = clientData.TimeOutSat;
+    timecardFromDb.TimeOutSun = clientData.TimeOutSun;
     _timecardRepo.Update(timecardFromDb);
 
     return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = clientData.AppUserId });
@@ -122,12 +131,16 @@ public class TimecardController : Controller
       TimeInWed = timecard.TimeInWed,
       TimeInThur = timecard.TimeInThur,
       TimeInFri = timecard.TimeInFri,
+      TimeInSat = timecard.TimeInSat,
+      TimeInSun = timecard.TimeInSun,
 
       TimeOutMon = timecard.TimeOutMon,
       TimeOutTues = timecard.TimeOutTues,
       TimeOutWed = timecard.TimeOutWed,
       TimeOutThur = timecard.TimeOutThur,
-      TimeOutFri = timecard.TimeOutFri
+      TimeOutFri = timecard.TimeOutFri,
+      TimeOutSat = timecard.TimeOutSat,
+      TimeOutSun = timecard.TimeOutSun
     };
 
     ViewData[Str.AppUser] = appUser;

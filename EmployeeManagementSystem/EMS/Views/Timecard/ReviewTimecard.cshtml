@@ -4,8 +4,8 @@
 @{
   ViewData["Title"] = "Enter Timecard";
   AppUser appUser = ViewData[Str.AppUser] as AppUser;
-  float[] timeInData = { Model.TimeInMon, Model.TimeInTues, Model.TimeInWed, Model.TimeInThur, Model.TimeInFri };
-  float[] timeOutData = { Model.TimeOutMon, Model.TimeOutTues, Model.TimeOutWed, Model.TimeOutThur, Model.TimeOutFri };
+  float[] timeInData = { Model.TimeInMon, Model.TimeInTues, Model.TimeInWed, Model.TimeInThur, Model.TimeInFri, Model.TimeInSat, Model.TimeInSun };
+  float[] timeOutData = { Model.TimeOutMon, Model.TimeOutTues, Model.TimeOutWed, Model.TimeOutThur, Model.TimeOutFri, Model.TimeOutSat, Model.TimeOutSun };
 }
 
 <script async src="~/js/Timecard/ReviewTimecard.js"></script>
@@ -32,7 +32,7 @@
         <div>Daily Hours</div>
       </div>
       @{
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 7; i++)
         {
           string divClass = (i % 2 == 0) ? "workday-row" : "workday-row offRow";
           float dailyHours = timeOutData[i] - timeInData[i];

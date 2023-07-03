@@ -3,7 +3,7 @@
   const timeOutDropdown = [];
   const dailyTotalHours = [];
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 7; i++) {
     timeInDropdown.push($(`#timeInDropdown_${i}`));
     timeOutDropdown.push($(`#timeOutDropdown_${i}`));
     dailyTotalHours.push($(`#hours_${i}`));
@@ -24,7 +24,7 @@
     dailyTotalHours[index].html(dailyTotal);
 
     let weeklyTotal = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 7; i++) {
       if (dailyTotalHours[i]) {
         weeklyTotal += parseFloat(dailyTotalHours[i].html());
       }
@@ -61,7 +61,7 @@
   });
 
   function PopulateInputValuesWithTimeValues() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 7; i++) {
       $(`#timeInToSendToServer_${i}`).val(timeInDropdown[i].val());
       $(`#timeOutToSendToServer_${i}`).val(timeOutDropdown[i].val());
     }
