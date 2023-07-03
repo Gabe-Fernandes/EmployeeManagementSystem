@@ -59,8 +59,8 @@ public class IdentityController : Controller
 					input.Email, input.Password, isPersistent: false, lockoutOnFailure: false);
 			if (result.Succeeded)
 			{
-				await GenerateSecurityContextAsync(input.Email, HttpContext);
-        var user = await _userManager.FindByEmailAsync(input.Email);
+				var user = await _userManager.FindByEmailAsync(input.Email);
+				await GenerateSecurityContextAsync(user, HttpContext);
         return RedirectToAction(Str.MyTimecards, Str.Timecard, user);
 			}
 		}
@@ -137,7 +137,7 @@ public class IdentityController : Controller
 			if (result.Succeeded)
 			{
 				await _signInManager.PasswordSignInAsync(user.Email, input.Password, isPersistent: false, lockoutOnFailure: false);
-				await GenerateSecurityContextAsync(input.Email, HttpContext);
+				await GenerateSecurityContextAsync(user, HttpContext);
 				return RedirectToAction(Str.MyTimecards, Str.Timecard);
 			}
 		}
@@ -202,17 +202,15 @@ public class IdentityController : Controller
 		return RedirectToAction(Str.Login, Str.Identity);
 	}
 
-	private async Task GenerateSecurityContextAsync(string email, HttpContext context)
+	public static async Task GenerateSecurityContextAsync(AppUser appUser, HttpContext context)
 	{
-		var userFromDb = await _userManager.FindByNameAsync(email);
-
 		var claims = new List<Claim>
 				{
-						new Claim(ClaimTypes.Name, userFromDb.FirstName),
-						new Claim("LastName", userFromDb.LastName),
-						new Claim("Email", userFromDb.Email),
-						new Claim("Id", userFromDb.Id),
-						new Claim(ClaimTypes.Role, userFromDb.Role),
+						new Claim(ClaimTypes.Name, appUser.FirstName),
+						new Claim("LastName", appUser.LastName),
+						new Claim("Email", appUser.Email),
+						new Claim("Id", appUser.Id),
+						new Claim(ClaimTypes.Role, appUser.Role),
 				};
 
 		var identity = new ClaimsIdentity(claims, Str.Cookie);
