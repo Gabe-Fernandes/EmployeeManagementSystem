@@ -48,80 +48,14 @@
   padding: 1em;
   text-align: center;
 }
-#myTimecards .table-wrap .checkMark {
-  height: 1.4em;
-  width: 1.4em;
-  min-height: 1.4em;
-  min-width: 1.4em;
-  border-radius: 50%;
-  background-color: #17993c;
-  position: relative;
-  margin: 0 auto;
+#myTimecards .table-wrap .status-wrap {
+  margin: 0% 26%;
 }
-#myTimecards .table-wrap .checkMark div {
-  background-color: #F9F9F9;
-  border-radius: 0.4em;
-  position: absolute;
-  width: 0.1162em;
-  height: 0.4662em;
-  top: 72%;
-  left: 19%;
-  transform: translate(-20%, -65%) rotate(-45deg);
-}
-#myTimecards .table-wrap .checkMark div + div {
-  width: 0.1162em;
-  height: 1.05em;
-  top: 15%;
-  left: 55%;
-  transform: translate(-55%, 0%) rotate(45deg);
-}
-#myTimecards .table-wrap .dashMark {
-  height: 1.4em;
-  width: 1.4em;
-  min-height: 1.4em;
-  min-width: 1.4em;
-  border-radius: 50%;
-  background-color: #FDDA16;
-  position: relative;
-  margin: 0 auto;
-}
-#myTimecards .table-wrap .dashMark div {
-  width: 1.00002em;
-  height: 0.14em;
-  background-color: #F9F9F9;
-  border: 0.07em solid #FDDA16;
-  border-radius: 0.4em;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-#myTimecards .table-wrap .dashMark div + div {
-  opacity: 0%;
-}
-#myTimecards .table-wrap .xMark {
-  height: 1.4em;
-  width: 1.4em;
-  min-height: 1.4em;
-  min-width: 1.4em;
-  border-radius: 50%;
-  background-color: #781d1d;
-  position: relative;
-  box-shadow: inset 0 0 0.1em 0.1em #781d1d;
-  margin: 0 auto;
-}
-#myTimecards .table-wrap .xMark div {
-  width: 0.1162em;
-  height: 1.00002em;
-  background-color: #F9F9F9;
-  border-radius: 0.4em;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
-#myTimecards .table-wrap .xMark div + div {
-  transform: translate(-50%, -50%) rotate(45deg);
+
+@media (max-width: 768px) {
+  #timecardMain .table-wrap .status-wrap {
+    justify-content: center;
+  }
 }
 
 /*# sourceMappingURL=myTimecards.css.map */

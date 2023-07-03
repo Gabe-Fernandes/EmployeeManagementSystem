@@ -197,6 +197,31 @@ select {
   }
 }
 
+// solution specific
+.status-wrap {
+  @include Flex-Row(flex-start, center, auto, 100%);
+  .Approved {
+    @include Confirmation(1.4em);
+    margin: 0vh 0.5vw;
+  }
+  .Submitted {
+    @include Neutral(1.4em);
+    margin: 0vh 0.5vw;
+  }
+  .Rejected {
+    @include Invalid(1.4em);
+    margin: 0vh 0.5vw;
+  }
+  .Incomplete {
+    @include Neutral(1.4em);
+    margin: 0vh 0.5vw;
+    background-color: gray;
+    div {
+      border: none;
+    }
+  }
+}
+
 @media (max-width: $bmaxMobileSmall) {
   html{ font-size: 10px; }
 }

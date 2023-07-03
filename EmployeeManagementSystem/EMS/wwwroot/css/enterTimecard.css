@@ -17,8 +17,8 @@
   background-color: #4C5760;
   font-size: 1.2em;
 }
-#enterTimecard .info-panel label {
-  margin: 0px 8vw;
+#enterTimecard .info-panel label, #enterTimecard .info-panel .status-wrap {
+  margin: 0vh 8vw;
 }
 #enterTimecard .bot-section {
   display: flex;

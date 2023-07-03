@@ -17,8 +17,8 @@
   background-color: #4C5760;
   font-size: 1.2em;
 }
-#reviewTimecard .info-panel label {
-  margin: 0px 8vw;
+#reviewTimecard .info-panel label, #reviewTimecard .info-panel .status-wrap {
+  margin: 0vh 8vw;
 }
 #reviewTimecard .bot-section {
   display: flex;

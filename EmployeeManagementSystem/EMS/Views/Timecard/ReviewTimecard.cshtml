@@ -16,7 +16,10 @@
   </div>
 
   <div class="info-panel">
-    <label>Status: @Model.Status</label>
+    <div class="status-wrap">
+      <div class="@Model.Status"><div></div><div></div></div>
+      <span>Status: @Model.Status</span>
+    </div>
     <label>Hours for the week: @Model.WeeklyHours</label>
   </div>
 
