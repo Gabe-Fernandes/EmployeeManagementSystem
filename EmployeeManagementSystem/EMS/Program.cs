@@ -4,6 +4,7 @@ using EMS.Data.RepoInterfaces;
 using EMS.Data.Repositories;
 using EMS.Services;
 using EMS.Services.Email;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +27,16 @@ builder.Services.AddAuthentication(Str.Cookie).AddCookie(Str.Cookie, options =>
 builder.Services.AddAuthorization(options =>
 {
 	options.AddPolicy("AdminOnly", policy => policy.RequireRole(Str.Admin));
+});
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+	options.Password.RequireDigit = true;
+	options.Password.RequireLowercase = true;
+	options.Password.RequireNonAlphanumeric = false;
+	options.Password.RequireUppercase = true;
+	options.Password.RequiredLength = 6;
+	options.Password.RequiredUniqueChars = 0;
 });
 
 builder.Services.AddControllersWithViews();
