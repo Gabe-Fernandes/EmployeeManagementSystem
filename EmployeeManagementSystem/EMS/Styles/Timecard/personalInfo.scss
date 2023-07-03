@@ -43,11 +43,11 @@
     }
   }
   .mobile-pagination-container {
-    @include Flex-Row(center, center, 8vw, 5vh);
+    @include Flex-Row(center, center, 8vw, 9%);
     background-color: $cWhite;
     position: absolute;
-    top: 3vh;
-    right: 1vw;
+    bottom: 3vh;
+    right: 4vw;
     div {
       @include Flex-Row(center, center, 100%, 100%);
       padding: 0px;
