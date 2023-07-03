@@ -1,2 +1,2 @@
 # EmployeeManagementSystem
-An employee management system (EMS) for a school. This is a practice project.
+An employee management system (EMS) that tracks timecards. This is a practice project.
