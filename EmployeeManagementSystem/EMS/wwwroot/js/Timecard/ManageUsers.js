@@ -31,6 +31,7 @@
   let thFirstNameInOrder = true;
   let thLastNameInOrder = true;
   let thUpToDateInOrder = true;
+  let thRoleInOrder = true;
 
   $("#thFirstName").on("click", () => {
     thFirstNameInOrder = thSortEvent("manageUsersTbody", thFirstNameInOrder, "manageUsersTR", "sortFirstName", alphabeticallyFirst);
@@ -41,10 +42,11 @@
   $("#thUpToDate").on("click", () => {
     thUpToDateInOrder = thSortEvent("manageUsersTbody", thUpToDateInOrder, "manageUsersTR", "sortUpToDate", alphabeticallyFirst);
   });
+  $("#thRole").on("click", () => {
+    thRoleInOrder = thSortEvent("manageUsersTbody", thRoleInOrder, "manageUsersTR", "sortRole", alphabeticallyFirst);
+  });
 
   // Modal events
-
-
 
   $("#removeUserCloseBtn").on("click", () => {
     ToggleModal($("#manageUsers"), $("#removeUserModal"), closeModal);

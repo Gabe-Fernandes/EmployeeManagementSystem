@@ -219,6 +219,8 @@ public class TimecardController : Controller
         ViewData[Str.SearchMessage] = $"Showing search results for: \"{manageUsersVM.SearchName}\"";
       }
     }
+    string usersOwnId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
+    ViewData[Str.UsersOwnId] = usersOwnId;
     ViewData[Str.Users] = await _appUserRepo.GetAllWithSearchFilterAsync(manageUsersVM.SearchName);
     return View();
   }

@@ -15,6 +15,7 @@
   }
 
   List<AppUser> appUsers = ViewData[Str.Users] as List<AppUser>;
+  string usersOwnId = (string)ViewData[Str.UsersOwnId];
 }
 
 <script async src="~/js/Timecard/ManageUsers.js"></script>
@@ -60,6 +61,7 @@
               <td tabindex="0">Remove User</td>
               <td tabindex="0">Review Timecards</td>
               <td tabindex="0">Up To Date</td>
+              <td tabindex="0">Role</td>
             </tr>
           }
         }
@@ -74,6 +76,7 @@
           <th tabindex="0">Remove User</th>
           <th tabindex="0">Review Timecards</th>
           <th tabindex="0" class="sortable-th" id="thUpToDate">Up To Date</th>
+          <th tabindex="0" class="sortable-th" id="thRole">Role</th>
         </tr>
       </thead>
       <tbody id="manageUsersTbody">
@@ -84,7 +87,16 @@
               <td tabindex="0" class="sortFirstName">@appUsers[i].FirstName</td>
               <td tabindex="0" class="sortLastName">@appUsers[i].LastName</td>
               <td><a asp-controller="Timecard" asp-action="PersonalInfo" asp-route-appUserId="@appUsers[i].Id">Details</a></td>
-              <td><button tabindex="0" class="text-btn removeAppUserBtn" id="@i">Remove</button></td>
+              @{
+                if (appUsers[i].Id == usersOwnId)
+                {
+                  <td><button tabindex="0" class="text-btn">Cannot remove yourself</button></td>
+                }
+                else
+                {
+                  <td><button tabindex="0" class="text-btn removeAppUserBtn" id="@i">Remove</button></td>
+                }
+              }
               <td><a asp-controller="Timecard" asp-action="MyTimecards" asp-route-appUserId="@appUsers[i].Id">Review</a></td>
               @{
                 if (appUsers[i].UpToDate == true)
@@ -96,6 +108,7 @@
                   <td class="sortUpToDate"><div class="xMark"><div></div><div></div></div></td>
                 }
               }
+              <td tabindex="0" class="sortRole">@appUsers[i].Role</td>
               <!-- This hidden <td> holds these elements. opening the modal moves them with Jquery to the modal and closing it moves them back to the <td> -->
               <td id="wrapHoldingMovableElements_@i" class="hide">
                 <label id="moveLabel_@i" tabindex="0">Remove User: @appUsers[i].FirstName @appUsers[i].LastName?</label>
