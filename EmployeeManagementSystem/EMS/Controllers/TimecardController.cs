@@ -231,7 +231,12 @@ public class TimecardController : Controller
   public async Task<IActionResult> ManageUsersDelete(ManageUsersVM manageUsersVM)
   {
     AppUser appUserToDelete = await _appUserRepo.GetByIdAsync(manageUsersVM.AppUserToDeleteId);
+    List<Timecard> timecardsFromAppUserToDelete = await _timecardRepo.GetAllOfUserAsync(appUserToDelete.Id);
     _appUserRepo.Delete(appUserToDelete);
+    for (int i = 0; i < timecardsFromAppUserToDelete.Count; i++)
+    {
+      _timecardRepo.Delete(timecardsFromAppUserToDelete[i]);
+    }
     return RedirectToAction(Str.ManageUsers, Str.Timecard);
   }
 

@@ -55,7 +55,7 @@
                   <label>@timecards[i].Status</label>
                 </div>
               </td>
-              <td tabindex="0" class="sortDateRange">@timecards[i].StartDate.ToString("MMM dd, yyyy") - @timecards[i].StartDate.AddDays(4).ToString("MMM dd, yyyy")</td>
+              <td tabindex="0" class="sortDateRange">@timecards[i].StartDate.ToString("MMM dd, yyyy") - @timecards[i].StartDate.AddDays(6).ToString("MMM dd, yyyy")</td>
               <td class="sortHours">@timecards[i].WeeklyHours</td>
               @{
                 if (viewingOwnTimecards)
