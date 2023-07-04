@@ -239,33 +239,3 @@ public class TimecardController : Controller
     return _appUserRepo.GetById(myId);
   }
 }
-
-
-/*public void GenerateData()
-{
-  for (int i = 0; i < 13; i++)
-  {
-    Data.Models.Timecard newTimecard = new Data.Models.Timecard
-    {
-      Status = "Incomplete",
-      StartDate = DateTime.Now,
-      EndDate = DateTime.Now,
-      WeeklyHours = 0
-    };
-
-    _timecardRepo.Add(newTimecard);
-
-    for (int j = 0; j < 5; j++)
-    {
-      Workday newWorkday = new Workday
-      {
-        Date = DateTime.Now,
-        DailyHours = 0,
-        TimeIn = "9:00",
-        TimeOut = "5:00",
-        TimecardId = newTimecard.Id
-      };
-      _workdayRepo.Add(newWorkday);
-    }
-  }
-} */
