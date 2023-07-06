@@ -27,6 +27,7 @@ public static class Str
   public const string ViewingOwnTimecards = "ViewingOwnTimecards";
   public const string SearchMessage = "SearchMessage";
   public const string Users = "Users";
+  public const string UsersOwnId = "UsersOwnId";
 
   // Timecard Status
   public const string Incomplete = "Incomplete";

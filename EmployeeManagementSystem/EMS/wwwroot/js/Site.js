@@ -1,6 +1,8 @@
 ﻿const openModal = "O";
 const closeModal = "C";
 
+$(".no-js-warning").remove();
+
 function ToggleModal(main, modal, direction) {
   if (direction === openModal) {
     main.addClass("unclickable");

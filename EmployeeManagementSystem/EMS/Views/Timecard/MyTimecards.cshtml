@@ -48,18 +48,14 @@
         @{
           for (int i = 0; i < timecards.Count(); i++)
           {
-            string statusClass = "";
-            switch (timecards[i].Status)
-            {
-              case Str.Approved: statusClass = "checkMark"; break;
-              case Str.Submitted: statusClass = "dashMark"; break;
-              case Str.Rejected: statusClass = "xMark"; break;
-            }
             <tr id="myTimecardsTR_@i">
-              <td tabindex="0" class="sortStatus">@timecards[i].Status
-                <div class="@statusClass"><div></div><div></div></div>
+              <td tabindex="0" class="sortStatus">
+                <div class="status-wrap">
+                  <div class="@timecards[i].Status"><div></div><div></div></div>
+                  <label>@timecards[i].Status</label>
+                </div>
               </td>
-              <td tabindex="0" class="sortDateRange">@timecards[i].StartDate.ToString("MMM dd, yyyy") - @timecards[i].StartDate.AddDays(4).ToString("MMM dd, yyyy")</td>
+              <td tabindex="0" class="sortDateRange">@timecards[i].StartDate.ToString("MMM dd, yyyy") - @timecards[i].StartDate.AddDays(6).ToString("MMM dd, yyyy")</td>
               <td class="sortHours">@timecards[i].WeeklyHours</td>
               @{
                 if (viewingOwnTimecards)

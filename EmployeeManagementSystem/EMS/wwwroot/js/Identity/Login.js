@@ -1,9 +1,6 @@
 ﻿$(function () {
-  // check for failed login on page load
-  if ($(".failed-login").length == 1) {
-    ShowError("loginEmail", "loginEmailErr", "Email or password are incorrect");
-    ShowError("loginPassword", "loginPasswordErr", "Email or password are incorrect");
-  }
+  // helps ensure clean login process
+  if ($("#cleanLoginForm").length > 0) { $(this).submit() }
 
   // Validation Events
 
@@ -70,6 +67,22 @@
         ShowError(allInputIDs[i], allErrIDs[i], "invalid email");
         return true; // errorExists === true
       }
+    }
+  }
+
+  // check for failed login on page load
+  const invalidCredentialErrMsg = "Email or password are incorrect";
+  if ($(".failed-login").length == 1) {
+    ShowError("loginEmail", "loginEmailErr", invalidCredentialErrMsg);
+    ShowError("loginPassword", "loginPasswordErr", invalidCredentialErrMsg);
+  }
+
+  $("#loginEmail").on("input", clearLoginErrosAfterLoginFail);
+  $("#loginPassword").on("input", clearLoginErrosAfterLoginFail);
+  function clearLoginErrosAfterLoginFail() {
+    if ($("#loginPasswordErr")[0].innerHTML === invalidCredentialErrMsg) {
+      HideError("loginEmail", "loginEmailErr");
+      HideError("loginPassword", "loginPasswordErr");
     }
   }
 

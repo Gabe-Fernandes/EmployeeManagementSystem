@@ -32,6 +32,13 @@ input, h1, select, option {
   pointer-events: none;
 }
 
+.no-js-warning {
+  @include Flex-Row(center, center, 100vw, 100vh);
+  background-color: black;
+  position: fixed;
+  z-index: 999;
+}
+
 nav {
   @include Flex-Row(flex-start, center);
   width: 100vw;
@@ -80,6 +87,9 @@ nav {
 
 .title-wrap {
   @include Flex-Row(center, center, 100vw, 10vh);
+  h1 {
+    font-size: 1.6em;
+  }
   // solution-specific
   a {
     position: absolute;
@@ -197,14 +207,39 @@ select {
   }
 }
 
+// solution specific
+.status-wrap {
+  @include Flex-Row(flex-start, center, auto, 100%);
+  .Approved {
+    @include Confirmation(1.4em);
+    margin: 0vh 0.5vw;
+  }
+  .Submitted {
+    @include Neutral(1.4em);
+    margin: 0vh 0.5vw;
+  }
+  .Rejected {
+    @include Invalid(1.4em);
+    margin: 0vh 0.5vw;
+  }
+  .Incomplete {
+    @include Neutral(1.4em);
+    margin: 0vh 0.5vw;
+    background-color: gray;
+    div {
+      border: none;
+    }
+  }
+}
+
 @media (max-width: $bmaxMobileSmall) {
   html{ font-size: 10px; }
 }
 @media (min-width: $bminMobileMedium) and (max-width: $bmaxMobileMedium) {
-  html{ font-size: 10px; }
+  html{ font-size: 11px; }
 }
 @media (min-width: $bminMobileLarge) and (max-width: $bmaxMobileLarge) {
-  html { font-size: 10px; }
+  html { font-size: 11px; }
 }
 @media (min-width: $bminTablet) and (max-width: $bmaxTablet) {
   html{ font-size: 11px; }
@@ -227,6 +262,9 @@ select {
 }
 
 nav {
+  @media (max-width: $bmaxTablet) {
+    border: 1px solid black;
+  }
   .mobile-nav-btn {
     margin: 0vh 5vw 0vh auto;
     img {
@@ -256,7 +294,7 @@ nav {
   // general mobile styles
   @media (max-width: $bmaxTablet) {
     div.table-wrap {
-      @include Flex-Row(center, flex-start, 95vw, 75vh);
+      @include Flex-Row(center, flex-start, 75vw, 75vh);
       table {
         width: 50vw;
         thead {
@@ -271,7 +309,7 @@ nav {
           }
         }
         td {
-          @include Flex-Col(center, center, 50vw, 10vh);
+          @include Flex-Col(center, center, 100%, 10vh);
           padding: 0px;
         }
         td:first-of-type {

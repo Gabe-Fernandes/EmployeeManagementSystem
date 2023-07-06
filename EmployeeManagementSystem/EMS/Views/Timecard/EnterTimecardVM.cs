@@ -23,12 +23,16 @@ public class EnterTimecardVM
   public float TimeInWed { get; set; }
   public float TimeInThur { get; set; }
   public float TimeInFri { get; set; }
+  public float TimeInSat { get; set; }
+  public float TimeInSun { get; set; }
 
   public float TimeOutMon { get; set; }
   public float TimeOutTues { get; set; }
   public float TimeOutWed { get; set; }
   public float TimeOutThur { get; set; }
   public float TimeOutFri { get; set; }
+  public float TimeOutSat { get; set; }
+  public float TimeOutSun { get; set; }
 
   public static string ConvertValueToTimeFormat(double timeValue)
   {

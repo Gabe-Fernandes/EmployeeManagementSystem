@@ -4,11 +4,17 @@
 @{
 	ViewData["Title"] = "Employee Management System Login";
 	var result = TempData[Str.Login] ?? "default";
+	var cleanLogin = (bool)ViewData["test"];
 }
 
 <script async src="~/js/Identity/Login.js"></script>
 
 <main id="loginMain">
+	@if (cleanLogin == false)
+	{
+		<form method="post" asp-controller="Identity" asp-action="Logout" class="hide" id="cleanLoginForm"></form>
+	}
+
 	<div class="title-wrap">
 		<h1>Login</h1>
 	</div>

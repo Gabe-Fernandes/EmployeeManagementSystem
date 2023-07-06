@@ -15,10 +15,10 @@
   margin: 2vh auto;
   border-radius: 1.2em;
   background-color: #4C5760;
-  font-size: 1.2em;
+  font-size: 1em;
 }
-#enterTimecard .info-panel label {
-  margin: 0px 8vw;
+#enterTimecard .info-panel label, #enterTimecard .info-panel .status-wrap {
+  margin: 0vh 8vw;
 }
 #enterTimecard .bot-section {
   display: flex;
@@ -38,7 +38,7 @@
   background-color: #93A8AC;
   border-radius: 1.2em;
   margin-right: 5vw;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 #enterTimecard .bot-section .timecard-div-table .workday-row, #enterTimecard .bot-section .timecard-div-table .header {
   display: flex;

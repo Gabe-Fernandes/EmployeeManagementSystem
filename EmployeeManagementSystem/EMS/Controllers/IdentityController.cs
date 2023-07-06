@@ -9,6 +9,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using EMS.Views.Identity;
 using EMS.Services;
+using EMS.Data.RepoInterfaces;
 
 namespace EMS.Controllers;
 public class IdentityController : Controller
@@ -18,37 +19,39 @@ public class IdentityController : Controller
 	private readonly IEmailSender _emailSender;
 	private readonly IUserEmailStore<AppUser> _emailStore;
 	private readonly IUserStore<AppUser> _userStore;
+	private readonly ITimecardRepo _timecardRepo;
 
-	public IdentityController(SignInManager<AppUser> signInManager,
-	UserManager<AppUser> userManager,
-	IUserStore<AppUser> userStore,
-	IEmailSender emailSender)
-	{
-		_signInManager = signInManager;
-		_userManager = userManager;
-		_userStore = userStore;
-		_emailStore = (IUserEmailStore<AppUser>)_userStore;
-		_emailSender = emailSender;
-	}
+  public IdentityController(SignInManager<AppUser> signInManager,
+  UserManager<AppUser> userManager,
+  IUserStore<AppUser> userStore,
+  IEmailSender emailSender,
+  ITimecardRepo timecardRepo)
+  {
+    _signInManager = signInManager;
+    _userManager = userManager;
+    _userStore = userStore;
+    _emailStore = (IUserEmailStore<AppUser>)_userStore;
+    _emailSender = emailSender;
+    _timecardRepo = timecardRepo;
+  }
 
-	[HttpPost]
+  [HttpPost]
 	[ValidateAntiForgeryToken]
 	public async Task<IActionResult> Logout()
 	{
 		await _signInManager.SignOutAsync();
 		await HttpContext.SignOutAsync(Str.Cookie);
-		return RedirectToAction(Str.Login, Str.Identity);
+		return RedirectToAction(Str.Login, Str.Identity, new {cleanLogin = true});
 	}
 
 	[HttpGet]
-	public async Task<IActionResult> Login()
+	public IActionResult Login(bool cleanLogin = false)
 	{
-		await _signInManager.SignOutAsync();
-		await HttpContext.SignOutAsync(Str.Cookie);
-		return View();
-	}
+		ViewData["test"] = cleanLogin;
+    return View();
+  }
 
-	[HttpPost]
+  [HttpPost]
 	[ValidateAntiForgeryToken]
 	public async Task<IActionResult> Login(IdentityVM input)
 	{
@@ -106,7 +109,9 @@ public class IdentityController : Controller
 				await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
 						$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-				TempData[Str.Register] = "Account Created";
+				GenerateTimecards(userId);
+
+        TempData[Str.Register] = "Account Created";
 				return View();
 			}
 		}
@@ -214,7 +219,26 @@ public class IdentityController : Controller
 				};
 
 		var identity = new ClaimsIdentity(claims, Str.Cookie);
-		ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+		ClaimsPrincipal principal = new(identity);
 		await context.SignInAsync(Str.Cookie, principal);
 	}
+
+  private void GenerateTimecards(string appUserId)
+  {
+    DateTime monday = new(2024, 1, 1);
+
+    for (int i = 0; i < 10; i++)
+    {
+      Timecard newTimecard = new()
+      {
+        Status = "Incomplete",
+        StartDate = monday,
+        WeeklyHours = 0,
+        AppUserId = appUserId
+      };
+
+      _timecardRepo.Add(newTimecard);
+      monday = monday.AddDays(7);
+    }
+  }
 }

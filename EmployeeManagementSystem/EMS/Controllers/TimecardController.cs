@@ -54,12 +54,16 @@ public class TimecardController : Controller
       TimeInWed = timecard.TimeInWed,
       TimeInThur = timecard.TimeInThur,
       TimeInFri = timecard.TimeInFri,
+      TimeInSat = timecard.TimeInSat,
+      TimeInSun = timecard.TimeInSun,
 
       TimeOutMon = timecard.TimeOutMon,
       TimeOutTues = timecard.TimeOutTues,
       TimeOutWed = timecard.TimeOutWed,
       TimeOutThur = timecard.TimeOutThur,
-      TimeOutFri = timecard.TimeOutFri
+      TimeOutFri = timecard.TimeOutFri,
+      TimeOutSat = timecard.TimeOutSat,
+      TimeOutSun = timecard.TimeOutSun
     };
 
     ViewData[Str.AppUser] = appUser;
@@ -94,11 +98,16 @@ public class TimecardController : Controller
     timecardFromDb.TimeInWed = clientData.TimeInWed;
     timecardFromDb.TimeInThur = clientData.TimeInThur;
     timecardFromDb.TimeInFri = clientData.TimeInFri;
+    timecardFromDb.TimeInSat = clientData.TimeInSat;
+    timecardFromDb.TimeInSun = clientData.TimeInSun;
+
     timecardFromDb.TimeOutMon = clientData.TimeOutMon;
     timecardFromDb.TimeOutTues = clientData.TimeOutTues;
     timecardFromDb.TimeOutWed = clientData.TimeOutWed;
     timecardFromDb.TimeOutThur = clientData.TimeOutThur;
     timecardFromDb.TimeOutFri = clientData.TimeOutFri;
+    timecardFromDb.TimeOutSat = clientData.TimeOutSat;
+    timecardFromDb.TimeOutSun = clientData.TimeOutSun;
     _timecardRepo.Update(timecardFromDb);
 
     return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = clientData.AppUserId });
@@ -122,12 +131,16 @@ public class TimecardController : Controller
       TimeInWed = timecard.TimeInWed,
       TimeInThur = timecard.TimeInThur,
       TimeInFri = timecard.TimeInFri,
+      TimeInSat = timecard.TimeInSat,
+      TimeInSun = timecard.TimeInSun,
 
       TimeOutMon = timecard.TimeOutMon,
       TimeOutTues = timecard.TimeOutTues,
       TimeOutWed = timecard.TimeOutWed,
       TimeOutThur = timecard.TimeOutThur,
-      TimeOutFri = timecard.TimeOutFri
+      TimeOutFri = timecard.TimeOutFri,
+      TimeOutSat = timecard.TimeOutSat,
+      TimeOutSun = timecard.TimeOutSun
     };
 
     ViewData[Str.AppUser] = appUser;
@@ -206,6 +219,8 @@ public class TimecardController : Controller
         ViewData[Str.SearchMessage] = $"Showing search results for: \"{manageUsersVM.SearchName}\"";
       }
     }
+    string usersOwnId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
+    ViewData[Str.UsersOwnId] = usersOwnId;
     ViewData[Str.Users] = await _appUserRepo.GetAllWithSearchFilterAsync(manageUsersVM.SearchName);
     return View();
   }
@@ -216,7 +231,12 @@ public class TimecardController : Controller
   public async Task<IActionResult> ManageUsersDelete(ManageUsersVM manageUsersVM)
   {
     AppUser appUserToDelete = await _appUserRepo.GetByIdAsync(manageUsersVM.AppUserToDeleteId);
+    List<Timecard> timecardsFromAppUserToDelete = await _timecardRepo.GetAllOfUserAsync(appUserToDelete.Id);
     _appUserRepo.Delete(appUserToDelete);
+    for (int i = 0; i < timecardsFromAppUserToDelete.Count; i++)
+    {
+      _timecardRepo.Delete(timecardsFromAppUserToDelete[i]);
+    }
     return RedirectToAction(Str.ManageUsers, Str.Timecard);
   }
 
@@ -226,33 +246,3 @@ public class TimecardController : Controller
     return _appUserRepo.GetById(myId);
   }
 }
-
-
-/*public void GenerateData()
-{
-  for (int i = 0; i < 13; i++)
-  {
-    Data.Models.Timecard newTimecard = new Data.Models.Timecard
-    {
-      Status = "Incomplete",
-      StartDate = DateTime.Now,
-      EndDate = DateTime.Now,
-      WeeklyHours = 0
-    };
-
-    _timecardRepo.Add(newTimecard);
-
-    for (int j = 0; j < 5; j++)
-    {
-      Workday newWorkday = new Workday
-      {
-        Date = DateTime.Now,
-        DailyHours = 0,
-        TimeIn = "9:00",
-        TimeOut = "5:00",
-        TimecardId = newTimecard.Id
-      };
-      _workdayRepo.Add(newWorkday);
-    }
-  }
-} */
