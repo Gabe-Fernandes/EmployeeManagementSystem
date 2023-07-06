@@ -87,6 +87,9 @@ nav {
 
 .title-wrap {
   @include Flex-Row(center, center, 100vw, 10vh);
+  h1 {
+    font-size: 1.6em;
+  }
   // solution-specific
   a {
     position: absolute;
@@ -233,10 +236,10 @@ select {
   html{ font-size: 10px; }
 }
 @media (min-width: $bminMobileMedium) and (max-width: $bmaxMobileMedium) {
-  html{ font-size: 10px; }
+  html{ font-size: 11px; }
 }
 @media (min-width: $bminMobileLarge) and (max-width: $bmaxMobileLarge) {
-  html { font-size: 10px; }
+  html { font-size: 11px; }
 }
 @media (min-width: $bminTablet) and (max-width: $bmaxTablet) {
   html{ font-size: 11px; }
@@ -259,6 +262,9 @@ select {
 }
 
 nav {
+  @media (max-width: $bmaxTablet) {
+    border: 1px solid black;
+  }
   .mobile-nav-btn {
     margin: 0vh 5vw 0vh auto;
     img {
@@ -288,7 +294,7 @@ nav {
   // general mobile styles
   @media (max-width: $bmaxTablet) {
     div.table-wrap {
-      @include Flex-Row(center, flex-start, 95vw, 75vh);
+      @include Flex-Row(center, flex-start, 75vw, 75vh);
       table {
         width: 50vw;
         thead {
@@ -303,7 +309,7 @@ nav {
           }
         }
         td {
-          @include Flex-Col(center, center, 50vw, 10vh);
+          @include Flex-Col(center, center, 100%, 10vh);
           padding: 0px;
         }
         td:first-of-type {

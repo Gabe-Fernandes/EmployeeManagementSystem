@@ -6,7 +6,7 @@
     margin: 2vh auto;
     border-radius: 1.2em;
     background-color: $cHeader;
-    font-size: 1.2em;
+    font-size: 1em;
     label, .status-wrap {
       margin: 0vh 8vw;
     }
@@ -22,7 +22,7 @@
       background-color: $cTableRow;
       border-radius: 1.2em;
       margin-right: 5vw;
-      font-size: 1.2em;
+      font-size: 1em;
       .workday-row, .header {
         @include Flex-Row(center, center, 100%, 18%);
         div {

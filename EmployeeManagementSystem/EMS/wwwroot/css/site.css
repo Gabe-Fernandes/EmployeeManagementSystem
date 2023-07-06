@@ -114,6 +114,9 @@ nav .logout-btn {
   width: 100vw;
   height: 10vh;
 }
+.title-wrap h1 {
+  font-size: 1.6em;
+}
 .title-wrap a {
   position: absolute;
   right: 30vw;
@@ -135,7 +138,7 @@ nav .logout-btn {
   padding: 0.4em 1em;
   font-size: 1.1em;
   border-radius: 1em;
-  background: #0429CE;
+  background: #93A8AC;
 }
 
 .btn:hover {
@@ -382,12 +385,12 @@ select {
 }
 @media (min-width: 321px) and (max-width: 375px) {
   html {
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 @media (min-width: 376px) and (max-width: 425px) {
   html {
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 @media (min-width: 426px) and (max-width: 768px) {
@@ -416,6 +419,11 @@ select {
     pointer-events: none !important;
     position: absolute !important;
     display: none;
+  }
+}
+@media (max-width: 768px) {
+  nav {
+    border: 1px solid black;
   }
 }
 nav .mobile-nav-btn {
@@ -460,7 +468,7 @@ nav .slide-mobile-nav {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 95vw;
+    width: 75vw;
     height: 75vh;
   }
   #timecardMain div.table-wrap table {
@@ -480,7 +488,7 @@ nav .slide-mobile-nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50vw;
+    width: 100%;
     height: 10vh;
     padding: 0px;
   }
