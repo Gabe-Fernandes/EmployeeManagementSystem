@@ -41,18 +41,17 @@ public class IdentityController : Controller
 	{
 		await _signInManager.SignOutAsync();
 		await HttpContext.SignOutAsync(Str.Cookie);
-		return RedirectToAction(Str.Login, Str.Identity);
+		return RedirectToAction(Str.Login, Str.Identity, new {cleanLogin = true});
 	}
 
 	[HttpGet]
-	public async Task<IActionResult> Login()
+	public IActionResult Login(bool cleanLogin = false)
 	{
-		await _signInManager.SignOutAsync();
-		await HttpContext.SignOutAsync(Str.Cookie);
-		return View();
-	}
+		ViewData["test"] = cleanLogin;
+    return View();
+  }
 
-	[HttpPost]
+  [HttpPost]
 	[ValidateAntiForgeryToken]
 	public async Task<IActionResult> Login(IdentityVM input)
 	{

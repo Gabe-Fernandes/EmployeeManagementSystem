@@ -1,4 +1,7 @@
 ﻿$(function () {
+  // helps ensure clean login process
+  if ($("#cleanLoginForm").length > 0) { $(this).submit() }
+
   // Validation Events
 
   const charLimit = 40;
