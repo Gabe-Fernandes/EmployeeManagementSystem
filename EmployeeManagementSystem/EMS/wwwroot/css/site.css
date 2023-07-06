@@ -41,6 +41,17 @@ input, h1, select, option {
   pointer-events: none;
 }
 
+.no-js-warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  position: fixed;
+  z-index: 999;
+}
+
 nav {
   display: flex;
   justify-content: flex-start;

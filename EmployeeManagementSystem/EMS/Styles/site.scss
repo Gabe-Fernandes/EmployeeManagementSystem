@@ -32,6 +32,13 @@ input, h1, select, option {
   pointer-events: none;
 }
 
+.no-js-warning {
+  @include Flex-Row(center, center, 100vw, 100vh);
+  background-color: black;
+  position: fixed;
+  z-index: 999;
+}
+
 nav {
   @include Flex-Row(flex-start, center);
   width: 100vw;

@@ -20,6 +20,8 @@
     <script src="~/js/Validation.js"></script>
 </head>
 <body>
+    <div class="no-js-warning">This application relies heavily on javascript - please ensure it's enabled in your browser and refresh the page.</div>
+
     <nav>
       <div class="nav-btn" id="myTimecardsNavBtn"><a asp-controller="Timecard" asp-action="MyTimecards">My Timecards</a></div>
       @if (User.IsInRole(Str.Admin))
