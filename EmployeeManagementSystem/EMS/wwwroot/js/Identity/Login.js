@@ -1,6 +1,6 @@
 ﻿$(function () {
   // helps ensure clean login process
-  if ($("#cleanLoginForm").length > 0) { $(this).submit() }
+  if ($("#cleanLoginForm").length > 0) { $("#cleanLoginForm").submit() }
 
   // Validation Events
 
