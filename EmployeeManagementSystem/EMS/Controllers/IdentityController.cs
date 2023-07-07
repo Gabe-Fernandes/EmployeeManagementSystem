@@ -64,7 +64,7 @@ public class IdentityController : Controller
 			{
 				var user = await _userManager.FindByEmailAsync(input.Email);
 				await GenerateSecurityContextAsync(user, HttpContext);
-        return RedirectToAction(Str.MyTimecards, Str.Timecard, user.Id);
+        return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = user.Id });
 			}
 		}
 		TempData[Str.Login] = Str.failed_login_attempt;
