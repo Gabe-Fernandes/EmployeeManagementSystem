@@ -22,6 +22,7 @@ builder.Services.AddAuthentication(Str.Cookie).AddCookie(Str.Cookie, options =>
 	options.Cookie.Name = Str.Cookie;
 	options.LoginPath = "/Identity/Login";
 	options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+	options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 builder.Services.AddAuthorization(options =>
