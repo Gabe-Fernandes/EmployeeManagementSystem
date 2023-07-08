@@ -41,14 +41,14 @@ public class IdentityController : Controller
 	{
 		await _signInManager.SignOutAsync();
 		await HttpContext.SignOutAsync(Str.Cookie);
-		return RedirectToAction(Str.Login, Str.Identity, new {cleanLogin = true});
+		return RedirectToAction(Str.Login, Str.Identity, new { cleanLogin = true });
 	}
 
 	[HttpGet]
 	public IActionResult Login(bool cleanLogin = false)
 	{
 		ViewData["test"] = cleanLogin;
-    return View();
+		return View();
   }
 
   [HttpPost]

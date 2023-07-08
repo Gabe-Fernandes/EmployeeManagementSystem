@@ -12,6 +12,7 @@ namespace EMS.Tests.Controllers;
 
 public class IdentityControllerTests
 {
+  /*
   private readonly IdentityController _identityController;
 
   private readonly SignInManager<AppUser> _signInManager;
@@ -28,8 +29,9 @@ public class IdentityControllerTests
     _emailSender = A.Fake<IEmailSender>();
 
     // SUT
-    _identityController = new IdentityController(_signInManager, _userManager, _userStore, _emailSender);
+    //_identityController = new IdentityController(_signInManager, _userManager, _userStore, _emailSender);
   }
+  */
 
   /*
   [Fact]
