@@ -192,7 +192,10 @@ public class TimecardController : Controller
       appUserToEdit.Dob = appUserChanges.Dob;
 
       _appUserRepo.Update(appUserToEdit);
-			await IdentityController.GenerateSecurityContextAsync(appUserToEdit, HttpContext);
+      if (_user.Id == appUserToEdit.Id)
+      {
+        await IdentityController.GenerateSecurityContextAsync(appUserToEdit, HttpContext);
+      }
 
       return RedirectToAction(Str.PersonalInfo, Str.Timecard, new { appUserId = appUserToEdit.Id });
     }
