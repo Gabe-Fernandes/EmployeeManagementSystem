@@ -106,8 +106,8 @@ public class IdentityController : Controller
 						values: new { userId, code },
 						protocol: Request.Scheme);
 
-				await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
-						$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+				//await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
+						//$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
 				GenerateTimecards(userId);
 
@@ -159,7 +159,7 @@ public class IdentityController : Controller
 			if (user == null || !await _userManager.IsEmailConfirmedAsync(user))
 			{
 				TempData[Str.Login] = Str.recovery_email_sent;
-				return RedirectToAction(Str.Login, Str.Identity);
+				return RedirectToAction(Str.Login, Str.Identity, new { cleanLogin = true });
 			}
 
 			var code = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -170,12 +170,12 @@ public class IdentityController : Controller
 					values: new { code },
 					protocol: Request.Scheme);
 
-			await _emailSender.SendEmailAsync(input.Email, "Reset Password",
-					$"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+			//await _emailSender.SendEmailAsync(input.Email, "Reset Password",
+					//$"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
 			TempData[Str.Login] = Str.recovery_email_sent;
 		}
-		return RedirectToAction(Str.Login, Str.Identity);
+		return RedirectToAction(Str.Login, Str.Identity, new { cleanLogin = true });
 	}
 
 	[HttpPost]
@@ -188,7 +188,7 @@ public class IdentityController : Controller
 			if (user == null)
 			{
 				TempData[Str.Login] = Str.conf_email_sent;
-				return RedirectToAction(Str.Login, Str.Identity);
+				return RedirectToAction(Str.Login, Str.Identity, new { cleanLogin = true });
 			}
 
 			var userId = await _userManager.GetUserIdAsync(user);
@@ -199,12 +199,12 @@ public class IdentityController : Controller
 					pageHandler: null,
 					values: new { userId, code },
 					protocol: Request.Scheme);
-			await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
-					$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+			//await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
+					//$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
 			TempData[Str.Login] = Str.conf_email_sent;
 		}
-		return RedirectToAction(Str.Login, Str.Identity);
+		return RedirectToAction(Str.Login, Str.Identity, new { cleanLogin = true });
 	}
 
 	public static async Task GenerateSecurityContextAsync(AppUser appUser, HttpContext context)

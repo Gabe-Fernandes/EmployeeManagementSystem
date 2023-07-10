@@ -41,7 +41,7 @@ public class TimecardController : Controller
     var timecard = await _timecardRepo.GetByIdAsync(timecardId);
     string appUserId = timecard.AppUserId;
     var appUser = await _appUserRepo.GetByIdAsync(appUserId);
-    EnterTimecardVM viewModel = new EnterTimecardVM
+    EnterTimecardVM viewModel = new()
     {
       Status = timecard.Status,
       TimecardId = timecard.Id,
@@ -118,7 +118,7 @@ public class TimecardController : Controller
     var timecard = await _timecardRepo.GetByIdAsync(timecardId);
     string appUserId = timecard.AppUserId;
     var appUser = await _appUserRepo.GetByIdAsync(appUserId);
-    EnterTimecardVM viewModel = new EnterTimecardVM
+    EnterTimecardVM viewModel = new()
     {
       Status = timecard.Status,
       TimecardId = timecard.Id,
