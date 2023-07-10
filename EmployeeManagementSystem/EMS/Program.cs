@@ -5,7 +5,6 @@ using EMS.Data.Repositories;
 using EMS.Services;
 using EMS.Services.Email;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,7 +40,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddTransient<IMyEmailSender, MyEmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 builder.Services.AddTransient<IAppUserRepo, AppUserRepo>();
 builder.Services.AddTransient<ITimecardRepo, TimecardRepo>();

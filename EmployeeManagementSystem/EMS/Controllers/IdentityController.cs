@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Text;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using EMS.Views.Identity;
 using EMS.Services;
+using EMS.Services.Email;
 using EMS.Data.RepoInterfaces;
 
 namespace EMS.Controllers;
@@ -16,7 +16,7 @@ public class IdentityController : Controller
 {
 	private readonly SignInManager<AppUser> _signInManager;
 	private readonly UserManager<AppUser> _userManager;
-	private readonly IEmailSender _emailSender;
+	private readonly IMyEmailSender _emailSender;
 	private readonly IUserEmailStore<AppUser> _emailStore;
 	private readonly IUserStore<AppUser> _userStore;
 	private readonly ITimecardRepo _timecardRepo;
@@ -24,7 +24,7 @@ public class IdentityController : Controller
   public IdentityController(SignInManager<AppUser> signInManager,
   UserManager<AppUser> userManager,
   IUserStore<AppUser> userStore,
-  IEmailSender emailSender,
+  IMyEmailSender emailSender,
   ITimecardRepo timecardRepo)
   {
     _signInManager = signInManager;
@@ -106,8 +106,8 @@ public class IdentityController : Controller
 						values: new { userId, code },
 						protocol: Request.Scheme);
 
-				//await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
-						//$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+				await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
+						$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
 				GenerateTimecards(userId);
 
@@ -170,8 +170,8 @@ public class IdentityController : Controller
 					values: new { code },
 					protocol: Request.Scheme);
 
-			//await _emailSender.SendEmailAsync(input.Email, "Reset Password",
-					//$"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+			await _emailSender.SendEmailAsync(input.Email, "Reset Password",
+					$"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
 			TempData[Str.Login] = Str.recovery_email_sent;
 		}
@@ -199,8 +199,8 @@ public class IdentityController : Controller
 					pageHandler: null,
 					values: new { userId, code },
 					protocol: Request.Scheme);
-			//await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
-					//$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+			await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
+					$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
 			TempData[Str.Login] = Str.conf_email_sent;
 		}

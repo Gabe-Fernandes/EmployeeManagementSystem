@@ -36,6 +36,7 @@ public static class Str
   public const string Rejected = "Rejected";
 
   // Identity Framework
+  public const string AppEmail = "gabe-portfolioapp@outlook.com";
   public const string Cookie = "Cookie";
   public const string Admin = "Admin";
   public const string Employee = "Employee";
