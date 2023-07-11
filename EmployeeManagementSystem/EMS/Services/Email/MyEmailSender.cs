@@ -23,6 +23,11 @@ public class MyEmailSender : IMyEmailSender
 			Credentials = new NetworkCredential(Str.AppEmail, Options.AppEmailPassword)
 		};
 
-		return client.SendMailAsync(new MailMessage(Str.AppEmail, to: toEmail, subject, message));
+    var msg = new MailMessage(Str.AppEmail, to: toEmail, subject, message)
+    {
+      IsBodyHtml = true
+    };
+
+    return client.SendMailAsync(msg);
   }
 }

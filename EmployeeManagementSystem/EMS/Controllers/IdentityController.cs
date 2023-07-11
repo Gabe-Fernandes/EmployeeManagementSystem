@@ -20,12 +20,14 @@ public class IdentityController : Controller
 	private readonly IUserEmailStore<AppUser> _emailStore;
 	private readonly IUserStore<AppUser> _userStore;
 	private readonly ITimecardRepo _timecardRepo;
+  private readonly IAppUserRepo _appUserRepo;
 
   public IdentityController(SignInManager<AppUser> signInManager,
   UserManager<AppUser> userManager,
   IUserStore<AppUser> userStore,
   IMyEmailSender emailSender,
-  ITimecardRepo timecardRepo)
+  ITimecardRepo timecardRepo,
+  IAppUserRepo appUserRepo)
   {
     _signInManager = signInManager;
     _userManager = userManager;
@@ -33,6 +35,7 @@ public class IdentityController : Controller
     _emailStore = (IUserEmailStore<AppUser>)_userStore;
     _emailSender = emailSender;
     _timecardRepo = timecardRepo;
+    _appUserRepo = appUserRepo;
   }
 
   [HttpPost]
@@ -100,10 +103,10 @@ public class IdentityController : Controller
 				var userId = await _userManager.GetUserIdAsync(user);
 				var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 				code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-				var callbackUrl = Url.Page(
-						"/MyTimecards",
-						pageHandler: null,
-						values: new { userId, code },
+				var callbackUrl = Url.Action(
+						action: Str.ConfirmEmail,
+						controller: Str.Identity,
+						values: new { confirmationCode = code, appUserId = userId },
 						protocol: Request.Scheme);
 
 				await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
@@ -118,10 +121,28 @@ public class IdentityController : Controller
 		return View();
 	}
 
-	[HttpGet]
-	public IActionResult ResetPassword(string code = null)
+  [HttpGet]
+  public async Task <IActionResult> ConfirmEmail(string confirmationCode, string appUserId)
 	{
-		TempData["Code"] = code;
+		var appUser = await _appUserRepo.GetByIdAsync(appUserId);
+
+    confirmationCode = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(confirmationCode));
+    var result = await _userManager.ConfirmEmailAsync(appUser, confirmationCode);
+    if (result.Succeeded)
+    {
+      await GenerateSecurityContextAsync(appUser, HttpContext);
+      return RedirectToAction(Str.MyTimecards, Str.Timecard);
+    }
+    else
+    {
+      return RedirectToAction(Str.Login, Str.Identity);
+    }
+  }
+
+	[HttpGet]
+	public IActionResult ResetPassword(string resetPassCode)
+	{
+		ViewData["Code"] = resetPassCode;
 		return View();
 	}
 
@@ -138,12 +159,13 @@ public class IdentityController : Controller
 				return View();
 			}
 
-			var result = await _userManager.ResetPasswordAsync(user, input.Code, input.Password);
+			string decodedToken = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(input.Code));
+			var result = await _userManager.ResetPasswordAsync(user, decodedToken, input.Password);
 			if (result.Succeeded)
 			{
 				await _signInManager.PasswordSignInAsync(user.Email, input.Password, isPersistent: false, lockoutOnFailure: false);
 				await GenerateSecurityContextAsync(user, HttpContext);
-				return RedirectToAction(Str.MyTimecards, Str.Timecard);
+				return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = user.Id });
 			}
 		}
 		return View();
@@ -164,10 +186,10 @@ public class IdentityController : Controller
 
 			var code = await _userManager.GeneratePasswordResetTokenAsync(user);
 			code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-			var callbackUrl = Url.Page(
-					"/Identity/Login",
-					pageHandler: null,
-					values: new { code },
+			var callbackUrl = Url.Action(
+					action: Str.ResetPassword,
+					controller: Str.Identity,
+					values: new { resetPassCode = code },
 					protocol: Request.Scheme);
 
 			await _emailSender.SendEmailAsync(input.Email, "Reset Password",
@@ -194,10 +216,10 @@ public class IdentityController : Controller
 			var userId = await _userManager.GetUserIdAsync(user);
 			var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 			code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-			var callbackUrl = Url.Page(
-					"/Identity/Login",
-					pageHandler: null,
-					values: new { userId, code },
+			var callbackUrl = Url.Action(
+					action: Str.ConfirmEmail,
+					controller: Str.Identity,
+					values: new { confirmationCode = code, appUserId = userId },
 					protocol: Request.Scheme);
 			await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
 					$"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");

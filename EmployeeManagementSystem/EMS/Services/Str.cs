@@ -7,6 +7,8 @@ public static class Str
   public const string Identity = "Identity";
   public const string Login = "Login";
   public const string Register = "Register";
+  public const string ResetPassword = "ResetPassword";
+  public const string ConfirmEmail = "ConfirmEmail";
 
   // Timecard controllers & actions
   public const string Timecard = "Timecard";
