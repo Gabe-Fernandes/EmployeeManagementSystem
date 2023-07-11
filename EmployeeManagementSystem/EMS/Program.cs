@@ -5,7 +5,6 @@ using EMS.Data.Repositories;
 using EMS.Services;
 using EMS.Services.Email;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContextConnection")));
 
-builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
 		.AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddAuthentication(Str.Cookie).AddCookie(Str.Cookie, options =>
@@ -41,7 +40,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddTransient<IMyEmailSender, MyEmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 builder.Services.AddTransient<IAppUserRepo, AppUserRepo>();
 builder.Services.AddTransient<ITimecardRepo, TimecardRepo>();

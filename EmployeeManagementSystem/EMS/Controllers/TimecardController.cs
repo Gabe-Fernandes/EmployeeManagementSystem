@@ -17,17 +17,17 @@ public class TimecardController : Controller
   private readonly IAppUserRepo _appUserRepo;
   private readonly ITimecardRepo _timecardRepo;
 
-	public TimecardController(IAppUserRepo appUserRepo,
-		IHttpContextAccessor contextAccessor,
-		ITimecardRepo timecardRepo)
-	{
-		_appUserRepo = appUserRepo;
-		_contextAccessor = contextAccessor;
-		_user = GetUser();
-		_timecardRepo = timecardRepo;
-	}
+  public TimecardController(IAppUserRepo appUserRepo,
+    IHttpContextAccessor contextAccessor,
+    ITimecardRepo timecardRepo)
+  {
+    _appUserRepo = appUserRepo;
+    _contextAccessor = contextAccessor;
+    _user = GetUser();
+    _timecardRepo = timecardRepo;
+  }
 
-	public async Task<IActionResult> MyTimecards(string appUserId)
+  public async Task<IActionResult> MyTimecards(string appUserId)
   {
     var appUser = await _appUserRepo.GetByIdAsync(appUserId) ?? _user;
     string usersOwnId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
