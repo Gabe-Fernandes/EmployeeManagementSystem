@@ -72,7 +72,7 @@
 
   // check for failed login on page load
   const invalidCredentialErrMsg = "Email or password are incorrect";
-  if ($(".failed-login").length == 1) {
+  if ($(".failed-login").length === 1) {
     ShowError("loginEmail", "loginEmailErr", invalidCredentialErrMsg);
     ShowError("loginPassword", "loginPasswordErr", invalidCredentialErrMsg);
   }

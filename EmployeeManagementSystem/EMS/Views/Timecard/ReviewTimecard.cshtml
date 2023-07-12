@@ -2,7 +2,7 @@
 @model EnterTimecardVM;
 
 @{
-  ViewData["Title"] = "Enter Timecard";
+  ViewData["Title"] = "Review Timecard";
   AppUser appUser = ViewData[Str.AppUser] as AppUser;
   float[] timeInData = { Model.TimeInMon, Model.TimeInTues, Model.TimeInWed, Model.TimeInThur, Model.TimeInFri, Model.TimeInSat, Model.TimeInSun };
   float[] timeOutData = { Model.TimeOutMon, Model.TimeOutTues, Model.TimeOutWed, Model.TimeOutThur, Model.TimeOutFri, Model.TimeOutSat, Model.TimeOutSun };

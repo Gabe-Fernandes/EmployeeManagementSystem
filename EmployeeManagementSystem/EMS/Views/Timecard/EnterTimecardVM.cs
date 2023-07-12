@@ -1,6 +1,4 @@
-﻿using EMS.Data.Models;
-
-namespace EMS.Views.Timecard;
+﻿namespace EMS.Views.Timecard;
 
 public class EnterTimecardVM
 {

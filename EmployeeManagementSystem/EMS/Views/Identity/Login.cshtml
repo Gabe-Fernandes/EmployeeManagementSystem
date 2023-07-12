@@ -2,9 +2,10 @@
 @model IdentityVM;
 
 @{
-	ViewData["Title"] = "Employee Management System Login";
-	var result = TempData[Str.Login] ?? "default";
-	var cleanLogin = (bool)ViewData["test"];
+	ViewData["Title"] = "Timecard Manager Login";
+	var msgFromServer = TempData[Str.Login] ?? "default";
+
+	var cleanLogin = (bool)ViewData[Str.CleanLogin];
 }
 
 <script async src="~/js/Identity/Login.js"></script>
@@ -41,7 +42,7 @@
 		</div>
 	</form>
 
-	@if ((string)result == Str.failed_login_attempt)
+	@if ((string)msgFromServer == Str.failed_login_attempt)
 	{
 		<div class="failed-login hide"></div>
 	}
@@ -68,7 +69,7 @@
 <section id="forgotPassModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Password Recovery</h3>
-		@if ((string)result == Str.recovery_email_sent)
+		@if ((string)msgFromServer == Str.recovery_email_sent)
 		{
 			<div class="confirmation-wrap">
 				<span>Check your email to recover your account.</span>
@@ -92,7 +93,7 @@
 <section id="resendEmailConfModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Resend Email Confirmation</h3>
-		@if ((string)result == Str.conf_email_sent)
+		@if ((string)msgFromServer == Str.conf_email_sent)
 		{
 			<div class="confirmation-wrap">
 				<span>Check your email to confirm your account.</span>

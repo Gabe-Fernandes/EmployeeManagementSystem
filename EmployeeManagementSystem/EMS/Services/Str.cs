@@ -30,6 +30,7 @@ public static class Str
   public const string SearchMessage = "SearchMessage";
   public const string Users = "Users";
   public const string UsersOwnId = "UsersOwnId";
+  public const string CleanLogin = "CleanLogin";
 
   // Timecard Status
   public const string Incomplete = "Incomplete";

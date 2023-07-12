@@ -44,13 +44,17 @@ public class IdentityController : Controller
 	{
 		await _signInManager.SignOutAsync();
 		await HttpContext.SignOutAsync(Str.Cookie);
-		return RedirectToAction(Str.Login, Str.Identity, new { cleanLogin = true });
+    return RedirectToAction(Str.Login, Str.Identity, new { cleanLogin = true });
 	}
 
 	[HttpGet]
-	public IActionResult Login(bool cleanLogin = false)
+	public IActionResult Login(bool cleanLogin = false, bool failedLogin = false)
 	{
-		ViewData["test"] = cleanLogin;
+		if (failedLogin)
+		{
+      TempData[Str.Login] = Str.failed_login_attempt;
+    }
+    ViewData[Str.CleanLogin] = cleanLogin;
 		return View();
   }
 
@@ -70,8 +74,9 @@ public class IdentityController : Controller
         return RedirectToAction(Str.MyTimecards, Str.Timecard, new { appUserId = user.Id });
 			}
 		}
-		TempData[Str.Login] = Str.failed_login_attempt;
-		return View();
+    await _signInManager.SignOutAsync();
+    await HttpContext.SignOutAsync(Str.Cookie);
+    return RedirectToAction(Str.Login, Str.Identity, new { cleanLogin = true, failedLogin = true });
 	}
 
 	[HttpGet] public IActionResult Register() { return View(); }
